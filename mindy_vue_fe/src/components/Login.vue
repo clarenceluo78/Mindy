@@ -5,16 +5,16 @@
                 <img src="../assets/logo.png" alt="">
             </div>
             <div>
-                <el-form abel-width="0px" class="login_form">
-                    <el-form-item>
-                        <el-input prefix-icon="el-icon-user"></el-input>
+                <el-form label-width="0px" class="login_form" :model="loginForm" :rules="loginFormRules" ref='loginFormRef'>
+                    <el-form-item prop="username">
+                        <el-input prefix-icon="el-icon-user" v-model="loginForm.username"></el-input>
                     </el-form-item>
-                    <el-form-item>
-                        <el-input prefix-icon="el-icon-lock"></el-input>
+                    <el-form-item prop="password">
+                        <el-input type='password' prefix-icon="el-icon-lock" v-model="loginForm.password"></el-input>
                     </el-form-item>
                     <el-form-item class="btns">
-                        <el-button type="primary">login</el-button>
-                        <el-button type="info">reset</el-button>
+                        <el-button type="primary" @click="login">login</el-button>
+                        <el-button type="info" @click="resetLoginForm">reset</el-button>
                     </el-form-item>
                 </el-form>
             </div>
@@ -23,7 +23,41 @@
 </template>
 <script>
 export default {
-     
+
+    data(){
+        return{
+            loginForm:{
+                username:'',
+                password:''
+            },
+            loginFormRules:{
+                username:[
+                    {required:true, message:'Please enter the username', trigger:'blur'},
+                    {min:3,max:10,message:'3 to 10 letters',trigger:'blur'}
+                ],
+                password:[
+                    {required:true, message:'Please enter the password', trigger:'blur'},
+                    {min:6,max:12,message:'6 to 12 letters',trigger:'blur'}
+                ]
+            }
+        }
+    },
+
+    methods:{
+        resetLoginForm(){
+            this.$refs.loginFormRef.resetFields();
+            console.log('reset')
+        },
+        login(){
+            this.$refs.loginFormRef.validate(valid =>{
+                console.log('validate')
+                if(!valid){
+                    return
+                }
+            });
+        }
+    },
+
 }
 </script>
 
