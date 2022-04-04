@@ -15,12 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.conf.urls import url, include
-
+from django.conf.urls import include
+from users import views
 
 # 总路由文件
 # 第一个参数指的是输入的地址
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('server.urls'))
+    path('login/', views.login),
+    path('register/', views.register),
+    path('logout/', views.logout),
+    path('confirm/', views.user_confirm),
+    path('server/', include('server.urls'))
 ]

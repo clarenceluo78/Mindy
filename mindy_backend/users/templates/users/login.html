@@ -1,0 +1,41 @@
+{% load static %}
+<<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- 上述meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'login/css/login.css' %}" rel="stylesheet"/>
+    <title>Log in</title>
+  </head>
+  <body>
+    <div class="container">
+            <div class="col">
+              <form class="form-login" action="/login/" method="post">{%csrf_token%}
+                  {% if message %}
+                    <div class="alert alert-warning">{{ message }}</div>
+                  {% endif %}
+                  <h3 class="text-center">Welcome to log in!</h3>
+
+                  {{ login_form }}    <!--自动生成表单，login_form名称来自于views中对应函数的form实例名-->
+
+                  <div>
+                  <a href="/register/" class="text-success "><ins>User Registration</ins></a>
+                  <button type="submit" class="btn btn-primary float-right">Log in</button>
+                  </div>
+              </form>
+            </div>
+    </div> <!-- /container -->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    {#    以下三者的引用顺序是固定的#}
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.15.0/umd/popper.js"></script>
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  </body>
+</html>
