@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-92%z)%dv$x)-254f2ixp(ctnua4%^@=db&(ha4i-i2p2er(+^&
 DEBUG = True
 
 # allow hosts, allow remote access ALLOWED_HOSTS = ["*"]
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'server',
     'channels',
+    'users'
 ]
 
 MIDDLEWARE = [
@@ -91,9 +92,9 @@ WSGI_APPLICATION = 'mindy.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'test',
+        'NAME': 'userdb',
         'USER': 'root',
-        'PASSWORD': '85367liao@',
+        'PASSWORD': 'gewt010311',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
@@ -143,3 +144,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # 静态文件目录
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
+# 配置邮件发送
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.qq.com'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = '809352337@qq.com'
+EMAIL_HOST_PASSWORD = 'qclamrnqtfdcbbda'
+
+CONFIRM_DAYS = 1
