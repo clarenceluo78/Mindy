@@ -1,6 +1,6 @@
 from django.urls import path
 
-from server.views import *
+from .views import *
 
 # 子路由文件
 urlpatterns = [

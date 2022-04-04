@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from server.models import *
+from .models import *
 
 
 class CooperationMindSerializer(serializers.ModelSerializer):

@@ -92,9 +92,9 @@ WSGI_APPLICATION = 'mindy.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'userdb',
+        'NAME': 'test',
         'USER': 'root',
-        'PASSWORD': 'gewt010311',
+        'PASSWORD': '85367liao@',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }

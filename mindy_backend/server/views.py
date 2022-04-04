@@ -5,12 +5,15 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.generics import *
 from rest_framework.views import APIView
 
-from server.filters import CooperationMindFilter
-from server.serializers import *
-from server.util.mix_util import build_response
-from server.util.pagination import NewPagination
+from .filters import CooperationMindFilter
+from .models import CooperationMind, CooperationMindLog
+from .serializers import *
+from .util.mix_util import build_response
+from .util.pagination import NewPagination
 
 # request是默认参数，后面可以传参
+
+# 显示初始mind map列表
 def to_list(request):
     """
     列表界面
