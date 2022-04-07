@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'server',
     'channels',
-    'users'
+    'users',
+    'myadmin',
 ]
 
 MIDDLEWARE = [
@@ -70,7 +71,7 @@ ROOT_URLCONF = 'mindy.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'static')],
+        'DIRS': [os.path.join(BASE_DIR, 'static')],  # 这里模板目录配了static, 后期改成template
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -92,7 +93,7 @@ WSGI_APPLICATION = 'mindy.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'test',
+        'NAME': 'mindy_db',
         'USER': 'root',
         'PASSWORD': '85367liao@',
         'HOST': '127.0.0.1',
@@ -143,6 +144,7 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # 静态文件目录
+STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 # 配置邮件发送
