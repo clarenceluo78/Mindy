@@ -14,7 +14,7 @@
                     </el-form-item>
                     <el-form-item class="btns">
                         <el-button type="primary" @click="login">login</el-button>
-                        <el-button type="info" @click="resetLoginForm">reset</el-button>
+                        <el-button type="info" @click="register">register</el-button>
                     </el-form-item>
                 </el-form>
             </div>
@@ -44,8 +44,9 @@ export default {
     },
 
     methods:{
-        resetLoginForm(){
-            this.$refs.loginFormRef.resetFields();
+        register(){
+            // this.$refs.loginFormRef.resetFields();
+            this.$router.replace('/register');
             console.log('reset')
         },
         login(){
