@@ -231,7 +231,7 @@
                         ]
                     }
                     // post start
-                    $.post('create', {'mind_name': mind_name, 'data_format': 'node_tree', 'snapshot_data': view.json2string(snapshot_data)}, function (resp) {
+                    $.post('create/', {'mind_name': mind_name, 'data_format': 'node_tree', 'snapshot_data': view.json2string(snapshot_data)}, function (resp) {
                         layer.closeAll()
                         view.fetch_data()
 

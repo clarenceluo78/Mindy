@@ -12,7 +12,7 @@ from django.urls import reverse
 # Create your views here.
 def index(request):
     if not request.session.get('is_login', None):
-        return redirect("/users/")
+        return redirect("/server/")
     return render(request, 'users/index.html')
 
 
@@ -126,9 +126,9 @@ def register(request):
 def logout(request):
     if not request.session.get('is_login', None):
         #未登录
-        return redirect("/users/")
+        return redirect("/server/")
     request.session.flush()
-    return redirect("/users/")
+    return redirect("/server/")
 
 
 def user_confirm(request):
