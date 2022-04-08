@@ -22,8 +22,7 @@ from django.conf.urls import include
 # 第一个参数指的是输入的地址
 urlpatterns = [
     # path('admin/', admin.site.urls),
-    path('', include('users.urls')),
+    path('', include('server.urls')),
     path('admin/', include('myadmin.urls')),
-    path('server/', include('server.urls')),
 
 ]

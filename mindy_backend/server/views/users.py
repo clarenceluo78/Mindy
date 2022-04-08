@@ -1,10 +1,12 @@
-from django.shortcuts import render,redirect
-from . import models
-from . import forms
+from django.shortcuts import render, redirect
+from .. import models
+from .. import forms
 import hashlib    # 加密密码
 import datetime
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
+from django.shortcuts import redirect
+from django.urls import reverse
 
 
 # Create your views here.
@@ -16,7 +18,7 @@ def index(request):
 
 def login(request):
     if request.session.get('is_login', None):  #已登录，不可重复登陆
-        return redirect('/index/')
+        return redirect(reverse('home_list'))
     if request.method == 'POST':
         login_form = forms.UserForm(request.POST)
         if login_form.is_valid():
@@ -38,7 +40,7 @@ def login(request):
                 request.session['is_login'] = True
                 request.session['user_id'] = user.id
                 request.session['user_name'] = user.name
-                return redirect('/server/')
+                return redirect(reverse('home_list'))
             else:
                 message = 'Incorrect password, please try again!'
                 return render(request, 'users/login.html', locals())
