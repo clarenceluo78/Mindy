@@ -11,6 +11,7 @@ from ..filters import CooperationMindFilter
 from ..serializers import *
 from ..util.mix_util import build_response
 from ..util.pagination import NewPagination
+from django.shortcuts import redirect
 
 # request是默认参数，后面可以传参
 
@@ -19,7 +20,11 @@ def to_list(request):
     """
     列表界面
     """
+    if not request.session.get('is_login', None):
+        return render(request, 'users/login.html')
     return render(request, "html/list.html")
+
+
 
 
 def to_detail(request):

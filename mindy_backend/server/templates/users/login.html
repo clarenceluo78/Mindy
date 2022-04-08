@@ -14,7 +14,7 @@
   <body>
     <div class="container">
             <div class="col">
-              <form class="form-login" action="/login/" method="post">{%csrf_token%}
+              <form class="form-login" action="/login/" method="post"> {%csrf_token%}
                   {% if message %}
                     <div class="alert alert-warning">{{ message }}</div>
                   {% endif %}
