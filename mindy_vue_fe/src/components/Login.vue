@@ -50,12 +50,14 @@ export default {
             console.log('reset')
         },
         login(){
-            this.$refs.loginFormRef.validate(valid =>{
-                console.log('validate')
-                if(!valid){
-                    return
-                }
-            });
+            this.$message.success('Successfully login')
+            this.$router.push('/home')
+            // this.$refs.loginFormRef.validate(valid =>{
+            //     console.log('validate')
+            //     if(!valid){
+            //         return
+            //     }
+            // });
         }
     },
 

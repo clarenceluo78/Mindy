@@ -39,7 +39,7 @@ export default {
                 password:'',
                 passwordCheck:'',
                 phoneNum:'',
-                mailAdd:''
+                mailAdd:'',
             },
             loginFormRules:{
                 username:[
@@ -60,7 +60,7 @@ export default {
                 ],
                 mailAdd:[
                     {required:true, message:'Please enter the email address', trigger:'blur'},
-                    {min:11,max:11,message:'11 digit cellphone number',trigger:'blur'}
+                    // {pattern:}
                 ]
             }
         }
