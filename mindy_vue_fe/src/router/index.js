@@ -4,6 +4,10 @@ import Login from '../components/Login.vue'
 import Register from '../components/Register.vue'
 import Home from '../components/Home.vue'
 import route from 'uview-ui/libs/util/route'
+import Welcome from '../components/Welcome.vue'
+import Userinfo from '../components/Userinfo.vue'
+import Admin from '../components/Admin.vue'
+import Userslist from '../components/user/Userslist.vue'
 
 Vue.use(VueRouter)
 
@@ -36,9 +40,26 @@ const routes = [
     redirect:'/login' 
   },
   {
+    path:'/admin',
+    component: Admin,
+    name: 'Admin',
+    children:[{
+      path:'/userslist',
+      component: Userslist
+    }]
+  },
+  {
     path:'/home',
     component: Home,
-    name: 'Home'
+    name: 'Home',
+    redirect:'/welcome',
+    children:[{
+      path:'/welcome',
+      component: Welcome
+    },{
+      path:'/userinfo',
+      component: Userinfo
+    }]
   }
 
 ]

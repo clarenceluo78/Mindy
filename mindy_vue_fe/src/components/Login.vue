@@ -51,13 +51,36 @@ export default {
         },
         login(){
             this.$message.success('Successfully login')
-            this.$router.push('/home')
+            //this.$router.push('/home')
+            this.$router.push('/admin')
             // this.$refs.loginFormRef.validate(valid =>{
             //     console.log('validate')
             //     if(!valid){
             //         return
             //     }
             // });
+
+
+            // this.axios(
+            //     {
+            //         url:'*******',
+            //         method:'get',
+            //         params:{
+            //             username:this.username,
+            //             password:this.password,
+            //         }
+            //     }
+            // ).then(function(res){
+            //     if(res.data==1)  
+            //     {
+            //     console.log("发送成功")
+            //     if(res){
+            //         this.$router.push('/home') //普通用户
+            //     }else{
+            //         this.$router.push('/admin')  //admin
+            //     }
+            //     }
+            // }.bind(this))
         }
     },
 
