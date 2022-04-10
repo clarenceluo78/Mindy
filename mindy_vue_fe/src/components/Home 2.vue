@@ -9,16 +9,15 @@
                 </span>
             </div>
             <div>
-                <el-avatar class="user-avatar"> user </el-avatar>
-                <el-button @click="userinfo">
+                <el-avatar> user </el-avatar>
+                <el-button @click="info">
                     INFO
                 </el-button>
                 <el-button @click="logout">
                     QUIT
                 </el-button>
             </div>
-
-
+            
         </el-header>
 
         <el-container>
@@ -54,7 +53,7 @@
                         <span slot="title">SHARED FILE</span>
                     </el-menu-item>
                     <el-menu-item index="4" class="menu-item">
-                        <i class="el-icon-delete"></i>
+                        <i class="el-icon-coffee"></i>
                         <span slot="title">RECYCLE BIN</span>
                     </el-menu-item>
                 </el-menu>
@@ -63,7 +62,6 @@
                 <router-view>
 
                 </router-view>
-                
             </el-main>
         </el-container>
     </el-container>
@@ -75,11 +73,12 @@ export default {
             window.sessionStorage.clear();
             this.$router.push('/login');
         },
-        userinfo(){
-            this.$router.push('/userinfo');
-        },
         newfile(){
             console.log('newfile')
+        },
+        info(){
+            console.log('info')
+            this.$router.push('/userinfo')
         }
     }
 }
@@ -120,14 +119,7 @@ export default {
     font-size: 15px;
 
 }
-.el-submenu{
-    >template{
-        span{
-            color: #fff;
-        }
-    }
-}
-.user-avatar{
+.el-avatar{
     margin-right: 15px;
 }
 

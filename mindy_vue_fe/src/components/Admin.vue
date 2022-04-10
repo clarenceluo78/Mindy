@@ -5,7 +5,7 @@
             <div>
                 <img src="" alt="" srcset="">
                 <span>
-                    Mindy
+                    Mindy Admin
                 </span>
             </div>
             <div>
@@ -26,17 +26,25 @@
                 <el-button @click="newfile" class="newfile">
                     + NEW
                 </el-button>
-                <el-menu background-color="#333744">
+                <el-menu background-color="#333744" >
                     <el-menu-item index="1" class="menu-item">
                         <i class="el-icon-s-home"></i>
                         <span slot="title">HOME</span>
                     </el-menu-item>
                     <el-submenu index="2" class="menu-item">
                         <template slot="title">
-                        <i class="el-icon-document"></i>
-                        <span class="menu-item">MY FILE</span>
+                        <i class="el-icon-setting"></i>
+                        <span class="menu-item">SYSTEM MGT</span>
                         </template>
-                        <el-menu-item-group>
+                        <el-menu-item index="2-1" class="submenu-item">
+                            <i class="el-icon-user-solid"></i>
+                            role mgt
+                        </el-menu-item>
+                        <el-menu-item index="2-2" class="submenu-item">
+                            <i class="el-icon-user"></i>
+                            user mgt
+                        </el-menu-item>
+                        <!-- <el-menu-item-group>
                         <template slot="title">分组一</template>
                         <el-menu-item index="1-1">选项1</el-menu-item>
                         <el-menu-item index="1-2">选项2</el-menu-item>
@@ -47,21 +55,31 @@
                         <el-submenu index="1-4">
                         <template slot="title">选项4</template>
                         <el-menu-item index="1-4-1">选项1</el-menu-item>
+                        </el-submenu> -->
+                    </el-submenu>
+                    <el-submenu index="3" class="menu-item">
+                        <template slot="title">
+                        <i class="el-icon-document-copy"></i>
+                        <span class="menu-item">MINDMAP MGT</span>
+                        </template>
+                        <el-menu-item-group>
+                        <template slot="title">分组一</template>
+                        <el-menu-item index="3-1">选项1</el-menu-item>
+                        <el-menu-item index="3-2">选项2</el-menu-item>
+                        </el-menu-item-group>
+                        <el-menu-item-group title="分组2">
+                        <el-menu-item index="3-3">选项3</el-menu-item>
+                        </el-menu-item-group>
+                        <el-submenu index="3-4">
+                        <template slot="title">选项4</template>
+                        <el-menu-item index="3-4-1">选项1</el-menu-item>
                         </el-submenu>
                     </el-submenu>
-                    <el-menu-item index="3" class="menu-item">
-                        <i class="el-icon-files"></i>
-                        <span slot="title">SHARED FILE</span>
-                    </el-menu-item>
-                    <el-menu-item index="4" class="menu-item">
-                        <i class="el-icon-delete"></i>
-                        <span slot="title">RECYCLE BIN</span>
-                    </el-menu-item>
                 </el-menu>
             </el-aside>
             <el-main>
                 <router-view>
-
+                    
                 </router-view>
                 
             </el-main>
@@ -129,6 +147,9 @@ export default {
 }
 .user-avatar{
     margin-right: 15px;
+}
+.submenu-item{
+    color: #fff;
 }
 
 
