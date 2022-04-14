@@ -1,7 +1,7 @@
 from django.urls import path
 
 from .views.views import *
-from .views.users import *
+from .views.login import *
 
 # 子路由文件
 urlpatterns = [

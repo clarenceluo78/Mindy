@@ -1,0 +1,63 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>{% block title %}{% endblock %}</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" href="{% static 'PearAdminLayui/component/pear/css/pear.css' %}?version={{mrdoc_version}}" />
+        <link href="{% static 'mrdoc/mrdoc-admin.css' %}?version={{mrdoc_version}}" rel="stylesheet">
+        {% block custom_element %}
+        {% endblock %}
+	</head>
+	<body class="pear-container">
+		{% if debug %}
+		<div class="layui-card">
+			<div class="layui-card-body">
+				<div class="layui-card-header" style="margin-bottom: 10px;font-weight: 700;color: red;">
+					<i class="layui-icon layui-icon-tips"></i> {% trans "当前站点处于Debug调试模式" %}
+				</div>
+			</div>
+		</div>
+		{% endif %}
+		{% block content %}
+        {% endblock %}
+		<script src="{% static 'PearAdminLayui/component/layui/layui.js' %}?version={{mrdoc_version}}"></script>
+		<script src="{% static 'PearAdminLayui/component/pear/pear.js' %}?version={{mrdoc_version}}"></script>
+		<script src="{% static 'xm-select/dist/xm-select.js' %}"></script>
+		<script async>
+			layui.use(['jquery','layer'], function() {
+				let $ = layui.jquery;
+				let layer = layui.layer;
+				// 检测版本更新
+				checkUpdate = function(silence=false){
+					$.get("{% url 'check_update' %}",function(r){
+						// console.log(r)
+						if(r.status){
+							var new_version = r.data.name.slice(1,6)
+							var current_version = '{{mrdoc_version}}'
+							console.log(new_version,current_version)
+							if(new_version > current_version){
+								console.log("发现新版本")
+								layer.open({
+									title:"{% trans '版本更新' %}",
+									content:"{% trans '觅思文档已发布新版本，请及时更新' %}",
+								})
+							}else{
+								if(silence == false){
+									layer.msg("当前已是最新版本！")
+								}
+							}
+						}      
+					})
+				}
+				checkUpdate(silence=true);
+			})
+		  </script>
+        {% block custom_script %}
+        {% endblock %}
+	</body>
+</html>

@@ -8,4 +8,7 @@
 /dataSources.local.xml
 
 # IDE
-.idea/
+.idea
+/mindy_backend/venv
+/mindy_backend/.idea
+/venv

@@ -1,0 +1,101 @@
+{% extends 'app_doc/user/user_base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}{% trans "我协作的文集" %}{% endblock %}
+{% block content %}
+<div class="layui-card">
+    <div class="layui-card-body">
+    <div class="layui-card-header" style="margin-bottom: 10px;">
+
+      <div class="layui-row">
+          <span style="font-size:18px;">{% trans "我的协作文集" %}
+          </span>
+      </div>
+    </div>
+
+    <div class="layui-row">
+        <table id="mycolla-table" lay-filter="mycolla-table"></table>
+    </div>
+</div>
+{% endblock %}
+{% block custom_script %}
+<!-- 文档名称 -->
+<script type="text/html" id="colla-name">
+    {% verbatim %}
+        {{# if (d.type == 'doc'){ }}
+        文档
+        {{# }else{ }}
+        文集
+        {{# } }}
+    {% endverbatim %}
+</script>
+
+<!-- 协作权限 -->
+<script type="text/html" id="colla-role">
+    {% verbatim %}
+        {{# if (d.role == 0){ }}
+        <span>初级权限</span><i class="layui-icon layui-icon-about" title="可新建文档，修改、删除自己创建的文档"></i>
+        {{# }else if(d.role == 1){ }}
+        <span>高级权限</span><i class="layui-icon layui-icon-about" title="可操作所有文档"></i>
+        {{# } }}
+    {% endverbatim %}
+</script>
+
+<!-- 创建时间 -->
+<script type="text/html" id="create-time">
+    {% verbatim %}
+    {{layui.util.toDateString(d.create_time,  "yyyy-MM-dd HH:mm:ss")}}
+    {% endverbatim %}
+</script>
+
+<!-- 操作栏 -->
+<script type="text/html" id="colla-bar">
+    {% verbatim %}
+        {{# if (d.type == 'doc'){ }}
+        <a class="pear-btn pear-btn-primary pear-btn-sm" href="/modify_doc/{{d.project_id}}/" target="_blank"><i class="layui-icon layui-icon-edit"></i></button>
+        {{# }else{ }}
+        <a class="pear-btn pear-btn-primary pear-btn-sm" href="/create_doc/?pid={{d.project_id}}" target="_blank"><i class="layui-icon layui-icon-add-1"></i></button>
+        {{# } }}
+    {% endverbatim %}
+</script>
+
+<script>
+    layui.use(['table','jquery','form','layer','element','treetable'], function() {
+        let table = layui.table;
+        let form = layui.form;
+        let $ = layui.jquery;
+        let layer = layui.layer;
+        let element = layui.element;
+        let treetable = layui.treetable;
+        $.ajaxSetup({
+            data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+            headers: {"X-CSRFToken":'{{ csrf_token }}'},
+        });
+        let cols =
+        // 渲染表格
+        treetable.render({
+            treeColIndex: 0,
+            treeSpid: 0,
+            treeIdName: 'project_id',
+            treePidName: 'top_doc',
+            skin:'line',
+            method:'get',
+            treeDefaultClose: true,
+            elem: '#mycolla-table',
+            url: "{% url 'my_colla_list' %}",
+            page: true,
+            cols: [
+            [
+                // {type: 'checkbox',width:20},
+                {title: '{% trans "名称" %}',field: 'project_name',align: 'left',minWidth:200},
+                {title: '类型',field: 'type',align: 'left',templet:"#colla-name"},
+                {title: '权限',field: 'role',align: 'left',templet:"#colla-role"},
+                {title: '创建人',field: 'username',align: 'left'},
+                {title: '{% trans "创建时间" %}',field: 'create_time',align: 'left',templet:"#create-time"},
+                {title: '{% trans "操作" %}',toolbar: '#colla-bar',align: 'left',}
+            ]
+        ],
+        });
+    })
+</script>
+{% endblock %}
