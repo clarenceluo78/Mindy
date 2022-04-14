@@ -26,12 +26,16 @@
                 <el-button @click="newfile" class="newfile">
                     + NEW
                 </el-button>
-                <el-menu background-color="#333744">
-                    <el-menu-item index="1" class="menu-item">
+                <el-menu background-color="#333744" router>
+                    <el-menu-item index="/home" class="menu-item">
                         <i class="el-icon-s-home"></i>
                         <span slot="title">HOME</span>
                     </el-menu-item>
-                    <el-submenu index="2" class="menu-item">
+                    <el-menu-item index="/file" class="menu-item">
+                        <i class="el-icon-document"></i>
+                        <span slot="title">MY FILE</span>
+                    </el-menu-item>
+                    <!-- <el-submenu index="2" class="menu-item">
                         <template slot="title">
                         <i class="el-icon-document"></i>
                         <span class="menu-item">MY FILE</span>
@@ -48,12 +52,12 @@
                         <template slot="title">选项4</template>
                         <el-menu-item index="1-4-1">选项1</el-menu-item>
                         </el-submenu>
-                    </el-submenu>
-                    <el-menu-item index="3" class="menu-item">
+                    </el-submenu> -->
+                    <el-menu-item index="/sharedfile" class="menu-item">
                         <i class="el-icon-files"></i>
                         <span slot="title">SHARED FILE</span>
                     </el-menu-item>
-                    <el-menu-item index="4" class="menu-item">
+                    <el-menu-item index="/bin" class="menu-item">
                         <i class="el-icon-delete"></i>
                         <span slot="title">RECYCLE BIN</span>
                     </el-menu-item>
@@ -80,6 +84,7 @@ export default {
         },
         newfile(){
             console.log('newfile')
+            this.$router.push('/mindmap')
         }
     }
 }

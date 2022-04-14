@@ -8,6 +8,12 @@ import Welcome from '../components/Welcome.vue'
 import Userinfo from '../components/Userinfo.vue'
 import Admin from '../components/Admin.vue'
 import Userslist from '../components/user/Userslist.vue'
+import Email_verify from '../components/Email_verify.vue'
+import Mindmap from '../components/Mindmap.vue'
+import Sharedfile from '../components/Sharedfile.vue'
+import File from '../components/File.vue'
+import Bin from '../components/Bin.vue'
+import Mindmaplist from '../components/user/Mindmaplist.vue'
 
 Vue.use(VueRouter)
 
@@ -36,6 +42,11 @@ const routes = [
     name: 'Register'
   },
   {
+    path:'/emailverify',
+    component: Email_verify,
+    name: 'Email_verify'
+  },
+  {
     path:'/',
     redirect:'/login' 
   },
@@ -46,7 +57,14 @@ const routes = [
     children:[{
       path:'/userslist',
       component: Userslist
-    }]
+    },{
+      path:'/mindmaplist',
+      component: Mindmaplist
+    },
+    {
+      path:'/admininfo',
+      component: Userinfo
+    },]
   },
   {
     path:'/home',
@@ -56,11 +74,30 @@ const routes = [
     children:[{
       path:'/welcome',
       component: Welcome
-    },{
+    },
+    {
       path:'/userinfo',
       component: Userinfo
-    }]
-  }
+    },{
+      path:'/mindmap',
+      component: Mindmap
+    },{
+      path:'/file',
+      component: File
+    },{
+      path:'/sharedfile',
+      component: Sharedfile,
+    },
+    {
+      path:'/bin',
+      component: Bin,
+    },]
+  },
+  // {
+  //   path:'/mindmap',
+  //   component: Mindmap,
+  //   name: 'Mindmap'
+  // },
 
 ]
 
