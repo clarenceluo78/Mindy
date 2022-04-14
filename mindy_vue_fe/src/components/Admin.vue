@@ -10,7 +10,7 @@
             </div>
             <div>
                 <el-avatar class="user-avatar"> user </el-avatar>
-                <el-button @click="userinfo">
+                <el-button @click="admininfo">
                     INFO
                 </el-button>
                 <el-button @click="logout">
@@ -26,7 +26,7 @@
                 <el-button @click="newfile" class="newfile">
                     + NEW
                 </el-button>
-                <el-menu background-color="#333744" >
+                <el-menu background-color="#333744" router>
                     <el-menu-item index="1" class="menu-item">
                         <i class="el-icon-s-home"></i>
                         <span slot="title">HOME</span>
@@ -34,15 +34,15 @@
                     <el-submenu index="2" class="menu-item">
                         <template slot="title">
                         <i class="el-icon-setting"></i>
-                        <span class="menu-item">SYSTEM MGT</span>
+                        <span class="menu-item">MANAGEMENT</span>
                         </template>
-                        <el-menu-item index="2-1" class="submenu-item">
+                        <el-menu-item index="/userslist" class="submenu-item">
                             <i class="el-icon-user-solid"></i>
-                            role mgt
+                            USER MGT
                         </el-menu-item>
-                        <el-menu-item index="2-2" class="submenu-item">
-                            <i class="el-icon-user"></i>
-                            user mgt
+                        <el-menu-item index="/mindmaplist" class="submenu-item">
+                            <i class="el-icon-document-copy"></i>
+                            MINDMAP MGT
                         </el-menu-item>
                         <!-- <el-menu-item-group>
                         <template slot="title">分组一</template>
@@ -57,7 +57,7 @@
                         <el-menu-item index="1-4-1">选项1</el-menu-item>
                         </el-submenu> -->
                     </el-submenu>
-                    <el-submenu index="3" class="menu-item">
+                    <!-- <el-submenu index="3" class="menu-item">
                         <template slot="title">
                         <i class="el-icon-document-copy"></i>
                         <span class="menu-item">MINDMAP MGT</span>
@@ -74,7 +74,7 @@
                         <template slot="title">选项4</template>
                         <el-menu-item index="3-4-1">选项1</el-menu-item>
                         </el-submenu>
-                    </el-submenu>
+                    </el-submenu> -->
                 </el-menu>
             </el-aside>
             <el-main>
@@ -93,8 +93,8 @@ export default {
             window.sessionStorage.clear();
             this.$router.push('/login');
         },
-        userinfo(){
-            this.$router.push('/userinfo');
+        admininfo(){
+            this.$router.push('/admininfo');
         },
         newfile(){
             console.log('newfile')

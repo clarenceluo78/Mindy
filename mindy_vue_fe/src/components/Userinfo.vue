@@ -8,15 +8,22 @@
         :data="tableData"
         style="width: 100%">
         <el-table-column
-            prop="date"
-            label="日期"
-            width="180">
+            prop="username"
+            label="name">
         </el-table-column>
         <el-table-column
-            prop="name"
-            label="姓名"
-            width="180">
+            prop="role"
+            label="role">
         </el-table-column>
+        <el-table-column
+            prop="mobile"
+            label="mobile">
+        </el-table-column>        
+        <el-table-column
+            prop="email"
+            label="e-mail">
+        </el-table-column>
+
         </el-table>
     </div>
 </template>
@@ -27,21 +34,10 @@ export default {
             circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
                 
             tableData: [{
-                date: '2016-05-02',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1518 弄'
-            }, {
-                date: '2016-05-04',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1517 弄'
-            }, {
-                date: '2016-05-01',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1519 弄'
-            }, {
-                date: '2016-05-03',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1516 弄'
+                username: 'cyy',
+                role:'admin',
+                email:'118010029@link.cuhk.edu.cn',
+                mobile:'13306513527'
             }]
         
       
