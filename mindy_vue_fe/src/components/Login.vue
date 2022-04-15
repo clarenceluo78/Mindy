@@ -5,7 +5,7 @@
                 <img src="../assets/logo.png" alt="">
             </div>
             <div>
-                <el-form label-width="0px" class="login_form" :model="loginForm" :rules="loginFormRules" ref='loginFormRef'>
+                <el-form v-loading="loading" label-width="0px" class="login_form" :model="loginForm" :rules="loginFormRules" ref='loginFormRef'>
                     <el-form-item prop="username">
                         <el-input prefix-icon="el-icon-user" v-model="loginForm.username"></el-input>
                     </el-form-item>
@@ -26,6 +26,7 @@ export default {
 
     data(){
         return{
+            loading:true,
             loginForm:{
                 username:'',
                 password:''

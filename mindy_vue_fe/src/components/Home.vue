@@ -9,7 +9,7 @@
                 </span>
             </div>
             <div>
-                <el-avatar class="user-avatar"> user </el-avatar>
+                <el-avatar class="user-avatar" @click="userinfo"> user </el-avatar>
                 <el-button @click="userinfo">
                     INFO
                 </el-button>
