@@ -23,11 +23,8 @@
 
         <el-container>
             <el-aside width="200px">
-                <el-button @click="newfile" class="newfile">
-                    + NEW
-                </el-button>
                 <el-menu background-color="#333744" router>
-                    <el-menu-item index="1" class="menu-item">
+                    <el-menu-item index="/adminhome" class="menu-item">
                         <i class="el-icon-s-home"></i>
                         <span slot="title">HOME</span>
                     </el-menu-item>

@@ -15,6 +15,7 @@ import File from '../components/File.vue'
 import Bin from '../components/Bin.vue'
 import Mindmaplist from '../components/user/Mindmaplist.vue'
 import Butterfly from '../components/Butterfly.vue'
+import Adminhome from '../components/Adminhome.vue'
 
 Vue.use(VueRouter)
 
@@ -65,6 +66,10 @@ const routes = [
     {
       path:'/admininfo',
       component: Userinfo
+    },
+    {
+      path:'/adminhome',
+      component: Adminhome
     },]
   },
   {

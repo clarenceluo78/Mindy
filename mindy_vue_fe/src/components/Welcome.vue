@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-button type="text" @click="dialogFormVisible = true">INVITE</el-button>
+        <el-button type="text" @click="dialogFormVisible = true" icon="el-icon-connection">INVITE</el-button>
         <el-dialog title="add team member" :visible.sync="dialogFormVisible">
         <el-form :model="form">
             <el-form-item label="ACCOUNT" :label-width="formLabelWidth">
