@@ -1,5 +1,5 @@
 <template>
-  <mindmap v-model="data"></mindmap>
+    <mindmap v-model="data"></mindmap>
 </template>
 
 <script>

@@ -25,6 +25,15 @@
         </el-table-column>
 
         </el-table>
+        <el-card class="box-card">
+            <div>
+                <el-row>
+                    <el-col :span="4"><div class="grid-content bg-purple">INVITE LINK:</div></el-col>
+                    <el-col :span="16"><div class="grid-content bg-purple"></div></el-col>
+                </el-row>
+
+            </div>
+        </el-card>
     </div>
 </template>
 <script>
@@ -54,9 +63,18 @@ export default {
 </script>
 
 <style lang="less" scoped>
-    .edit-button{
-
+    .text {
+        font-size: 14px;
     }
 
+    .item {
+        padding: 18px 0;
+    }
 
+    .box-card {
+        width: 480px;
+    }
+    .el-card{
+        margin-top: 15px;
+    }
 </style>
