@@ -39,11 +39,11 @@
 
             <el-table :data='userlist' stripe=true>
                 <el-table-column type="index"></el-table-column>
-                <el-table-column width="100" label="username" prop="username"></el-table-column>
-                <el-table-column width="250" label="e-mail" prop="email"></el-table-column>
-                <el-table-column width="120" label="mobile" prop="mobile"></el-table-column>
-                <el-table-column width="80" label="role" prop="role_name"></el-table-column>
-                <el-table-column width="80" label="state" prop="mg_state">
+                <el-table-column width="120" label="username" prop="username"></el-table-column>
+                <el-table-column width="300" label="e-mail" prop="email"></el-table-column>
+                <el-table-column width="150" label="mobile" prop="mobile"></el-table-column>
+                <el-table-column width="100" label="role" prop="role_name"></el-table-column>
+                <el-table-column width="100" label="state" prop="mg_state">
                     <template slot-scope="scope">
                         <!-- {{scope.row}} -->
                         <el-switch v-model="scope.row.mg_state">
@@ -53,12 +53,35 @@
                 </el-table-column>
                 <el-table-column label="operations">
                     <template slot-scope="scope">
-                        <el-button type="primary" icon="el-icon-edit"></el-button>
-                        <el-button type="danger" icon="el-icon-delete"></el-button>
+                        <el-button type="primary" icon="el-icon-edit" @click="dialogFormVisible = true"></el-button>
+                        <el-button type="danger" icon="el-icon-delete" @click="delete_user"></el-button>
                         <el-button type="warning" icon="el-icon-setting"></el-button>
                     </template>
                 </el-table-column>
             </el-table>
+            <el-dialog title="Edit your personal info here" :visible.sync="dialogFormVisible">
+            <el-form :model="form">
+                <el-form-item label="USERNAME" :label-width="formLabelWidth">
+                    <el-input v-model="form.name" placeholder="cyy" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="MOBILE" :label-width="formLabelWidth">
+                    <el-input v-model="form.name" placeholder="13306513527" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="E-MAIL" :label-width="formLabelWidth">
+                    <el-input v-model="form.name" placeholder="118010029@link.cuhk.edu.cn" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="ROLE" :label-width="formLabelWidth">
+                    <el-input v-model="form.name" placeholder="admin" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="STATE" :label-width="formLabelWidth">
+                    <el-input v-model="form.name" placeholder="true" autocomplete="off"></el-input>
+                </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="dialogFormVisible = false">cancel</el-button>
+                <el-button type="primary" @click="submit">submit</el-button>
+            </div>
+            </el-dialog>
             <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="queryinfo.pagenum" :page-sizes="queryinfo.pagesize" :page-size="[2,5,10]">
 
             </el-pagination>
@@ -69,6 +92,42 @@
 export default {
     data(){
         return{
+            tableData: [{
+                username: 'cyy',
+                role:'admin',
+                email:'118010029@link.cuhk.edu.cn',
+                mobile:'13306513527',
+                passcode:'******'
+            }],
+            gridData: [{
+                    date: '2016-05-02',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1518 弄'
+                }, {
+                    date: '2016-05-04',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1518 弄'
+                }, {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1518 弄'
+                }, {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1518 弄'
+                }],
+                dialogTableVisible: false,
+                dialogFormVisible: false,
+                form: {
+                name: '',
+                region: '',
+                date1: '',
+                date2: '',
+                delivery: false,
+                type: [],
+                resource: '',
+                desc: ''
+                },
             activeName: 'first',
             queryinfo:{
                 query:'',
@@ -205,6 +264,9 @@ export default {
         },
         handleCurrentChange(newpage){
             console.log(newpage)
+        },
+        delete_user(){
+            console.log('delete')
         }
     }
 }
