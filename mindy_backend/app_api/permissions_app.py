@@ -1,9 +1,3 @@
-# coding:utf-8
-# @文件: permissions.py
-# @创建者：州的先生
-# #日期：2020/5/11
-# 博客地址：zmister.com
-
 from rest_framework.permissions import BasePermission,SAFE_METHODS
 from django.utils.translation import gettext_lazy as _
 

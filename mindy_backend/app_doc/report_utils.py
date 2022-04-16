@@ -1,9 +1,4 @@
-# coding:utf-8
-# @文件: report_utils.py
-# @创建者：州的先生
-# #日期：2019/12/7
-# 博客地址：zmister.com
-# MrDoc文集文档导出相关功能代码
+# Mindy文集文档导出相关功能代码
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.translation import gettext_lazy as _
@@ -133,7 +128,7 @@ class ReportMD():
             project_toc_list['toc'].append(top_item)
 
         # 写入层级YAML
-        with open('{}/mrdoc.yaml'.format(self.project_path), 'a+', encoding='utf-8') as toc_yaml:
+        with open('{}/mindy.yaml'.format(self.project_path), 'a+', encoding='utf-8') as toc_yaml:
             yaml.dump(project_toc_list,toc_yaml,allow_unicode=True)
 
         # 压缩文件
@@ -467,7 +462,7 @@ class ReportEPUB():
                     <h1 class="title"">{title}</h1>
                     <p class="author"><b>{author} 著</b></p><br>
                     <p class="author">{create_time}</p>
-                    <p class="book-src">本书籍由<a href='http://mrdoc.zmister.com'>mindy(mrdoc.zmister.com)</a>生成</p>
+                    <p class="book-src">本书籍由<a href='http://mrdoc.zmister.com'>mindy(mindy.zmister.com)</a>生成</p>
                   </div>
             </body>
             </html>
@@ -676,7 +671,7 @@ class ReportPDF():
             <title>{title}</title>
             <link rel="stylesheet" href="../../static/layui/css/layui.css" />
             <link rel="stylesheet" href="../../static/editor.md/css/editormd.css" />
-            <link rel="stylesheet" href="../../static/mrdoc/mrdoc-docs.css" />
+            <link rel="stylesheet" href="../../static/mindy/mindy-docs.css" />
             <script src="../../static/jquery/3.1.1/jquery.min.js"></script>
             <script>var iframe_whitelist = []</script>
             <script src="../../static/editor.md/lib/marked.min.js"></script>

@@ -1,10 +1,5 @@
-# coding:utf-8
-# @文件: urls.py
-# @创建者：州的先生
-# #日期：2020/3/22
-# 博客地址：zmister.com
 from django.urls import path,re_path
-from app_api import views
+from . import views
 
 urlpatterns = [
     path('manage_token/',views.manage_token,name='manage_token'),# 用户Token管理

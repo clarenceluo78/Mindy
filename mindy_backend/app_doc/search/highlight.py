@@ -1,12 +1,6 @@
-# coding:utf-8
-# @文件: highlight.py
-# @创建者：州的先生
-# #日期：2020/11/24
-# 博客地址：zmister.com
 from haystack.utils import Highlighter
 from django.utils.html import strip_tags
 from app_doc.search.chinese_analyzer import ChineseAnalyzer as StemmingAnalyzer
-
 
 class MyHighLighter(Highlighter):
 

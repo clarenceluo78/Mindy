@@ -1,4 +1,3 @@
-# coding:utf-8
 from django.shortcuts import render,redirect
 from django.http.response import JsonResponse,HttpResponse,Http404
 from django.contrib.auth import authenticate,login,logout # 认证相关方法
@@ -18,11 +17,11 @@ from rest_framework.permissions import IsAdminUser # 权限
 from app_api.serializers_app import *
 from app_api.auth_app import AppAuth,AppMustAuth # 自定义认证
 from app_api.permissions_app import SuperUserPermission # 自定义权限
-from app_admin.decorators import superuser_only,open_register
+from .decorators import superuser_only,open_register
 from app_doc.models import *
 from app_doc.views import jsonXssFilter
-from app_admin.models import *
-from app_admin.utils import *
+from .models import *
+from .utils import *
 from loguru import logger
 import re
 import datetime

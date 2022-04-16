@@ -1364,7 +1364,7 @@ msgstr "The outline of the project is loading"
 #: .\template\app_doc\docs_base.html:146
 #: .\template\app_doc\tag_doc_base.html:71
 msgid "本文档使用MrDoc发布"
-msgstr "This document is published in mrdoc"
+msgstr "This document is published in mindy"
 
 #: .\template\app_doc\docs_base.html:167
 #: .\template\app_doc\share\share_doc.html:130
@@ -1854,7 +1854,7 @@ msgstr "Save sort"
 
 #: .\template\app_doc\manage\manage_project_import.html:9
 msgid "导入文集到MrDoc"
-msgstr "Import corpus to mrdoc"
+msgstr "Import corpus to mindy"
 
 #: .\template\app_doc\manage\manage_project_import.html:12
 msgid "导入Markdown文件压缩包"
@@ -2105,7 +2105,7 @@ msgstr "Confirm modification"
 
 #: .\template\app_doc\pro_list.html:14
 msgid "又一个MrDoc站点"
-msgstr "Another mrdoc site"
+msgstr "Another mindy site"
 
 #: .\template\app_doc\pro_list.html:96
 msgid "筛选"

@@ -5,7 +5,7 @@
         <!-- LOGO -->
         <div class="">
             <a class="logo" href="{% url 'pro_list' %}">
-                <img src="{% static 'logo.svg' %}" style="height: 32px;width: auto;">
+                <img src="{% static 'logo.jpg' %}" style="height: 42px;width: auto;">
             </a>
         </div>
         <!-- 搜索框 -->
@@ -30,26 +30,26 @@
             <ul class="layui-nav">
                 <li class="layui-nav-item">
                     <a>
-                        <i class="layui-icon layui-icon-add-circle" style="color:black;"></i> <span>{% trans "新建" %}</span>
+                        <i class="layui-icon layui-icon-add-circle" style="color:black;"></i> <span>{% trans "New" %}</span>
                     </a>
                     <dl class="layui-nav-child">
                         <dd>
                             <a href="{% url 'create_doc' %}">
                                 <img src="{% static 'icon_img/create-doc-icon.svg' %}" height="14px" width="14px"></img>
-                                <span class="layui-hide-xs">{% trans "新建文档" %}</span>
+                                <span class="layui-hide-xs">{% trans "MindMap" %}</span>
                             </a>
                         </dd>
                         <dd>
                             <a href="{% url 'create_doc' %}?eid=4">
                                 <img src="{% static 'icon_img/create-table-icon.svg' %}" height="14px" width="14px"></img>
-                                <span class="layui-hide-xs">{% trans "新建表格" %}</span>
+                                <span class="layui-hide-xs">{% trans "Table" %}</span>
                             </a>
                         </dd>
                         {% if request.user.is_authenticated %}
                         <dd>
                             <a href="javascript:void(0);" onclick="createPro();">
                                 <img src="{% static 'icon_img/create-pro-icon.svg' %}" height="14px" width="14px"></img>
-                                <span class="layui-hide-xs">{% trans "新建文集" %}</span>
+                                <span class="layui-hide-xs">{% trans "Project" %}</span>
                             </a>
                         </dd>
                         {% endif %}

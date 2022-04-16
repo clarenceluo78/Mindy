@@ -1,9 +1,3 @@
-# coding:utf-8
-# @文件: views_app.py
-# @创建者：州的先生
-# #日期：2020/5/11
-# 博客地址：zmister.com
-
 from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.contrib.auth import authenticate

@@ -1,8 +1,3 @@
-# coding:utf-8
-# @文件: views_user.py
-# @创建者：州的先生
-# #日期：2020/11/7
-# 博客地址：zmister.com
 from django.shortcuts import render,redirect
 from django.http.response import JsonResponse,Http404,HttpResponseNotAllowed,HttpResponse
 from django.http import HttpResponseForbidden
@@ -41,7 +36,7 @@ def user_center_menu(request):
     menu_data = [
         {
             "id": 1,
-            "title": _("我的概览"),
+            "title": _("Overview"),
             "type": 1,
             "icon": "layui-icon layui-icon-console",
             "href": reverse('manage_overview'),
@@ -55,7 +50,7 @@ def user_center_menu(request):
             "children": [
                 {
                     "id": "manage_project",
-                    "title": _("文集管理"),
+                    "title": _("Management"),
                     "icon": "layui-icon layui-icon-console",
                     "type": 1,
                     "openType": "_iframe",
@@ -63,7 +58,7 @@ def user_center_menu(request):
                 },
                 {
                     "id": "manage_colla_self",
-                    "title": _("我的协作"),
+                    "title": _("Collaboration"),
                     "icon": "layui-icon layui-icon-console",
                     "type": 1,
                     "openType": "_iframe",

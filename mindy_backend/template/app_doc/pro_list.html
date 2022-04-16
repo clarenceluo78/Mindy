@@ -1,7 +1,7 @@
 {% load static %}
 {% load i18n %}
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="en-us">
 <head>
     <meta charset="UTF-8">
     <meta name=renderer  content=webkit>
@@ -12,9 +12,9 @@
     <meta name="keywords" content="{% if site_keywords != None %}{{site_keywords}}{% endif %}"/>
     <meta name="description" content="{% if site_desc != None %}{{site_desc}}{% endif %}" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>{% if site_name != None and site_name != '' %}{{site_name}} {% else %}{% trans "站点标题" %}{% endif %} - {% if site_sub_name != None %}{{site_sub_name}} {% else %}{% trans "又一个MrDoc站点" %}{% endif %}</title>
+    <title>{% if site_name != None and site_name != '' %}{{site_name}} {% else %}{% trans "Title" %}{% endif %} - {% if site_sub_name != None %}{{site_sub_name}} {% else %}{% trans "又一个Mindy站点" %}{% endif %}</title>
     <link href="{% static 'layui/css/layui.css' %}?version={{mrdoc_version}}" rel="stylesheet">
-    <link href="{% static 'mrdoc/mrdoc.css' %}?version={{mrdoc_version}}" rel="stylesheet">
+    <link href="{% static 'mindy/mindy.css' %}?version={{mrdoc_version}}" rel="stylesheet">
     <link href="{% static 'iconFont/iconfont.css' %}?version={{mrdoc_version}}" rel="stylesheet">
     <link rel="icon" href="{% static 'search/mrdoc_logo_300.png' %}" sizes="192x192" />
     <style>
@@ -93,25 +93,25 @@
                 <!-- 筛选开始 -->
                 <div class="layui-inline">
                     <div class="layui-input-inline">
-                        <input type="text" name="kw" id="search-project" placeholder="{% trans '搜索文集' %}" value="{{kw}}" class="layui-input">
+                        <input type="text" name="kw" id="search-project" placeholder="Search" value="{{kw}}" class="layui-input">
                     </div>
                     <div class="layui-input-inline">
                         <select name="role" lay-verify="" id="sel-role">
-                            <option value="">{% trans "筛选" %}</option>
+                            <option value="">{% trans "Select" %}</option>
                             {% if request.user.is_authenticated %}
-                            <option value="0">{% trans "公开文集" %}</option>
-                            <option value="1">{% trans "私密文集" %}</option>
-                            <option value="99">{% trans "协作文集" %}</option>
-                            <option value="3">{% trans "访问码文集" %}</option>
+                            <option value="0">{% trans "Public Project" %}</option>
+                            <option value="1">{% trans "Private Project" %}</option>
+                            <option value="99">{% trans "Collaborated Project" %}</option>
+                            <option value="3">{% trans "Access Code Project" %}</option>
                             {% else %}
-                            <option value="0">{% trans "公开文集" %}</option>
-                            <option value="3">{% trans "访问码文集" %}</option>
+                            <option value="0">{% trans "Public Project" %}</option>
+                            <option value="3">{% trans "Access Code Project" %}</option>
                             {% endif %}
                         </select>
                     </div>
                     <div class="layui-input-inline">
                         <select name="sort" lay-verify="" id="sel-sort">
-                            <option value="">{% trans "排序" %}</option>
+                            <option value="">{% trans "Sort" %}</option>
                             <option value="0" {% if sort == 0 %} checked {% endif %}>{% trans "时间升序" %}</option>
                             <option value="1" {% if sort == 1 %} checked {% endif %}>{% trans "时间降序" %}</option>
                         </select>
@@ -166,7 +166,7 @@
                       <p class="tooltip layui-word-aux">
                         <i class="layui-icon layui-icon-speaker"></i>
                         {% if p.intro == "" %}
-                        <span class="">{% trans "此文集没有填写简介" %}</span>
+                        <span class="">{% trans "No description" %}</span>
                         {% else %}
                         <span class="">{{ p.intro | slice:'20' }}…</span>
                         <span class="tooltip-content clearfix">{{ p.intro | slice:'100' }}</span>
@@ -218,7 +218,7 @@
 <!-- 分页结束 -->
 
 <!-- 页脚 -->
-{% include 'app_doc/foot_base.html' %}
+{#{% include 'app_doc/foot_base.html' %}#}
 <!-- 页脚结束 -->
 
 <!-- 新建文集div块 -->
@@ -319,8 +319,8 @@
         
         // 动态生成文集图标列表
         for(var i=1;i<44;i++){
-            var icon_elem = '<div class="layui-iconpicker-icon-item" style="width:20%" data-icon="mrdoc-icon-pro-'+ i +'"><svg class="icon" aria-hidden="true"><use xlink:href="#mrdoc-icon-pro-'+ i +'"></use></svg></div>'
-            $("#mrdoc-project-icon-list").append(icon_elem)
+            var icon_elem = '<div class="layui-iconpicker-icon-item" style="width:20%" data-icon="mindy-icon-pro-'+ i +'"><svg class="icon" aria-hidden="true"><use xlink:href="#mindy-icon-pro-'+ i +'"></use></svg></div>'
+            $("#mindy-project-icon-list").append(icon_elem)
         }
         // 点击图标选择按钮
         $("#project-icon-select").click(function(){

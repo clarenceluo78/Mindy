@@ -5,7 +5,7 @@
 {% block custom_element %}
 <link href="{% static 'tagsInput/tagsinput.css' %}" rel="stylesheet" type="text/css"/>
 <link rel="stylesheet" href="{% static 'editor.md/css/editormd.css' %}?version={{mrdoc_version}}" />
-<link href="{% static 'mrdoc/mrdoc-editor.css' %}?version={{mrdoc_version}}" rel="stylesheet">
+<link href="{% static 'mindy/mindy-editor.css' %}?version={{mrdoc_version}}" rel="stylesheet">
 {% endblock %}
 {% block content %}
 <div class="layui-card">
@@ -243,8 +243,8 @@
     });
     // 动态生成文集图标列表
     for(var i=1;i<44;i++){
-            var icon_elem = '<div class="layui-iconpicker-icon-item" style="width:20%" data-icon="mrdoc-icon-pro-'+ i +'"><svg class="icon" aria-hidden="true"><use xlink:href="#mrdoc-icon-pro-'+ i +'"></use></svg></div>'
-            $("#mrdoc-project-icon-list").append(icon_elem)
+            var icon_elem = '<div class="layui-iconpicker-icon-item" style="width:20%" data-icon="mindy-icon-pro-'+ i +'"><svg class="icon" aria-hidden="true"><use xlink:href="#mindy-icon-pro-'+ i +'"></use></svg></div>'
+            $("#mindy-project-icon-list").append(icon_elem)
         }
         // 点击图标选择按钮
         $("#project-icon-select").click(function(){

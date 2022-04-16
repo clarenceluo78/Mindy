@@ -1,5 +1,5 @@
 from django.urls import path,re_path
-from app_admin import views
+from . import views
 
 urlpatterns = [
     path('user_manage/',views.admin_user,name="user_manage"),  # 用户管理页面

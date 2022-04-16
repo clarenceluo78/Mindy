@@ -1,9 +1,3 @@
-# coding:utf-8
-# @文件: serializers_app.py
-# @创建者：州的先生
-# #日期：2020/5/11
-# 博客地址：zmister.com
-
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer,SerializerMethodField
 from app_doc.models import *

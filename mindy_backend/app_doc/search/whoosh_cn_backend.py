@@ -1,9 +1,3 @@
-# encoding:utf-8
-# @文件: whoosh_cn_backend.py
-# @创建者：州的先生
-# #日期：2020/11/22
-# 博客地址：zmister.com
-
 import json
 import os
 import re

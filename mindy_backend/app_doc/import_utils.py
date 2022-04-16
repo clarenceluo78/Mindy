@@ -1,10 +1,4 @@
-# coding:utf-8
-# @文件: import_utils.py
-# @创建者：州的先生
-# #日期：2020/6/17
-# 博客地址：zmister.com
 # 文集导入相关方法
-
 from django.utils.translation import gettext_lazy as _
 from app_doc.models import Doc,Project,Image
 from app_doc.util_upload_img import upload_generation_dir
@@ -57,7 +51,7 @@ class ImportZipProject():
 
         # 读取yaml文件
         try:
-            with open(os.path.join(self.temp_dir ,'mrdoc.yaml'),'r',encoding='utf-8') as yaml_file:
+            with open(os.path.join(self.temp_dir ,'mindy.yaml'),'r',encoding='utf-8') as yaml_file:
                 yaml_str = yaml.safe_load(yaml_file.read())
                 project_name = yaml_str['project_name'] \
                     if 'project_name' in yaml_str.keys() else zip_file_path[:-4].split('/')[-1]

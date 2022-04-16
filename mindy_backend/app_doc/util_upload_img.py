@@ -1,4 +1,3 @@
-# coding:utf-8
 from django.http import HttpResponse,JsonResponse
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt

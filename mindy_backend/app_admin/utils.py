@@ -1,13 +1,7 @@
-# coding:utf-8
-# @文件: utils.py
-# @创建者：州的先生
-# #日期：2019/11/23
-# 博客地址：zmister.com
-
 from django.utils.translation import gettext_lazy as _
 from django.conf import settings
 from email.mime.text import MIMEText
-from app_admin.models import SysSetting
+from .models import SysSetting
 from loguru import logger
 import random
 import smtplib

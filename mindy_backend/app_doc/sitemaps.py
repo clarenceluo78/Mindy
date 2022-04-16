@@ -1,9 +1,3 @@
-# coding:utf-8
-# @文件: sitemaps.py
-# @创建者：州的先生
-# #日期：2020/2/26
-# 博客地址：zmister.com
-
 from django.contrib.sitemaps import Sitemap,GenericSitemap
 from django.urls import reverse
 from app_doc.models import Doc,Project

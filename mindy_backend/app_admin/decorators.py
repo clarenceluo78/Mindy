@@ -1,6 +1,6 @@
 from django.core.exceptions import PermissionDenied # 权限拒绝异常
 from django.http import Http404,JsonResponse
-from app_admin.models import SysSetting
+from .models import SysSetting
 from app_api.models import UserToken
 from django import VERSION as django_version
 

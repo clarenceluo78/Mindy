@@ -1,9 +1,3 @@
-# coding:utf-8
-# @文件: report_html2pdf.py
-# @创建者：州的先生
-# #日期：2020/12/27
-# 博客地址：zmister.com
-
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import TimeoutException

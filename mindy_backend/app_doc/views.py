@@ -66,7 +66,6 @@ def jsonXssFilter(data):
         new = data
     return new
 
-
 def html_filter(data):
     if len(data) == 0:
         return ""
@@ -81,7 +80,6 @@ def html_filter(data):
         new = new.replace(key, value)
     print(new)
     return new
-
 
 # 替换前端传来的非法字符
 def validateTitle(title):
@@ -188,12 +186,12 @@ def get_pro_toc(pro_id):
     return (doc_list,n)
 
 
-# 文集列表（首页）
+# project list (front page)
 @logger.catch()
 def project_list(request):
     kw = request.GET.get('kw','') # 搜索词
     sort = request.GET.get('sort','') # 排序,0表示按时间升序排序，1表示按时间降序排序，''表示按后台配置排序，默认为''
-    role = request.GET.get('role',-1) # 筛选文集权限，默认为显示所有可显示的文集
+    role = request.GET.get('role',-1) # 筛选项目权限，默认为显示所有可显示的项目
 
     # 是否排序
     if sort in [0,'0']:
@@ -238,7 +236,6 @@ def project_list(request):
             Q(create_user=request.user) | \
             Q(id__in=colla_list)
         ).order_by('-is_top',"{}create_time".format(sort_str))
-
     # 没有搜索 and 认证用户 and 有筛选
     elif (is_kw is False ) and (is_auth) and (is_role):
         if role in ['0',0]:
@@ -256,11 +253,9 @@ def project_list(request):
             project_list = Project.objects.filter(id__in=colla_list).order_by('-is_top',"{}create_time".format(sort_str))
         else:
             return render(request,'404.html')
-
     # 没有搜索 and 游客 and 没有筛选
     elif (is_kw is False) and (is_auth is False) and (is_role is False):
         project_list = Project.objects.filter(role__in=[0,3]).order_by('-is_top',"{}create_time".format(sort_str))
-
     # 没有搜索 and 游客 and 有筛选
     elif (is_kw is False) and (is_auth is False) and (is_role):
         if role in ['0',0]:
@@ -269,7 +264,6 @@ def project_list(request):
             project_list = Project.objects.filter(role=3).order_by('-is_top',"{}create_time".format(sort_str))
         else:
             return render(request,'404.html')
-
     # 有搜索 and 认证用户 and 没有筛选
     elif (is_kw) and (is_auth) and (is_role is False):
         colla_list = [i.project.id for i in ProjectCollaborator.objects.filter(user=request.user)] # 用户的协作文集
@@ -281,7 +275,6 @@ def project_list(request):
             Q(id__in=colla_list),
             Q(name__icontains=kw) | Q(intro__icontains=kw)
         ).order_by('-is_top','{}create_time'.format(sort_str))
-
     # 有搜索 and 认证用户 and 有筛选
     elif (is_kw) and (is_auth) and (is_role):
         if role in ['0',0]:
@@ -313,14 +306,12 @@ def project_list(request):
             ).order_by('-is_top',"{}create_time".format(sort_str))
         else:
             return render(request,'404.html')
-
     # 有搜索 and 游客 and 没有筛选
     elif (is_kw) and (is_auth is False) and (is_role is False):
         project_list = Project.objects.filter(
             Q(name__icontains=kw) | Q(intro__icontains=kw),
             role__in=[0, 3]
         ).order_by('-is_top',"{}create_time".format(sort_str))
-
     # 有搜索 and 游客 and 有筛选
     elif (is_kw) and (is_auth is False) and (is_role):
         if role in ['0',0]:
@@ -336,7 +327,7 @@ def project_list(request):
         else:
             return render(request,'404.html')
 
-    # 分页处理
+    # handle paging
     paginator = Paginator(project_list, 12)
     page = request.GET.get('page', 1)
     try:
@@ -345,10 +336,11 @@ def project_list(request):
         projects = paginator.page(1)
     except EmptyPage:
         projects = paginator.page(paginator.num_pages)
+    # using static here, replace later
     return render(request, 'app_doc/pro_list.html', locals())
 
 
-# 创建文集
+# create project
 @login_required()
 @require_http_methods(['POST'])
 def create_project(request):
@@ -362,7 +354,7 @@ def create_project(request):
         if name != '':
             # 不允许用户下同名文集存在
             if Project.objects.filter(name=name,create_user=request.user).exists():
-                return JsonResponse({'status': False, 'data': _('同名文集已存在！')})
+                return JsonResponse({'status': False, 'data': _('Project with the same name has already existed!')})
             project = Project.objects.create(
                 name=validateTitle(name),
                 icon = icon,
@@ -373,33 +365,33 @@ def create_project(request):
             project.save()
             return JsonResponse({'status':True,'data':{'id':project.id,'name':project.name,'role':project.role}})
         else:
-            return JsonResponse({'status':False,'data':_('文集名称不能为空！')})
+            return JsonResponse({'status':False,'data':_('Name of the project can not be empty!')})
     except Exception as e:
 
-        logger.exception(_("创建文集出错"))
-        return JsonResponse({'status':False,'data':_('出现异常,请检查输入值！')})
+        logger.exception(_("Error when creating project"))
+        return JsonResponse({'status':False,'data':_('Error, check the input')})
 
-# 文集页
+# project page (recent project)
 @require_http_methods(['GET'])
 @check_headers
 def project_index(request,pro_id):
-    # 获取文集
+    # 获取项目
     try:
-        # 获取文集信息
+        # 获取项目信息
         project = Project.objects.get(id=int(pro_id))
-        # 获取文集最新的5篇文档
+        # 获取项目最新的5篇文档
         new_docs = Doc.objects.filter(top_doc=pro_id,status=1).order_by('-modify_time')[:5]
         # markdown文本生成摘要（不带markdown标记）
         remove_markdown_tag(new_docs)
 
-        # 获取文集的文档目录
+        # 获取项目的文档目录
         toc_list,toc_cnt = get_pro_toc(pro_id)
         # toc_list,toc_cnt = ([],1000)
 
-        # 获取文集的协作成员
+        # 获取项目的协作成员
         colla_user_list = ProjectCollaborator.objects.filter(project=project)
 
-        # 获取文集收藏状态
+        # 获取项目收藏状态
         if request.user.is_authenticated:
             is_collect_pro = MyCollect.objects.filter(
                 collect_type=2,collect_id=pro_id,create_user=request.user).exists()

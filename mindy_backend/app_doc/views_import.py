@@ -1,10 +1,4 @@
-# coding:utf-8
-# @文件: import_views.py
-# @创建者：州的先生
-# #日期：2020/6/17
-# 博客地址：zmister.com
 # 文集导入相关视图函数
-
 from django.shortcuts import render,redirect
 from django.http.response import JsonResponse,Http404,HttpResponseNotAllowed,HttpResponse
 from django.http import HttpResponseForbidden

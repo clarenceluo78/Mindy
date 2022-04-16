@@ -1,10 +1,3 @@
-# coding:utf-8
-# @文件: views_search.py
-# @创建者：州的先生
-# #日期：2020/11/22
-# 博客地址：zmister.com
-
-
 from haystack.generic_views import SearchView as BaseSearchView
 from django.db.models import Q
 from haystack.views import SearchView

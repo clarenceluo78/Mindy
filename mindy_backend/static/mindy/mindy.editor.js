@@ -17,8 +17,8 @@ function linebody(count, name) {
       body += "<td><div contenteditable='true'></div></td>";
   }
 
-  body += "<td><img src='/static/mrdoc-editor/add.gif' name='" + name + "' style='cursor: pointer' onclick='InsertLine(this)'>" +
-      "<img src='/static/mrdoc-editor/delete.gif'  name='" + name + "' style='cursor: pointer' onclick='DeleteLine(this)'></td>";
+  body += "<td><img src='/static/mindy-editor/add.gif' name='" + name + "' style='cursor: pointer' onclick='InsertLine(this)'>" +
+      "<img src='/static/mindy-editor/delete.gif'  name='" + name + "' style='cursor: pointer' onclick='DeleteLine(this)'></td>";
   body += "</tr>";
 
   return body;
@@ -48,7 +48,7 @@ function Insertrow(obj) {
   var name=$(obj).attr("name");
   var width = $(table_id).width();
   var td1 = "<td><div contenteditable='true' ></div></td>"
-  var td = "<td><div contenteditable='true' style='float: left;width: 70%'>列名</div><img src='/static/mrdoc-editor/delete.gif'  name='" + name + "' style='cursor: pointer' onclick='Deleterow(this)'></td>"
+  var td = "<td><div contenteditable='true' style='float: left;width: 70%'>列名</div><img src='/static/mindy-editor/delete.gif'  name='" + name + "' style='cursor: pointer' onclick='Deleterow(this)'></td>"
   for (var i = 0; i < $(table_id).find("tr").length; i++) {
       if (i == 0) {
           $(table_id).find("tr").eq(i).find("td").eq(ti).before(td);
@@ -84,7 +84,7 @@ function addtable(btn) {
       if (i == 0) {
           body += "<td>序号</td>"
       } else {
-          body += "<td><div contenteditable='true' style='float: left;width: 70%'>列名</div><img src='/static/mrdoc-editor/delete.gif' name='" + name + "' style='cursor: pointer' onclick='Deleterow(this)'></td>";
+          body += "<td><div contenteditable='true' style='float: left;width: 70%'>列名</div><img src='/static/mindy-editor/delete.gif' name='" + name + "' style='cursor: pointer' onclick='Deleterow(this)'></td>";
 
       }
   }
@@ -120,11 +120,11 @@ function changetable(obj) {
 function addsrc(id, name) {
   for (var i = 0; i < $(id).find("tr").length; i++) {
       if (i == 0) {
-          var td = "<td class='small'><img src='/static/mrdoc-editor/add.gif' name='" + name + "' style='cursor: pointer' onclick='Insertrow(this)'></td>";
+          var td = "<td class='small'><img src='/static/mindy-editor/add.gif' name='" + name + "' style='cursor: pointer' onclick='Insertrow(this)'></td>";
           $(id).find("tr").eq(i).append(td);
       } else {
-          var td = "<td><img src='/static/mrdoc-editor/add.gif' name='" + name + "' style='cursor: pointer' onclick='InsertLine(this)'>" +
-              "<img src='/static/mrdoc-editor/delete.gif' name='" + name + "' style='cursor: pointer' onclick='DeleteLine(this)'></td>";
+          var td = "<td><img src='/static/mindy-editor/add.gif' name='" + name + "' style='cursor: pointer' onclick='InsertLine(this)'>" +
+              "<img src='/static/mindy-editor/delete.gif' name='" + name + "' style='cursor: pointer' onclick='DeleteLine(this)'></td>";
           $(id).find("tr").eq(i).append(td);
       }
 

@@ -1,9 +1,3 @@
-# coding:utf-8
-# @文件: chinese_analyzer.py
-# @创建者：州的先生
-# #日期：2020/11/22
-# 博客地址：zmister.com
-
 from whoosh.compat import u, text_type
 from whoosh.analysis.filters import LowercaseFilter
 from whoosh.analysis.filters import StopFilter, STOP_WORDS

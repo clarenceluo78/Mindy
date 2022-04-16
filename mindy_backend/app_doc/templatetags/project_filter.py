@@ -1,4 +1,3 @@
-# coding:utf-8
 # 文档自定义模板过滤器
 from app_doc.models import *
 from django import template

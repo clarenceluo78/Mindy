@@ -1,14 +1,8 @@
-# coding:utf-8
-# @文件: auth.py
-# @创建者：州的先生
-# #日期：2020/5/11
-# 博客地址：zmister.com
-
 from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
 from rest_framework.authentication import BaseAuthentication
 from rest_framework.exceptions import AuthenticationFailed
-from app_api.models import *
+from .models import *
 
 
 class AppAuth(BaseAuthentication):

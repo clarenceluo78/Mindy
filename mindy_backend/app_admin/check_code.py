@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-# coding:utf-8
-# 生成验证码图片
 import random
 import os
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
