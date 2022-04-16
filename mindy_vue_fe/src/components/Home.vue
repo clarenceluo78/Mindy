@@ -3,7 +3,7 @@
     <el-container class="home-container">
         <el-header>
             <div>
-                <img src="" alt="" srcset="">
+                <img src="../assets/mindy_logo.png" alt="">
                 <span>
                     Mindy
                 </span>
@@ -112,7 +112,7 @@ export default {
     background-color: #333744;
 }
 .el-main{
-    background-color: #eaedf1;
+    background-color: rgba(103,137,163,0.5);
 }
 .home-container{
     height: 100%;
@@ -134,6 +134,11 @@ export default {
 }
 .user-avatar{
     margin-right: 15px;
+}
+img{
+    height: 10%;
+    width: 10%;
+    margin-left: 15px;
 }
 
 

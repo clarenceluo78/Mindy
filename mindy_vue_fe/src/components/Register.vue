@@ -2,7 +2,7 @@
     <div class="login_container">
         <div class="login_box">
             <div class="avatar_box">
-                <img src="../assets/logo.png" alt="">
+                <img src="../assets/mindy_logo.png" alt="">
             </div>
             <div>
                 <el-form v-loading="loading" label-width="0px" class="login_form" :model="loginForm" :rules="loginFormRules" ref='loginFormRef'>
@@ -34,7 +34,9 @@ export default {
 
     data(){
         return{
-            loading:true,
+            loading:false,
+            count:"",//倒计时
+            countt:"",
             loginForm:{
                 username:'',
                 password:'',
@@ -69,6 +71,26 @@ export default {
 
     methods:{
         submitRegisterForm(){
+            const timejump = 10;
+            this.loading=true
+            if(!this.timer){
+                this.count = timejump /10 ;
+                this.countt = timejump;
+                this.show = false;
+                this.timer = setInterval(()=>{
+                if(this.count > 0 && this.count *10 <= timejump ){
+                    this.countt--;
+                    if(this.countt%10==0){
+                        this.count--;
+                    }
+                }else{
+                    this.show = true;
+                    clearInterval(this.timer);
+                    this.timer = null;
+                    //跳转的页面写在此处
+                    this.$router.push({path: '/login'});
+                }
+            },100)}
             console.log('submit')
             this.axios(
                 {
