@@ -33,7 +33,7 @@
             </el-col>
         </el-row> -->
         <el-row :gutter="20">
-            <el-col :span="9">
+            <el-col :span="7">
                 <div class="grid-content bg-purple">
                     <!-- <el-card class="box-card">
                         <div slot="header" class="clearfix">
