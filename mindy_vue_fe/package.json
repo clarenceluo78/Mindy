@@ -9,6 +9,7 @@
   "dependencies": {
     "@hellowuxin/mindmap": "^2.1.4",
     "butterfly-dag": "^4.2.5",
+    "butterfly-vue": "^1.0.17",
     "core-js": "^3.6.5",
     "element-ui": "^2.4.5",
     "mindmap": "0.0.8",

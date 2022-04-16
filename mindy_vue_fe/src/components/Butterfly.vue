@@ -1,25 +1,37 @@
 <template>
-    <div>
-        butterfly
-    </div>
+  <div id="app">
+    <butterfly-vue
+      :canvasData="graphData"
+    />
+  </div>
 </template>
+
 <script>
-// import {Canvas} from 'butterfly-dag';
-// let canvas = new Canvas({
-// root: dom,              //canvas的根节点(必传)
-// zoomable: true,         //可缩放(可传)
-// moveable: true,         //可平移(可传)
-// draggable: true,        //节点可拖动(可传)
-// });
-// canvas.draw({
-// groups: [],  //分组信息
-// nodes: [],  //节点信息
-// edges: []  // 连线信息
-// })
+import {ButterflyVue} from 'butterfly-vue';
+
+import gridNode from './grid-node.vue';
+
 export default {
-    
+  name: 'App',
+  components: {
+    ButterflyVue
+  },
+  data(){
+    return{
+      graphData: {
+        groups: [],
+        nodes: [
+          {
+            id: '0',
+            left: 10,
+            top: 10,
+            label: '0',
+            render: gridNode,
+          }
+        ],
+        edges: [],
+      },
+    }
+  },
 }
 </script>
-<style lang="less" scoped>
-
-</style>

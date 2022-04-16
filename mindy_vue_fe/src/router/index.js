@@ -87,6 +87,10 @@ const routes = [
     },{
       path:'/mindmap',
       component: Mindmap
+    },
+    {
+      path:'/butterfly',
+      component: Butterfly,
     },{
       path:'/file',
       component: File
@@ -99,11 +103,6 @@ const routes = [
       component: Bin,
     },]
   },  
-  {
-    path:'/butterfly',
-    component: Butterfly,
-    name: 'Butterfly'
-  },
   // {
   //   path:'/mindmap',
   //   component: Mindmap,
