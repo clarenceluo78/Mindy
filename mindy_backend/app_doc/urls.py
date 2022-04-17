@@ -42,36 +42,43 @@ urlpatterns = [
     path('fast_pub_doc/',views.fast_publish_doc,name='fast_pub_doc'), # 一键发布文档
     path('download_doc_md/<int:doc_id>/',views.download_doc_md,name='download_doc_md'), # 下载文档Markdown文件
     path('import/doc_docx/',views_import.import_doc_docx,name="import_doc_docx"), # 导入docx文档
-    #################文档分享相关
-    path('share_doc/', views.share_doc, name='share_doc'),  # 私密文档分享
-    path('share_doc_check/', views.share_doc_check, name='share_doc_check'),  # 私密文档验证
-    path('manage_doc_share/',views.manage_doc_share,name="manage_doc_share"), # 分享文档管理
-    #################文档模板相关
+
+    # user center
+    path('user_center/', views_user.user_center, name="user_center"), # 个人中心
+    path('user/center_menu/',views_user.user_center_menu,name="user_center_menu"),  # 个人中心菜单数据
+    # document management
+    path('manage_image/', views.manage_image, name="manage_image"),  # 图片管理
+    path('manage_image_group/', views.manage_img_group, name="manage_img_group"),  # 图片分组管理
+    path('manage_attachment/', views.manage_attachment, name='manage_attachment'),  # 附件管理
+    # user settings
+    path('manage_overview/',views.manage_overview,name="manage_overview"), # 个人中心概览
+    path('manage_self/',views.manage_self,name="manage_self"), # 个人设置
+    path('my_collect/',views.my_collect,name="my_collect"), # 我的收藏
+    path('manage_collect/',views.manage_collect,name="manage_collect"), # 收藏管理
+    # document template
     path('manage_doctemp/',views.manage_doctemp,name='manage_doctemp'), # 文档模板列表
     path('create_doctemp/',views.create_doctemp,name="create_doctemp"), # 创建文档模板
     path('get_doctemp/',views.get_doctemp,name='get_doctemp'), # 获取某一个文档模板内容
     path('del_doctemp/',views.del_doctemp,name="del_doctemp"), # 删除某一个文档模板
     path('modify_doctemp/<int:doctemp_id>/',views.modify_doctemp,name="modify_doctemp"), # 修改文档模板
-    #################文件管理相关
-    path('manage_image/',views.manage_image,name="manage_image"), # 图片管理
-    path('manage_image_group/',views.manage_img_group,name="manage_img_group"), # 图片分组管理
-    path('manage_attachment/',views.manage_attachment,name='manage_attachment'), # 附件管理
-    ##############文档标签
+    # shared document
+    path('share_doc/', views.share_doc, name='share_doc'),  # 私密文档分享
+    path('share_doc_check/', views.share_doc_check, name='share_doc_check'),  # 私密文档验证
+    path('manage_doc_share/',views.manage_doc_share,name="manage_doc_share"), # 分享文档管理
+    # document label
     path('manage_doc_tag/',views.manage_doc_tag,name="manage_doc_tag"), # 文档标签管理
     path('tag_docs/<int:tag_id>/',views.tag_docs,name="tag_docs"), # 标签文档页
     path('tag_doc/<int:tag_id>/<int:doc_id>/',views.tag_doc,name="tag_doc"), # 标签文档页
-    ################个人中心
-    path('user_center/',views_user.user_center,name="user_center"), # 个人中心
-    path('user/center_menu/',views_user.user_center_menu,name="user_center_menu"), # 个人中心菜单数据
+
+
     path('upload_doc_img/',util_upload_img.upload_img,name="upload_doc_img"), # 上传图片
     path('upload_ice_img/',util_upload_img.upload_ice_img,name="upload_ice_img"), # iceeditor上传图片
     path('search/',views.search,name="search"), # 搜索功能
     # path('doc_search/', include('haystack.urls')),  # 全文检索框架
+
     path('doc_search/', views_search.DocSearchView(),name="doc_search"),  # 全文检索框架
-    path('manage_overview/',views.manage_overview,name="manage_overview"), # 个人中心概览
-    path('manage_self/',views.manage_self,name="manage_self"), # 个人设置
-    path('my_collect/',views.my_collect,name="my_collect"), # 我的收藏
-    path('manage_collect/',views.manage_collect,name="manage_collect"), # 收藏管理
+
+
     path('get_version/',views.get_version,name="get_version"), # 获取当前版本
     path('api/usergroups/userlist', views.UserGroupUserList.as_view(), name="api_usergroups_userlist"),  # 用户分组的用户列表接口
 ]

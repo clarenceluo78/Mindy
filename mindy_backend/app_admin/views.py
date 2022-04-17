@@ -4,7 +4,7 @@ from django.core.mail import EmailMultiAlternatives
 from django.shortcuts import render,redirect
 from django.http.response import JsonResponse,HttpResponse,Http404
 from django.contrib.auth import authenticate,login,logout # 认证相关方法
-from .models import Confirm_Message
+from .models import ConfirmMessage
 from django.contrib.auth.decorators import login_required # 登录需求装饰器
 from django.views.decorators.http import require_http_methods,require_GET,require_POST # 视图请求方法装饰器
 from django.core.paginator import Paginator,PageNotAnInteger,EmptyPage,InvalidPage # 后端分页
@@ -126,7 +126,7 @@ def encode(s, salt='myweb'):
 def make_confirm_message(user):
     now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     code = encode(user.username, now)
-    Confirm_Message.objects.create(code=code, user=user,)
+    ConfirmMessage.objects.create(code=code, user=user, )
     return code
 
 @logger.catch()
@@ -150,7 +150,7 @@ def user_confirm(request):
     code = request.GET.get('code', None)
     message = ''
     try:
-        confirm = Confirm_Message.objects.get(code=code)
+        confirm = ConfirmMessage.objects.get(code=code)
     except:
         message = 'Invalid confirmation request!'
         return render(request, 'server/users/confirm.html', locals())
@@ -1426,42 +1426,42 @@ def admin_center_menu(request):
     menu_data = [
         {
             "id": 1,
-            "title": _("仪表盘"),
+            "title": _("Dashboard"),
             "type": 1,
             "icon": "layui-icon layui-icon-console",
             "href": reverse('admin_overview'),
         },
         {
             "id": 2,
-            "title": _("文集管理"),
+            "title": _("Project"),
             "type": 1,
             "icon": "layui-icon layui-icon-list",
             "href": reverse('project_manage'),
         },
         {
             "id": 3,
-            "title": _("文档管理"),
+            "title": _("Document"),
             "type": 1,
             "icon": "layui-icon layui-icon-form",
             "href": reverse('doc_manage'),
         },
         {
             "id": 4,
-            "title": _("文档模板管理"),
+            "title": _("Template"),
             "type": 1,
             "icon": "layui-icon layui-icon-templeate-1",
             "href": reverse('doctemp_manage'),
         },
         {
             "id": "my_fodder",
-            "title": _("素材管理"),
+            "title": _("Upload"),
             "icon": "layui-icon layui-icon-upload-drag",
             "type": 0,
             "href": "",
             "children": [
                 {
                     "id": "my_img",
-                    "title": _("图片管理"),
+                    "title": _("Picture"),
                     "icon": "layui-icon layui-icon-face-smile",
                     "type": 1,
                     "openType": "_iframe",
@@ -1469,7 +1469,7 @@ def admin_center_menu(request):
                 },
                 {
                     "id": "my_attachment",
-                    "title": _("附件管理"),
+                    "title": _("Others"),
                     "icon": "layui-icon layui-icon-face-cry",
                     "type": 1,
                     "openType": "_iframe",
@@ -1478,47 +1478,18 @@ def admin_center_menu(request):
             ]
         },
         {
-            "id": 5,
-            "title": _("注册码管理"),
-            "type": 1,
-            "icon": "layui-icon layui-icon-component",
-            "href": reverse('register_code_manage'),
-        },
-        {
             "id": 6,
-            "title": _("用户管理"),
+            "title": _("Users"),
             "type": 1,
             "icon": "layui-icon layui-icon-user",
             "href": reverse('user_manage'),
         },
-        {
-            "id": 7,
-            "title": _("站点设置"),
-            "type": 1,
-            "icon": "layui-icon layui-icon-set",
-            "href": reverse('sys_setting'),
-        },
-        {
-            "id": "common",
-            "title": _("使用帮助"),
-            "icon": "layui-icon layui-icon-template-1",
-            "type": 0,
-            "href": "",
-            "children": [{
-                "id": 701,
-                "title": _("安装说明"),
-                "icon": "layui-icon layui-icon-face-smile",
-                "type": 1,
-                "openType": "_blank",
-                "href": "https://doc.mrdoc.pro/project-7/"
-            }, {
-                "id": 702,
-                "title": _("使用说明"),
-                "icon": "layui-icon layui-icon-face-smile",
-                "type": 1,
-                "openType": "_blank",
-                "href": "https://doc.mrdoc.pro/project-54/"
-            }]
-        }
+        # {
+        #     "id": 7,
+        #     "title": _("站点设置"),
+        #     "type": 1,
+        #     "icon": "layui-icon layui-icon-set",
+        #     "href": reverse('sys_setting'),
+        # },
     ]
     return JsonResponse(menu_data,safe=False)

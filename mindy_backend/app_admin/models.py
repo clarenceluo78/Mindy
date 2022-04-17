@@ -1,20 +1,20 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+# 用户头像
+class UserImage(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='users/')
+    # file_path = models.CharField(verbose_name="图片路径", max_length=250)
+    create_time = models.DateTimeField(verbose_name='创建时间', auto_now_add=True)
+    modify_time = models.DateTimeField(verbose_name='修改时间', auto_now=True)
 
-# class Users(AbstractUser):
-#     has_confirmed = models.BooleanField(default=False)
-#
-#     def __str__(self):
-#         return self.username
-#
-#     class Meta:
-#         ordering = ['-date_joined']
-#         verbose_name = "Users"
-#         verbose_name_plural = verbose_name
+    class Meta:
+        verbose_name = '用户头像'
+        verbose_name_plural = verbose_name
 
 
-class Confirm_Message(models.Model):
+class ConfirmMessage(models.Model):
     code = models.CharField(max_length=256)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     created_time = models.DateTimeField(auto_now=True)

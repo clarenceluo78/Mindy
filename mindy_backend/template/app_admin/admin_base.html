@@ -14,15 +14,6 @@
         {% endblock %}
 	</head>
 	<body class="pear-container">
-		{% if debug %}
-		<div class="layui-card">
-			<div class="layui-card-body">
-				<div class="layui-card-header" style="margin-bottom: 10px;font-weight: 700;color: red;">
-					<i class="layui-icon layui-icon-tips"></i> {% trans "当前站点处于Debug调试模式" %}
-				</div>
-			</div>
-		</div>
-		{% endif %}
 		{% block content %}
         {% endblock %}
 		<script src="{% static 'PearAdminLayui/component/layui/layui.js' %}?version={{mrdoc_version}}"></script>
@@ -51,12 +42,12 @@
 									layer.msg("当前已是最新版本！")
 								}
 							}
-						}      
+						}
 					})
 				}
 				checkUpdate(silence=true);
 			})
-		  </script>
+        </script>
         {% block custom_script %}
         {% endblock %}
 	</body>

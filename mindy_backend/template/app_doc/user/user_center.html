@@ -6,7 +6,7 @@
 		<meta charset="utf-8">
 		<meta name=renderer  content=webkit>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <title>{% trans "个人中心" %}{% if site_name != None and site_name != '' %} - {{site_name}} {% endif %} - {% trans "Mindy" %}</title>
+        <title>User Center{% if site_name != None and site_name != '' %} - {{site_name}} {% endif %} - {% trans "Mindy" %}</title>
 		<link rel="icon" href="{% static 'logo.jpg' %}" sizes="192x192" />
 		<!-- 依 赖 样 式 -->
 		<link rel="stylesheet" href="{% static 'PearAdminLayui/component/pear/css/pear.css' %}" />
@@ -28,7 +28,7 @@
 				<div id="control" class="layui-layout-control"></div>
 				<ul class="layui-nav layui-layout-right">
 					<li class="layui-nav-item layui-hide-xs"><a href="#" class="fullScreen layui-icon layui-icon-screen-full"></a></li>
-					<li class="layui-nav-item layui-hide-xs"><a href="{% url 'pro_list' %}" class="layui-icon layui-icon-home" title="回到首页"></a></li>
+					<li class="layui-nav-item layui-hide-xs"><a href="{% url 'pro_list' %}" class="layui-icon layui-icon-home" title="Return to Home Page"></a></li>
 					<li class="layui-nav-item">
 						<!-- 头 像 -->
 						<a href="javascript:;">
@@ -38,14 +38,14 @@
 						<!-- 功 能 菜 单 -->
 						<dl class="layui-nav-child">
 							{% if request.user.is_superuser %}
-							<dd><a href="{% url 'admin_center' %}">{% trans "后台管理" %}</a></dd>
+							<dd><a href="{% url 'admin_center' %}">Admin Management</a></dd>
 							{% endif %}
-							<dd><a href="{% url 'pro_list' %}">{% trans "返回首页" %}</a></dd>
-						  	<dd><a href="javascript:void(0)" title="退出登录" onclick="Logout()">{% trans "退出登录" %}</a></dd>
+							<dd><a href="{% url 'pro_list' %}">Home Page</a></dd>
+						  	<dd><a href="javascript:void(0)" title="Log out" onclick="Logout()">{% trans "退出登录" %}</a></dd>
 						</dl>
 					</li>
 					<!-- 主 题 配 置 -->
-					<li class="layui-nav-item setting"><a href="#" class="layui-icon layui-icon-more-vertical"></a></li>
+{#					<li class="layui-nav-item setting"><a href="#" class="layui-icon layui-icon-more-vertical"></a></li>#}
 				</ul>
 			</div>
 			<!-- 侧 边 区 域 -->
@@ -87,8 +87,8 @@
 				var popup = layui.popup;
                 var pear_admin_config = {
                     "logo": {
-                        "title": "{% trans '个人中心' %}",
-                        "image": "{% static 'mrdoc_logo_ridus.png' %}"
+                        "title": "User Center",
+                        "image": "{% static 'logo.png' %}"
                     },
                     "menu": {
                         "data": "{% url 'user_center_menu' %}",
@@ -107,55 +107,19 @@
                         }
                     },
                     "theme": {
-                        "defaultColor": "2",
+                        "defaultColor": "1",
                         "defaultMenu": "dark-theme",
                         "allowCustom": true
                     },
                     "colors": [{
 							"id": "1",
-							"color": "#2d8cf0"
+							"color": "#009999"
 						},
 						{
-							"id": "2",
-							"color": "#5FB878"
-						},
-						{
-							"id": "3",
-							"color": "#1E9FFF"
-						}, {
-							"id": "4",
-							"color": "#FFB800"
-						}, {
 							"id": "5",
-							"color": "darkgray"
+							"color": "black"
 						}
 					],
-                    "links": [{
-                            "icon": "layui-icon layui-icon-website",
-                            "title": "{% trans '官方网站' %}",
-                            "href": "https://mrdoc.pro"
-                        },
-                        {
-                            "icon": "layui-icon layui-icon-read",
-                            "title": "{% trans '说明文档' %}",
-                            "href": "https://doc.mrdoc.pro/project-7/"
-                        },
-                        {
-                            "icon": "layui-icon layui-icon-fonts-code",
-                            "title": "{% trans '开源地址' %}",
-                            "href": "https://gitee.com/zmister/MrDoc"
-                        },
-                        {
-                            "icon": "layui-icon layui-icon-survey",
-                            "title": "{% trans 'QQ群' %}",
-                            "href": "http://shang.qq.com/wpa/qunwpa?idkey=143c23a4ffbd0ba9137d2bce3ee86c83532c05259a0542a69527e36615e64dba"
-                        },
-						{
-                            "icon": "layui-icon layui-icon-log",
-                            "title": "{% trans '当前版本：' %}{{mrdoc_version}}",
-                            "href": "https://gitee.com/zmister/MrDoc/tree/{{mrdoc_version}}/"
-                        }
-                    ],
                     "other": {
                         "keepLoad": 100
 					},

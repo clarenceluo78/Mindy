@@ -98,7 +98,7 @@
                 {% if close_register == 'on' %}
                 <a class="register-link">{% trans "本站暂不开放注册" %}</a>&nbsp;
                 {% else %}
-                <a href="{% url 'register' %}" class="register-link">{% trans "Register" %}</a>&nbsp;
+                <a href="{% url 'register' %}" class="register-link">{% trans "Sign up " %}</a>&nbsp;
                 {% endif %}
                 {% if enable_email == 'on' %}
                 <a href="{% url 'forget_pwd' %}" class="register-link">{% trans "忘记密码" %}</a>

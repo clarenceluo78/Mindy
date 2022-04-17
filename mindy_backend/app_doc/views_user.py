@@ -43,7 +43,7 @@ def user_center_menu(request):
         },
         {
             "id": "my_project",
-            "title": _("我的文集"),
+            "title": _("My Project"),
             "icon": "layui-icon layui-icon-component",
             "type": 0,
             "href": "",
@@ -64,26 +64,18 @@ def user_center_menu(request):
                     "openType": "_iframe",
                     "href": reverse('manage_pro_colla_self')
                 },
-                {
-                    "id": "import_project",
-                    "title": _("导入文集"),
-                    "icon": "layui-icon layui-icon-console",
-                    "type": 1,
-                    "openType": "_iframe",
-                    "href": reverse('import_project')
-                },
             ]
         },
         {
             "id": "my_doc",
-            "title": _("我的文档"),
+            "title": _("My Documents"),
             "icon": "layui-icon layui-icon-file-b",
             "type": 0,
             "href": "",
             "children": [
                 {
                     "id": "doc_manage",
-                    "title": _("文档管理"),
+                    "title": _("Management"),
                     "icon": "layui-icon layui-icon-face-smile",
                     "type": 1,
                     "openType": "_iframe",
@@ -91,7 +83,7 @@ def user_center_menu(request):
                 },
                 {
                     "id": "doc_template",
-                    "title": _("文档模板"),
+                    "title": _("Templates"),
                     "icon": "layui-icon layui-icon-face-cry",
                     "type": 1,
                     "openType": "_iframe",
@@ -99,7 +91,7 @@ def user_center_menu(request):
                 },
                 {
                     "id": "doc_tag",
-                    "title": _("文档标签"),
+                    "title": _("Labels"),
                     "icon": "layui-icon layui-icon-face-cry",
                     "type": 1,
                     "openType": "_iframe",
@@ -107,7 +99,7 @@ def user_center_menu(request):
                 },
                 {
                     "id": "doc_share",
-                    "title": _("我的分享"),
+                    "title": _("My Share"),
                     "icon": "layui-icon layui-icon-face-cry",
                     "type": 1,
                     "openType": "_iframe",
@@ -115,7 +107,7 @@ def user_center_menu(request):
                 },
                 {
                     "id": "doc_recycle",
-                    "title": _("文档回收站"),
+                    "title": _("Recycle Bin"),
                     "icon": "layui-icon layui-icon-face-cry",
                     "type": 1,
                     "openType": "_iframe",
@@ -125,14 +117,14 @@ def user_center_menu(request):
         },
         {
             "id": "my_fodder",
-            "title": _("我的素材"),
+            "title": _("My Attachments"),
             "icon": "layui-icon layui-icon-upload-drag",
             "type": 0,
             "href": "",
             "children": [
                 {
                     "id": "my_img",
-                    "title": _("我的图片"),
+                    "title": _("Pictures"),
                     "icon": "layui-icon layui-icon-face-smile",
                     "type": 1,
                     "openType": "_iframe",
@@ -140,7 +132,7 @@ def user_center_menu(request):
                 },
                 {
                     "id": "my_attachment",
-                    "title": _("我的附件"),
+                    "title": _("Others"),
                     "icon": "layui-icon layui-icon-face-cry",
                     "type": 1,
                     "openType": "_iframe",
@@ -150,7 +142,7 @@ def user_center_menu(request):
         },
         {
             "id": "my_collect",
-            "title": _("我的收藏"),
+            "title": _("Collection"),
             "icon": "layui-icon layui-icon-star",
             "type": 1,
             "openType": "_iframe",
@@ -158,58 +150,11 @@ def user_center_menu(request):
         },
         {
             "id": "self_settings",
-            "title": _("个人管理"),
-            "icon": "layui-icon layui-icon-set-fill",
-            "type": 0,
-            "href": "",
-            "children": [
-                {
-                    "id": 601,
-                    "title": _("个人设置"),
-                    "icon": "layui-icon layui-icon-face-smile",
-                    "type": 1,
-                    "openType": "_iframe",
-                    "href": reverse("manage_self")
-                },
-                {
-                    "id": 602,
-                    "title": _("Token管理"),
-                    "icon": "layui-icon layui-icon-face-cry",
-                    "type": 1,
-                    "openType": "_iframe",
-                    "href": reverse("manage_token")
-                },
-            ]
-        },
-        {
-            "id": "user_manual",
-            "title": _("使用手册"),
-            "icon": "layui-icon layui-icon-template-1",
+            "title": _("User Settings"),
+            "icon": "layui-icon layui-icon-face-smile",
             "type": 1,
-            "openType": "_blank",
-            "href": "https://doc.mrdoc.pro/project-54/",
-        }
-        # {
-        #     "id": "common",
-        #     "title": "使用帮助",
-        #     "icon": "layui-icon layui-icon-template-1",
-        #     "type": 0,
-        #     "href": "",
-        #     "children": [{
-        #         "id": 701,
-        #         "title": "安装说明",
-        #         "icon": "layui-icon layui-icon-face-smile",
-        #         "type": 1,
-        #         "openType": "_iframe",
-        #         "href": "http://mrdoc.zmister.com/project-7/"
-        #     }, {
-        #         "id": 702,
-        #         "title": "使用说明",
-        #         "icon": "layui-icon layui-icon-face-smile",
-        #         "type": 1,
-        #         "openType": "_iframe",
-        #         "href": "http://mrdoc.zmister.com/project-54/"
-        #     }]
-        # }
+            "openType": "_iframe",
+            "href": reverse("manage_self")
+        },
     ]
     return JsonResponse(menu_data,safe=False)

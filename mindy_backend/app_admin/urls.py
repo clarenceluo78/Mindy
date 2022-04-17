@@ -24,6 +24,7 @@ urlpatterns = [
     path('api/doc_history_detail/', views.AdminDocHistoryDetail.as_view(), name="api_doc_history_detail"),  # 文档历史记录详情接口
     path('doctemp_manage/',views.admin_doctemp,name='doctemp_manage'), # 文档模板管理
     path('setting/',views.admin_setting,name="sys_setting"), # 应用设置
+
     path('forget_pwd/',views.forget_pwd,name='forget_pwd'), # 忘记密码
     path('send_email_vcode/',views.send_email_vcode,name='send_email_vcode'), # 忘记密码发送邮件验证码
     path('admin_register_code/',views.admin_register_code,name='register_code_manage'), # 注册邀请码管理
@@ -34,6 +35,7 @@ urlpatterns = [
     path('admin/center_menu/',views.admin_center_menu,name="admin_center_menu"), # 后台管理菜单数据
     path('admin_overview/',views.admin_overview,name="admin_overview"), # 后台管理仪表盘
     # 图片管理及接口
+
     path('manage/image/', views.admin_image, name="image_manage"),  # 图片管理页面
     path('api/imgs/', views.AdminImageList.as_view(), name="api_admin_imgs"),  # 图片列表接口
     path('api/img/<int:id>/', views.AdminImageDetail.as_view(), name="api_admin_img"),  # 图片详情接口

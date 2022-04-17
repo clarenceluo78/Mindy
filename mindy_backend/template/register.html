@@ -60,7 +60,7 @@
 
                 {% csrf_token %}
                 <div class="layui-form-item">
-                    <img src="{% static 'logo.jpg' %}" style="width: 80px;height: 80px;margin-bottom: 1px;" />
+                    <img src="{% static 'logo.png' %}" style="width: 80px;height: 80px;margin-bottom: 1px;" />
                     <h3><strong>{% trans "Sign up" %} - {% if site_name != None %}{{site_name}} {% else %}{% trans "Mindy" %}{% endif %}</strong></h3>
                 </div>
                 <span style='color:red;margin-bottom: 10px;'>{{ errormsg }}</span>
@@ -103,8 +103,7 @@
                         <button class="layui-btn layui-btn-fluid layui-btn-radius  layui-btn-normal" lay-submit lay-filter="formDemo" type="submit">Sign up</button>
                     </div>
                 </div>
-                 <a href="{% url 'login' %}" class="register-link">{% trans "Login" %}</a>
-{#                 <a href="{% url 'pro_list' %}" class="register-link">Home</a>#}
+                 <a href="{% url 'login' %}" class="register-link">{% trans "Sign in" %}</a>
                  <hr>
             </form>
         </div>

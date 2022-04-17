@@ -9,11 +9,11 @@
 
 {% block content %}
 <div>
-    <div class="layui-row layui-col-space10">
+    <div class="layui-row layui-col-space10" style="width: 150%">
         <div class="layui-col-xs6 layui-col-md8 layui-col-space5">
             <div class="layui-col-xs6 layui-col-md3">
                 <div class="layui-card top-panel">
-                    <div class="layui-card-header">用户总数</div>
+                    <div class="layui-card-header">User Count</div>
                     <div class="layui-card-body">
                         <div class="layui-row layui-col-space5">
                             <div class="layui-col-xs8 layui-col-md8 top-panel-number" style="color: #28333E;" id="pro_cnt">
@@ -27,7 +27,7 @@
             </div>
             <div class="layui-col-xs6 layui-col-md3">
                 <div class="layui-card top-panel">
-                    <div class="layui-card-header">文集总数</div>
+                    <div class="layui-card-header">Project Count</div>
                     <div class="layui-card-body">
                         <div class="layui-row layui-col-space5">
                             <div class="layui-col-xs8 layui-col-md8 top-panel-number" style="color: #28333E;" id="pro_cnt">
@@ -42,7 +42,7 @@
             </div>
             <div class="layui-col-xs6 layui-col-md3">
                 <div class="layui-card top-panel">
-                    <div class="layui-card-header">文档总数</div>
+                    <div class="layui-card-header">Document Count</div>
                     <div class="layui-card-body">
                         <div class="layui-row layui-col-space5">
                             <div class="layui-col-xs8 layui-col-md8 top-panel-number" style="color: #28333E;" id="doc_cnt">
@@ -57,22 +57,7 @@
             </div>
             <div class="layui-col-xs6 layui-col-md3">
                 <div class="layui-card top-panel">
-                    <div class="layui-card-header">图片总数</div>
-                    <div class="layui-card-body">
-                        <div class="layui-row layui-col-space5">
-                            <div class="layui-col-xs8 layui-col-md8 top-panel-number" style="color: #28333E;" id="img_cnt">
-                                {{img_cnt}}
-                            </div>
-                            <div class="layui-col-xs4 layui-col-md4  top-panel-tips">
-                                <svg t="1606220413001" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2021" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32"><defs><style type="text/css"></style></defs><path d="M829.64898 849.502041H194.35102c-43.885714 0-79.412245-35.526531-79.412244-79.412245V253.910204c0-43.885714 35.526531-79.412245 79.412244-79.412245h635.29796c43.885714 0 79.412245 35.526531 79.412244 79.412245v516.179592c0 43.885714-35.526531 79.412245-79.412244 79.412245z" fill="#D2F4FF" p-id="2022"></path><path d="M909.061224 656.195918l-39.706122-48.065306L626.416327 365.714286c-19.330612-19.330612-50.677551-19.330612-70.008164 0L419.526531 502.073469c-2.612245 2.612245-5.22449 3.134694-6.791837 3.134694-1.567347 0-4.702041-0.522449-6.791837-3.134694L368.326531 464.979592c-19.330612-19.330612-50.677551-19.330612-70.008164 0l-143.673469 143.673469-39.706122 48.065306v113.893878c0 43.885714 35.526531 79.412245 79.412244 79.412245h635.29796c43.885714 0 79.412245-35.526531 79.412244-79.412245v-114.416327" fill="#16C4AF" p-id="2023"></path><path d="M273.763265 313.469388m-49.632653 0a49.632653 49.632653 0 1 0 99.265306 0 49.632653 49.632653 0 1 0-99.265306 0Z" fill="#E5404F" p-id="2024"></path><path d="M644.179592 768h-365.714286c-11.493878 0-20.897959-9.404082-20.897959-20.897959s9.404082-20.897959 20.897959-20.897959h365.714286c11.493878 0 20.897959 9.404082 20.897959 20.897959s-9.404082 20.897959-20.897959 20.897959zM461.322449 670.82449h-182.857143c-11.493878 0-20.897959-9.404082-20.897959-20.897959s9.404082-20.897959 20.897959-20.89796h182.857143c11.493878 0 20.897959 9.404082 20.897959 20.89796s-9.404082 20.897959-20.897959 20.897959z" fill="#0B9682" p-id="2025"></path></svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="layui-col-xs6 layui-col-md3">
-                <div class="layui-card top-panel">
-                    <div class="layui-card-header">附件总数</div>
+                    <div class="layui-card-header">Attachment Count</div>
                     <div class="layui-card-body">
                         <div class="layui-row layui-col-space5">
                             <div class="layui-col-xs8 layui-col-md8 top-panel-number" style="color: #28333E;" id="attachment_cnt">
@@ -87,38 +72,11 @@
             </div>
     
         </div>
-        <!-- 觅思文档版本信息 -->
-        <div class="layui-col-xs6 layui-col-md4">
-            <div class="layui-card">
-                <div class="layui-card-header">MrDoc {{mrdoc_version}}</div>
-                <div class="layui-card-body">
-                    <div style="margin-bottom: 5px;">
-                        <a href="https://doc.mrdoc.pro/project-7/doc-3441/" class="pear-btn layui-btn-fluid" target="_blank">
-                            <i class="layui-icon layui-icon-rate-solid" style="color:rgb(242, 203, 81);"></i>
-                            <span style="font-weight:700;color:red;">升级专业版享折扣！</span>
-                        </a>
-                    </div>
-                    <div style="margin-bottom: 5px;">
-                        <a href="https://gitee.com/zmister/MrDoc" class="pear-btn layui-btn-fluid" target="_blank">访问 Gitee</a>
-                    </div>
-                    <div style="margin-bottom: 5px;">
-                        <a href="https://github.com/zmister2016/MrDoc" class="pear-btn layui-btn-fluid" target="_blank">访问 GitHub</a>
-                    </div>
-                    <div style="margin-bottom: 5px;">
-                        <a href="http://shang.qq.com/wpa/qunwpa?idkey=143c23a4ffbd0ba9137d2bce3ee86c83532c05259a0542a69527e36615e64dba" class="pear-btn layui-btn-fluid" target="_blank">加入 QQ群</a>
-                    </div>
-                    <div style="margin-bottom: 5px;">
-                        <button class="pear-btn layui-btn-fluid" onclick="checkUpdate()">检查版本更新</button>
-                    </div>
-
-                </div>
-              </div>
-        </div>
     </div>
-    <div class="layui-row layui-col-space10">
+    <div class="layui-row layui-col-space10" style="width: 200%">
         <div class="layui-col-md6">
             <div class="layui-card">
-                <div class="layui-card-header">动态</div>
+                <div class="layui-card-header">History</div>
                 <div class="layui-card-body">
                     <dl class="layuiadmin-card-status">
                         {% for doc in doc_active_list %}
@@ -127,74 +85,17 @@
                                         src="{% static 'PearAdminLayui/avatar.svg' %}"></a></div>
                             <div>
                                 {% if doc.status == 1 %}
-                                <p>{{doc.create_user.first_name}} 发布了文档 <a href="{% url 'doc' doc.top_doc doc.id %}" target="_blank">{{doc.name}}</a></p>
+                                <p>{{doc.create_user.username}} created project <a href="{% url 'doc' doc.top_doc doc.id %}" target="_blank">{{doc.name}}</a></p>
                                 {% elif doc.status == 0 %}
-                                <p>{{doc.create_user.first_name}} 保存了文档 <a href="{% url 'modify_doc' doc.id %}" target="_blank">{{doc.name}}</a></p>
+                                <p>{{doc.create_user.username}} saved project <a href="{% url 'modify_doc' doc.id %}" target="_blank">{{doc.name}}</a></p>
                                 {% else %}
-                                <p>{{doc.create_user.first_name}} 删除了文档 <a>{{doc.name}}</a></p>
+                                <p>{{doc.create_user.username}} deleted project <a>{{doc.name}}</a></p>
                                 {% endif %}
                                 <span>{{doc.modify_time}}</span>
                             </div>
                         </dd>
                         {% endfor %}
                     </dl>
-                </div>
-            </div>
-        </div>
-        <div class="layui-col-md6">
-            <div class="layui-card">
-                <div class="layui-card-header">快速草稿</div>
-                <div class="layui-card-body">
-                    <div class="layui-form">
-                        {% csrf_token %}
-                        <input name="status" value="0" hidden>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">标题</label>
-                            <div class="layui-input-block">
-                            <input type="text" id="doc_name" name="doc_name" required  lay-verify="required" placeholder="请输入文档标题" autocomplete="off" class="layui-input">
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">文集</label>
-                            <div class="layui-input-block">
-                            <select name="project" id="project" lay-verify="required">
-                                <option value=""></option>
-                                {% for pro in pro_list %}
-                                    {% if pro.role == 0 %}
-                                    <option value="{{pro.id}}">[公开]{{pro.name}}</option>
-                                    {% elif pro.role == 1 %}
-                                    <option value="{{pro.id}}">[私密]{{pro.name}}</option>
-                                    {% elif pro.role == 2 %}
-                                    <option value="{{pro.id}}">[指定用户]{{pro.name}}</option>
-                                    {% elif pro.role == 3 %}
-                                    <option value="{{pro.id}}">[密码]{{pro.name}}</option>
-                                    {% endif %}
-                                {% endfor %}
-                            </select>
-                            </div>
-                        </div>
-                        <div class="layui-form-item layui-form-text">
-                            <label class="layui-form-label">文本域</label>
-                            <div class="layui-input-block">
-                            <textarea name="pre_content" id="pre_content" placeholder="在想些什么呢？" class="layui-textarea"></textarea>
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <div class="layui-input-block">
-                            <button class="pear-btn pear-btn-primary" id="save_doc" onclick="manage_overview_save_doc();">保存草稿</button>
-                            <button type="reset" class="pear-btn pear-btn-primary">重置</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="layui-card">
-                <div class="layui-card-header">捐赠 - 请作者喝杯奶茶吧</div>
-                <div class="layui-card-body">
-                    <p align="center">
-                        <img src="{% static 'dashang/dashang_wx.webp' %}" height=200>
-                        <img src="{% static 'dashang/dashang_alipay.webp' %}" height=200>
-                    </p>
                 </div>
             </div>
         </div>
