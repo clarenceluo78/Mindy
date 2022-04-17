@@ -60,7 +60,7 @@ urlpatterns = [
     path('manage_doc_tag/',views.manage_doc_tag,name="manage_doc_tag"), # 文档标签管理
     path('tag_docs/<int:tag_id>/',views.tag_docs,name="tag_docs"), # 标签文档页
     path('tag_doc/<int:tag_id>/<int:doc_id>/',views.tag_doc,name="tag_doc"), # 标签文档页
-    ################其他功能相关
+    ################个人中心
     path('user_center/',views_user.user_center,name="user_center"), # 个人中心
     path('user/center_menu/',views_user.user_center_menu,name="user_center_menu"), # 个人中心菜单数据
     path('upload_doc_img/',util_upload_img.upload_img,name="upload_doc_img"), # 上传图片

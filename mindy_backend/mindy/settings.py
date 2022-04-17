@@ -251,3 +251,15 @@ if cors_str == []:
     CORS_ALLOWED_ORIGINS = cors_str
 else:
     CORS_ALLOWED_ORIGINS = cors_str.split(',')
+
+# # 配置用户表
+# AUTH_USER_MODEL = 'users.User'
+
+# Email settings
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.qq.com"
+EMAIL_PORT = 25
+EMAIL_HOST_USER = '1127862395@qq.com'
+EMAIL_HOST_PASSWORD = 'rxosdmzocqlmiedb'
+
+CONFIRM_DAYS = 1

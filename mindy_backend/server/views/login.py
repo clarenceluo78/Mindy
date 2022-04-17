@@ -116,7 +116,7 @@ def register(request):
                 send_email(email, verify_code)
 
                 message = 'Please check your email for confirmation!'
-                return render(request, 'users/register.html', locals())
+                return render(request, 'server/users/register.html', locals())
         else:
             return render(request, 'users/register.html', locals())
     register_form = forms.RegisterForm()

@@ -25,8 +25,10 @@ sitemaps = SitemapAll()
 
 urlpatterns = [
     # app_doc
-    path('',include('app_doc.urls')), # mindmap主应用
+    path('',include('app_doc.urls')),  # mindmap主应用
     # app_admin
+    path('confirm/', admin_views.user_confirm, name='user_confirm'),
+
     path('admin/',include('app_admin.urls'),), # admin应用
     path('login/', admin_views.log_in, name='login'),  # 登录
     path('logout/', admin_views.log_out, name='logout'),  # 注销

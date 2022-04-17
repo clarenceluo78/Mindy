@@ -2,6 +2,33 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+# class Users(AbstractUser):
+#     has_confirmed = models.BooleanField(default=False)
+#
+#     def __str__(self):
+#         return self.username
+#
+#     class Meta:
+#         ordering = ['-date_joined']
+#         verbose_name = "Users"
+#         verbose_name_plural = verbose_name
+
+
+class Confirm_Message(models.Model):
+    code = models.CharField(max_length=256)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    created_time = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.user.name + ": " + self.code
+
+    class Meta:
+        # ordering = ["-created_time"]
+        verbose_name = "Verification code"
+        verbose_name_plural = verbose_name
+
+
+
 # 系统设置项模型
 class SysSetting(models.Model):
     name = models.CharField(verbose_name="项目",max_length=50,primary_key=True)
@@ -18,7 +45,7 @@ class SysSetting(models.Model):
 
 # 用户选项配置
 class UserOptions(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     # 用户配置的编辑器选项，1表示Editormd编辑器，2表示Vditor编辑器，默认为1
     editor_mode = models.IntegerField(default=1,verbose_name="编辑器选项")
 
@@ -44,6 +71,9 @@ class EmaiVerificationCode(models.Model):
     class Meta:
         verbose_name = '电子邮件验证码'
         verbose_name_plural = verbose_name
+
+
+
 
 # 用户注册邀请码模型
 class RegisterCode(models.Model):

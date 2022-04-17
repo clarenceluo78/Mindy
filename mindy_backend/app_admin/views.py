@@ -1,7 +1,10 @@
+import hashlib
+# from django.conf import settings
+from django.core.mail import EmailMultiAlternatives
 from django.shortcuts import render,redirect
 from django.http.response import JsonResponse,HttpResponse,Http404
 from django.contrib.auth import authenticate,login,logout # 认证相关方法
-from django.contrib.auth.models import User # Django默认用户模型
+from .models import Confirm_Message
 from django.contrib.auth.decorators import login_required # 登录需求装饰器
 from django.views.decorators.http import require_http_methods,require_GET,require_POST # 视图请求方法装饰器
 from django.core.paginator import Paginator,PageNotAnInteger,EmptyPage,InvalidPage # 后端分页
@@ -49,15 +52,15 @@ def check_code(request):
 # 登录视图
 def log_in(request):
     if request.method == 'GET':
-        # 登录用户访问登录页面自动跳转到首页
+        # if authenticated, jump to main page
         if request.user.is_authenticated:
             return redirect('/')
         else:
-            return render(request,'login.html',locals())
+            return render(request, 'login.html', locals())
     elif request.method == 'POST':
         try:
-            username = request.POST.get('username','')
-            pwd = request.POST.get('password','')
+            username = request.POST.get('username', '')
+            pwd = request.POST.get('password', '')
             # 判断是否需要验证码
             require_login_check_code = SysSetting.objects.filter(types="basic",name="enable_login_check_code")
             if (len(require_login_check_code) > 0) and (require_login_check_code[0].value == 'on'):
@@ -65,10 +68,11 @@ def log_in(request):
                 if checkcode.lower() != request.session['CheckCode'].lower():
                     errormsg = _('验证码错误！')
                     return render(request, 'login.html', locals())
+
             # 验证登录次数
             if 'LoginLock' not in request.session.keys():
                 request.session['LoginNum'] = 1 # 重试次数
-                request.session['LoginLock'] = False # 是否锁定
+                request.session['LoginLock'] = False  # 是否锁定
                 request.session['LoginTime'] = datetime.datetime.now().timestamp() # 解除锁定时间
             verify_num = request.session['LoginNum']
             if verify_num > 5:
@@ -76,7 +80,6 @@ def log_in(request):
                 request.session['LoginTime'] = (datetime.datetime.now() + datetime.timedelta(minutes=10)).timestamp()
             verify_lock = request.session['LoginLock']
             verify_time = request.session['LoginTime']
-
             # 验证是否锁定
             # print(datetime.datetime.now().timestamp(),verify_time)
             if verify_lock is True and datetime.datetime.now().timestamp() < verify_time:
@@ -85,8 +88,11 @@ def log_in(request):
                 return render(request, 'login.html', locals())
 
             if username != '' and pwd != '':
-                user = authenticate(username=username,password=pwd)
+                user = authenticate(username=username, password=pwd)
                 if user is not None:
+                    if user.first_name != 'yes' and user.username != 'superadmin':
+                        errormsg = _('User has not confirmed by email!')
+                        return render(request, 'login.html', locals())
                     if user.is_active:
                         login(request,user)
                         request.session['LoginNum'] = 0  # 重试次数
@@ -108,85 +114,121 @@ def log_in(request):
             return HttpResponse(_('请求出错'))
 
 
+# 加密
+def encode(s, salt='myweb'):
+    h = hashlib.sha256()
+    s += salt
+    h.update(s.encode())
+    return h.hexdigest()
+
+
+@logger.catch()
+def make_confirm_message(user):
+    now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    code = encode(user.username, now)
+    Confirm_Message.objects.create(code=code, user=user,)
+    return code
+
+@logger.catch()
+def send_email(email, code):
+    subject = 'Verification email'
+
+    text_content = '''Thanks for registration, this is the confirmation email！\
+                    If you see this message, your email server does not provide HTML links, please contact the administrator！'''
+
+    html_content = '''
+                    <p>Thanks for registration!<a href="http://{}/confirm/?code={}" target=blank>Confirm</a></p>
+                    <p>Please click the link to complete registration confirmation!</p>
+                    '''.format('127.0.0.1:8000', code, settings.CONFIRM_DAYS)
+
+    msg = EmailMultiAlternatives(subject, text_content, settings.EMAIL_HOST_USER, [email])
+    msg.attach_alternative(html_content, "text/html")
+    msg.send()
+
+@logger.catch()
+def user_confirm(request):
+    code = request.GET.get('code', None)
+    message = ''
+    try:
+        confirm = Confirm_Message.objects.get(code=code)
+    except:
+        message = 'Invalid confirmation request!'
+        return render(request, 'server/users/confirm.html', locals())
+
+    c_time = confirm.created_time
+    now = datetime.datetime.now()
+    if now > c_time + datetime.timedelta(settings.CONFIRM_DAYS):
+        confirm.user.delete()
+        message = 'Your verification mail has expired! Please register again!'
+        return render(request, 'server/users/confirm.html', locals())
+    else:
+        confirm.user.first_name = 'yes'  # here set as email confirmed feature
+        confirm.user.save()
+        confirm.delete()
+        message = 'Thank you for your confirmation, please login with your account!  '
+        return render(request, 'server/users/confirm.html', locals())
+
 # 注册视图
 @open_register
 @logger.catch()
 def register(request):
-    # 如果登录用户访问注册页面，跳转到首页
+    # if authenticated, jump to main page
     if request.user.is_authenticated:
         return redirect('/')
     else:
         if request.method == 'GET':
-            return render(request,'register.html',locals())
+            return render(request, 'register.html', locals())
         elif request.method == 'POST':
-            username = request.POST.get('username',None)
-            email = request.POST.get('email',None)
-            password = request.POST.get('password',None)
-            checkcode = request.POST.get("check_code",None)
-            register_code = request.POST.get("register_code",None)
-            is_register_code = SysSetting.objects.filter(types='basic', name='enable_register_code', value='on')
-            if is_register_code.count() > 0: # 开启了注册码设置
-                try:
-                    register_code_value = RegisterCode.objects.get(code=register_code,status=1)
-                except ObjectDoesNotExist:
-                    errormsg = _('注册码无效!')
-                    return render(request, 'register.html', locals())
-            # 判断是否输入了用户名、邮箱和密码
+            username = request.POST.get('username', None)
+            email = request.POST.get('email', None)
+            password = request.POST.get('password', None)
+            checkcode = request.POST.get("check_code", None)
             if username and email and password:
                 if '@'in email:
                     email_exit = User.objects.filter(email=email)
                     username_exit = User.objects.filter(username=username)
                     if email_exit.count() > 0: # 验证电子邮箱
-                        errormsg = _('此电子邮箱已被注册！')
+                        errormsg = _('Email has been registered!')
                         return render(request, 'register.html', locals())
                     elif username_exit.count() > 0: # 验证用户名
-                        errormsg = _('用户名已被使用！')
+                        errormsg = _('User name has been occupied!')
                         return render(request, 'register.html', locals())
                     elif re.match('^[0-9a-z]+$',username) is None:
-                        errormsg = _('用户名只能为英文数字组合')
+                        errormsg = _('User name can only be the combination of English letters and digits')
                         return render(request, 'register.html', locals())
                     elif len(username) < 5:
-                        errormsg = _('用户名必须大于等于5位！')
+                        errormsg = _('')
                         return render(request, 'register.html', locals())
                     elif len(password) < 6: # 验证密码长度
-                        errormsg = _('密码必须大于等于6位！')
+                        errormsg = _('Password less than 6 digits!')
                         return render(request, 'register.html', locals())
                     elif checkcode.lower() != request.session['CheckCode'].lower(): # 验证验证码
-                        errormsg = _("验证码错误")
+                        errormsg = _("Wrong check code!")
                         return render(request, 'register.html', locals())
                     else:
-                        # 创建用户
+                        # create user
                         user = User.objects.create_user(username=username, email=email, password=password)
                         user.save()
-                        # 登录用户
-                        user = authenticate(username=username, password=password)
-                        # 注册码数据更新
-                        if is_register_code.count() > 0:
-                            r_all_cnt = register_code_value.all_cnt # 注册码的最大使用次数
-                            r_used_cnt = register_code_value.used_cnt + 1 # 更新注册码的已使用次数
-                            r_use_user = register_code_value.user_list # 注册码的使用用户
-                            if r_used_cnt >= r_all_cnt: # 如果注册码已使用次数大于等于注册码的最大使用次数，则注册码失效
-                                RegisterCode.objects.filter(code=register_code).update(
-                                    status=0,# 注册码状态设为失效
-                                    used_cnt = r_used_cnt, # 更新注册码的已使用次数
-                                    user_list = r_use_user + email + ',',
-                                )
-                            else:
-                                RegisterCode.objects.filter(code=register_code).update(
-                                    used_cnt=r_used_cnt, # 更新注册码的已使用次数
-                                    user_list = r_use_user + email + ',',
-                                )
-                        if user.is_active:
-                            login(request, user)
-                            return redirect('/')
-                        else:
-                            errormsg = _('用户被禁用，请联系管理员！')
-                            return render(request, 'register.html', locals())
+
+                        verify_code = make_confirm_message(user)
+                        send_email(email, verify_code)
+
+                        message = 'Please check your email for confirmation!'
+                        return render(request, 'register.html', locals())
+                        # # user login
+                        # user = authenticate(username=username, password=password)
+
+                        # if user.is_active:
+                        #     login(request, user)
+                        #     return redirect('/')
+                        # else:
+                        #     errormsg = _('The user has been prohibited, please contact superadmin!')
+                        #     return render(request, 'register.html', locals())
                 else:
-                    errormsg = _('请输入正确的电子邮箱格式！')
+                    errormsg = _('Wrong email format!')
                     return render(request, 'register.html', locals())
             else:
-                errormsg = _("请检查输入值")
+                errormsg = _("Empty input!")
                 return render(request, 'register.html', locals())
 
 

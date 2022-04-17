@@ -1,7 +1,7 @@
 {% load static %}
 {% load i18n %}
 <!DOCTYPE html>
-<html lang='zh-CN'>
+<html lang='en-us'>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge，chrome=1">
@@ -9,11 +9,11 @@
     <meta http-equiv="Cache-Control" content="no-siteapp" />
     <meta http-equiv="Cache-Control" content="max-age=7200" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<title>{% trans "用户登录" %} - {% if site_name != None %}{{site_name}} {% else %}{% trans "觅思文档" %}{% endif %}</title>
+	<title>{% trans "Login" %} - {% if site_name != None %}{{site_name}} {% else %}{% trans "Mindy" %}{% endif %}</title>
 	<meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="stylesheet" href="{% static 'layui/css/layui.css' %}" crossorigin="anonymous">
-    <link rel="icon" href="{% static 'search/mrdoc_logo_300.png' %}" sizes="192x192" />
+    <link rel="icon" href="{% static 'logo.png' %}" sizes="192x192" />
     <style>
         body{
             background-color: #fafafa;
@@ -62,24 +62,24 @@
             <form class="layui-form" action="{% url 'login' %}"  method='POST'>
                 {% csrf_token %}
                 <div class="layui-form-item">
-                    <img src="{% static 'mrdoc_logo_ridus.png' %}" style="width: 60px;height: 60px;margin-bottom: 10px;" />
-                    <h3><strong>{% trans "登录" %} - <a href="/">{% if site_name != None %}{{site_name}} {% else %}{% trans "觅思文档" %}{% endif %}</a></strong></h3>
+                    <img src="{% static 'logo.png' %}" style="width: 60px;height: 60px;margin-bottom: 10px;" />
+                    <h3><strong>{% trans "Sign in" %} - <a href="/">{% if site_name != None %}{{site_name}} {% else %}{% trans "Mindy" %}{% endif %}</a></strong></h3>
                 </div>
                 <span style='color:red;margin-bottom: 10px;'>{{ errormsg }}</span>
                 <div class="layui-form-item">
                     <div class="layui-input-inline login-input">
-                      <input type="text" name="username" required  lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input" value="{{username}}">
+                      <input type="text" name="username" required  lay-verify="required" placeholder="Username" autocomplete="off" class="layui-input" value="{{username}}">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <div class="layui-input-inline login-input">
-                      <input type="password" name="password" required  lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input" value="{{pwd}}">
+                      <input type="password" name="password" required  lay-verify="required" placeholder="Password" autocomplete="off" class="layui-input" value="{{pwd}}">
                     </div>
                 </div>
                 {% if enable_login_check_code == 'on' %}
                 <div class="layui-form-item">
                     <div class="layui-input-inline">
-                        <input type="text" class="layui-input" placeholder="请输入验证码" name="check_code" autocomplete="off">
+                        <input type="text" class="layui-input" placeholder="Check code" name="check_code" autocomplete="off">
                             <img src="{% url 'check_code' %}" onclick="ChangeCode(this);">
                             <script>
                                 // 点击一次,更改图片内容,
@@ -98,14 +98,13 @@
                 {% if close_register == 'on' %}
                 <a class="register-link">{% trans "本站暂不开放注册" %}</a>&nbsp;
                 {% else %}
-                <a href="{% url 'register' %}" class="register-link">{% trans "注册账号" %}</a>&nbsp;
+                <a href="{% url 'register' %}" class="register-link">{% trans "Register" %}</a>&nbsp;
                 {% endif %}
                 {% if enable_email == 'on' %}
                 <a href="{% url 'forget_pwd' %}" class="register-link">{% trans "忘记密码" %}</a>
                 {% endif %}
-                <a href="{% url 'pro_list' %}" class="register-link">{% trans "返回首页" %}</a>
+                <a href="{% url 'pro_list' %}" class="register-link">Home</a>
                 <hr>
-                <span style="font-size: 12px;color: #666;">觅思文档 - 私有云知识库部署方案</span>
             </form>
         </div>
     </div>

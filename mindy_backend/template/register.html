@@ -1,9 +1,9 @@
 {% load static %}
 {% load i18n %}
 <!DOCTYPE html>
-<html lang='zh-CN'>
+<html lang='en-us'>
 <head>
-	<title>{% trans "用户注册" %} - {% if site_name != None %}{{site_name}} {% else %}{% trans "觅思文档" %}{% endif %}</title>
+	<title>{% trans "用户注册" %} - {% if site_name != None %}{{site_name}} {% else %}{% trans "Mindy" %}{% endif %}</title>
 	<meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="stylesheet" href="{% static 'layui/css/layui.css' %}" crossorigin="anonymous">
@@ -54,40 +54,44 @@
         <div></div>
         <div class="login-form">
             <form class="layui-form" action="{% url 'register' %}"  method='POST'>
+                {% if message %}
+                        <div class="alert alert-warning">{{ message }}</div>
+                    {% endif %}
+
                 {% csrf_token %}
                 <div class="layui-form-item">
-                    <img src="{% static 'mrdoc_logo_ridus.png' %}" style="width: 60px;height: 60px;margin-bottom: 10px;" />
-                    <h3><strong>{% trans "注册" %} - {% if site_name != None %}{{site_name}} {% else %}{% trans "觅思文档" %}{% endif %}</strong></h3>
+                    <img src="{% static 'logo.jpg' %}" style="width: 80px;height: 80px;margin-bottom: 1px;" />
+                    <h3><strong>{% trans "Sign up" %} - {% if site_name != None %}{{site_name}} {% else %}{% trans "Mindy" %}{% endif %}</strong></h3>
                 </div>
                 <span style='color:red;margin-bottom: 10px;'>{{ errormsg }}</span>
                 {% if enable_register_code %}
-                <div class="layui-form-item">
-                    <div class="layui-input-inline">
-                      <input type="text" name="register_code" required  lay-verify="required" placeholder="请输入注册码" autocomplete="off" class="layui-input" >
-                    </div>
-                </div>
+{#                <div class="layui-form-item">#}
+{#                    <div class="layui-input-inline">#}
+{#                      <input type="text" name="register_code" required  lay-verify="required" placeholder="请输入注册码" autocomplete="off" class="layui-input" >#}
+{#                    </div>#}
+{#                </div>#}
                 {% endif %}
                 <div class="layui-form-item">
                     <div class="layui-input-inline">
-                      <input type="text" name="username" required  lay-verify="required" placeholder="请输入用户名，不少于5位" autocomplete="off" class="layui-input" value="{{username}}">
+                      <input type="text" name="username" required  lay-verify="required" placeholder="Username" autocomplete="off" class="layui-input" value="{{username}}">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <div class="layui-input-inline">
-                      <input type="email" name="email" required  lay-verify="required" placeholder="请输入电子邮箱" autocomplete="off" class="layui-input" value="{{email}}">
+                      <input type="email" name="email" required  lay-verify="required" placeholder="Email" autocomplete="off" class="layui-input" value="{{email}}">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <div class="layui-input-inline">
-                      <input type="password" name="password" required  lay-verify="required" placeholder="请输入密码，不少于6位" autocomplete="off" class="layui-input" value="{{password}}">
+                      <input type="password" name="password" required  lay-verify="required" placeholder="Password" autocomplete="off" class="layui-input" value="{{password}}">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <div class="layui-input-inline">
-                        <input type="text" class="layui-input" placeholder="请输入验证码" name="check_code" autocomplete="off">
+                        <input type="text" class="layui-input" placeholder="Check code" name="check_code" autocomplete="off">
                             <img src="{% url 'check_code' %}" onclick="ChangeCode(this);">
                             <script>
-                                // 点击一次,更改图片内容,
+                                // click once, change the check code
                                 function ChangeCode(ths){
                                     ths.src = ths.src + '?';
                                 }
@@ -96,13 +100,12 @@
                 </div>
                 <div class="layui-form-item">
                     <div class="layui-input-inline">
-                        <button class="layui-btn layui-btn-fluid layui-btn-radius  layui-btn-normal" lay-submit lay-filter="formDemo" type="submit">注册并登录</button>
+                        <button class="layui-btn layui-btn-fluid layui-btn-radius  layui-btn-normal" lay-submit lay-filter="formDemo" type="submit">Sign up</button>
                     </div>
                 </div>
-                 <a href="{% url 'login' %}" class="register-link">{% trans "返回登录" %}</a>
-                 <a href="{% url 'pro_list' %}" class="register-link">{% trans "返回首页" %}</a>
+                 <a href="{% url 'login' %}" class="register-link">{% trans "Login" %}</a>
+{#                 <a href="{% url 'pro_list' %}" class="register-link">Home</a>#}
                  <hr>
-                 <span style="font-size: 12px;color: #666;">觅思文档 - 私有云知识库部署方案</span> 
             </form>
         </div>
     </div>

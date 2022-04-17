@@ -6,8 +6,8 @@
 		<meta charset="utf-8">
 		<meta name=renderer  content=webkit>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <title>{% trans "个人中心" %}{% if site_name != None and site_name != '' %} - {{site_name}} {% endif %} - {% trans "觅思文档" %}</title>
-		<link rel="icon" href="{% static 'search/mrdoc_logo_300.png' %}" sizes="192x192" />
+        <title>{% trans "个人中心" %}{% if site_name != None and site_name != '' %} - {{site_name}} {% endif %} - {% trans "Mindy" %}</title>
+		<link rel="icon" href="{% static 'logo.jpg' %}" sizes="192x192" />
 		<!-- 依 赖 样 式 -->
 		<link rel="stylesheet" href="{% static 'PearAdminLayui/component/pear/css/pear.css' %}" />
 		<!-- 加 载 样 式-->
@@ -33,7 +33,7 @@
 						<!-- 头 像 -->
 						<a href="javascript:;">
 							<img src="{% static 'PearAdminLayui/avatar.svg' %}" class="layui-nav-img">
-							{% if request.user.first_name != '' %} {{request.user.first_name}} {% else %} {{request.user.username}}{% endif %}
+							{{request.user.username}}
 						</a>
 						<!-- 功 能 菜 单 -->
 						<dl class="layui-nav-child">

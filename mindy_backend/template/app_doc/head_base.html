@@ -5,7 +5,7 @@
         <!-- LOGO -->
         <div class="">
             <a class="logo" href="{% url 'pro_list' %}">
-                <img src="{% static 'logo.jpg' %}" style="height: 42px;width: auto;">
+                <img src="{% static 'logo.png' %}" style="height: 32px;width: auto;">
             </a>
         </div>
         <!-- 搜索框 -->
@@ -64,7 +64,7 @@
             <li class="layui-nav-item">
                 <a href="javascript:void(0);">
                     <i class="layui-icon layui-icon-friends"></i> 
-                    <span class="layui-hide-xs">{% if request.user.first_name != '' %} {{request.user.first_name}} {% else %} {{request.user.username}}{% endif %}</span>
+                    <span class="layui-hide-xs">{{request.user.username}}</span>
                 </a>
                 <dl class="layui-nav-child">
                     {% if request.user.is_superuser %}
