@@ -489,11 +489,11 @@ def modify_project(request):
             else:
                 return JsonResponse({'status':False,'data':_('非法请求')})
         except Exception as e:
-            logger.exception(_("修改文集出错"))
+            logger.exception(_("修改项目出错"))
             return JsonResponse({'status':False,'data':_('请求出错')})
 
 
-# 修改文集权限
+# 修改项目权限
 @login_required()
 @require_http_methods(['GET',"POST"])
 @logger.catch()
@@ -539,7 +539,7 @@ def modify_project_role(request,pro_id):
                 return Http404
 
 
-# 验证文集访问码
+# 验证项目访问码
 @require_http_methods(['GET',"POST"])
 def check_viewcode(request):
     try:
@@ -563,7 +563,7 @@ def check_viewcode(request):
         return render(request,'404.html')
 
 
-# 删除文集
+# 删除项目
 @login_required()
 @require_http_methods(["POST"])
 def del_project(request):
@@ -892,7 +892,6 @@ def manage_pro_colla_self(request):
     colla_pros = ProjectCollaborator.objects.filter(user=request.user)
     return render(request,'app_doc/manage/manage_project_self_colla.html',locals())
 
-
 # 我协作的文集文档列表接口
 class MyCollaList(APIView):
     authentication_classes = (AppAuth, SessionAuthentication)
@@ -950,7 +949,6 @@ class MyCollaList(APIView):
 
         return Response(resp)
 
-
 # 转让文集
 @login_required()
 @require_http_methods(['GET',"POST"])
@@ -981,7 +979,6 @@ def manage_project_transfer(request,pro_id):
 
             except:
                 return JsonResponse({'status':False,'data':_('用户不存在')})
-
 
 # 文档浏览页
 @require_http_methods(['GET'])
@@ -1155,7 +1152,7 @@ def doc_id(request,doc_id):
         return render(request,'404.html')
 
 
-# 创建文档
+# 创建脑图
 @login_required()
 @require_http_methods(['GET',"POST"])
 @logger.catch()

@@ -27,9 +27,11 @@ urlpatterns = [
     path('api/my_colla_list/', views.MyCollaList.as_view(), name="my_colla_list"),  # 我的协作文集列表
     path('api/import_local_doc/', views_import.ImportLocalDoc.as_view(), name="import_local_doc_api"),  # 导入本地文档API
     # 脑图
+    # 脑图浏览
     path('project-<int:pro_id>/doc-<int:doc_id>/', views.doc, name='doc'),  # 文档浏览页
     path('doc/<int:doc_id>/', views.doc_id, name="doc_id"),  # 文档浏览页(通过文档ID)
-    path('create_doc/', views.create_doc, name="create_doc"),  # 新建文档
+    # 新建脑图
+    path('create_doc/', views.create_doc, name="create_doc"),
     path('modify_doc/<int:doc_id>/', views.modify_doc, name="modify_doc"),  # 修改文档
     path('del_doc/',views.del_doc,name="del_doc"), # 删除文档
     path('manage_doc/',views.manage_doc,name="manage_doc"), # 管理文档

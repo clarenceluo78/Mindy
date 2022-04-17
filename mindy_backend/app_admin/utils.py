@@ -32,7 +32,7 @@ def send_email(to_email,vcode_str):
         content = "你的验证码为：{}，验证码30分钟内有效！".format(vcode_str)
         msg = MIMEText(content, _subtype='html', _charset='utf-8')
         msg['Subject'] = subject
-        msg['From'] = 'MrDoc助手[{}]'.format(msg_from)
+        msg['From'] = 'Mindy小助手[{}]'.format(msg_from)
         msg['To'] = msg_to
         try:
             # print(smtp_host,smtp_port)

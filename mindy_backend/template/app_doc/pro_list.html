@@ -194,27 +194,27 @@
 
 <!-- 主体结束 -->
 <!-- 分页 -->
-<div class="layui-row project-list-page" style="text-align: center;">
-    <div class="layui-box layui-laypage layui-laypage-default">
-            <!-- 上一页 -->
-            {% if projects.has_previous %}
-                <a href="?page={{ projects.previous_page_number }}&kw={{kw}}&sort={{sort}}&role={{role}}" class="layui-btn layui-btn-xs layui-btn-normal">{% trans "上一页" %}</a>
-            {% else %}
-                <a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-disabled">{% trans "上一页" %}</a>
-            {% endif %}
-            <!-- 当前页 -->
-            <span class="layui-laypage-curr">
-                <em class="layui-laypage-em"></em>
-                <em>{{ projects.number }}/{{ projects.paginator.num_pages }}</em>
-            </span>
-            <!-- 下一页 -->
-            {% if projects.has_next %}
-                <a href="?page={{ projects.next_page_number }}&kw={{kw}}&sort={{sort}}&role={{role}}" class="layui-btn layui-btn-xs layui-btn-normal">{% trans "下一页" %}</a>
-            {% else %}
-                <a class="layui-btn layui-btn-xs layui-btn-disabled">{% trans "下一页" %}</a>
-            {% endif %}
-    </div>
-</div>
+{#<div class="layui-row project-list-page" style="text-align: center;">#}
+{#    <div class="layui-box layui-laypage layui-laypage-default">#}
+{#            <!-- 上一页 -->#}
+{#            {% if projects.has_previous %}#}
+{#                <a href="?page={{ projects.previous_page_number }}&kw={{kw}}&sort={{sort}}&role={{role}}" class="layui-btn layui-btn-xs layui-btn-normal">{% trans "上一页" %}</a>#}
+{#            {% else %}#}
+{#                <a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-disabled">{% trans "上一页" %}</a>#}
+{#            {% endif %}#}
+{#            <!-- 当前页 -->#}
+{#            <span class="layui-laypage-curr">#}
+{#                <em class="layui-laypage-em"></em>#}
+{#                <em>{{ projects.number }}/{{ projects.paginator.num_pages }}</em>#}
+{#            </span>#}
+{#            <!-- 下一页 -->#}
+{#            {% if projects.has_next %}#}
+{#                <a href="?page={{ projects.next_page_number }}&kw={{kw}}&sort={{sort}}&role={{role}}" class="layui-btn layui-btn-xs layui-btn-normal">{% trans "下一页" %}</a>#}
+{#            {% else %}#}
+{#                <a class="layui-btn layui-btn-xs layui-btn-disabled">{% trans "下一页" %}</a>#}
+{#            {% endif %}#}
+{#    </div>#}
+{#</div>#}
 <!-- 分页结束 -->
 
 <!-- 页脚 -->
