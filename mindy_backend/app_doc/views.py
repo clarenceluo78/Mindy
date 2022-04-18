@@ -185,14 +185,15 @@ def get_pro_toc(pro_id):
     # else:
     return (doc_list, n)
 
-
-# project list (front page)
+'''
+    @Name: Project List View
+    @Function: This is the project front page view
+'''
 @logger.catch()
 def project_list(request):
-    kw = request.GET.get('kw', '')  # 搜索词
+    kw = request.GET.get('kw', '')      # 搜索词
     sort = request.GET.get('sort', '')  # 排序,0表示按时间升序排序，1表示按时间降序排序，''表示按后台配置排序，默认为''
     role = request.GET.get('role', -1)  # 筛选项目权限，默认为显示所有可显示的项目
-
     # 是否排序
     if sort in [0, '0']:
         sort_str = ''
@@ -207,26 +208,22 @@ def project_list(request):
             sort_str = ''
     else:
         sort_str = '-'
-
     # 是否搜索
     if kw == '':
         is_kw = False
     else:
         is_kw = True
-
     # 是否认证
     if request.user.is_authenticated:
         is_auth = True
     else:
         is_auth = False
-
     # 是否筛选
     if role in ['', -1, '-1']:
         is_role = False
         role_list = [0, 3]
     else:
         is_role = True
-
     # 没有搜索 and 认证用户 and 没有筛选
     if (is_kw is False) and (is_auth) and (is_role is False):
         colla_list = [i.project.id for i in ProjectCollaborator.objects.filter(user=request.user)]  # 用户的协作文集列表
@@ -327,7 +324,6 @@ def project_list(request):
             ).order_by('-is_top', "{}create_time".format(sort_str))
         else:
             return render(request, '404.html')
-
     # handle paging
     paginator = Paginator(project_list, 12)
     page = request.GET.get('page', 1)
@@ -340,8 +336,10 @@ def project_list(request):
     # using static here, replace later
     return render(request, 'app_doc/pro_list.html', locals())
 
-
-# create project
+'''
+    @Name: Create Project View
+    @Function: This is the view for creating project
+'''
 @login_required()
 @require_http_methods(['POST'])
 def create_project(request):
@@ -372,6 +370,105 @@ def create_project(request):
 
         logger.exception(_("Error when creating project"))
         return JsonResponse({'status': False, 'data': _('Error, check the input')})
+
+'''
+    @Name: Create Document View
+    @Function: This is the view for creating document
+'''
+@login_required()
+@require_http_methods(['GET', "POST"])
+@logger.catch()
+def create_doc(request):
+    # 获取用户的编辑器模式
+    try:
+        user_opt = UserOptions.objects.get(user=request.user)
+        editor_mode = user_opt.editor_mode
+    except ObjectDoesNotExist:
+        editor_mode = 1
+    if request.method == 'GET':
+        # 获取url切换的编辑器模式
+        eid = request.GET.get('eid', editor_mode)
+        if eid in [1, 2, 3, 4, '1', '2', '3', '4']:
+            editor_mode = int(eid)
+        try:
+            editor_type = _("新建表格") if editor_mode == 4 else _("新建文档")
+            pid = request.GET.get('pid', -999)
+            project_list = Project.objects.filter(create_user=request.user)  # 自己创建的文集列表
+            colla_project_list = ProjectCollaborator.objects.filter(user=request.user)  # 协作的文集列表
+            doctemp_list = DocTemp.objects.filter(create_user=request.user).values('id', 'name', 'create_time')
+            return render(request, 'app_doc/editor/create_doc.html', locals())
+        except Exception as e:
+            logger.exception(_("访问创建文档页面出错"))
+            return render(request, '404.html')
+    elif request.method == 'POST':
+        try:
+            project = request.POST.get('project', '')  # 文集ID
+            parent_doc = request.POST.get('parent_doc', '')  # 上级文档ID
+            doc_name = request.POST.get('doc_name', '')  # 文档标题
+            doc_tags = request.POST.get('doc_tag', '')  # 文档标签
+            doc_content = request.POST.get('content', '')  # 文档内容
+            pre_content = request.POST.get('pre_content', '')  # 文档Markdown内容
+            sort = request.POST.get('sort', '')  # 文档排序
+            editor_mode = request.POST.get('editor_mode', editor_mode)  # 获取文档编辑器
+            status = request.POST.get('status', 1)  # 文档状态
+            open_children = request.POST.get('open_children', False)  # 展示下级目录
+            show_children = request.POST.get('show_children', False)  # 展示下级目录
+            if open_children == 'on':
+                open_children = True
+            else:
+                open_children = False
+            if show_children == 'on':
+                show_children = True
+            else:
+                show_children = False
+            if project != '' and doc_name != '' and project != '-1':
+                # 验证请求者是否有文集的权限
+                check_project = Project.objects.filter(id=project, create_user=request.user)
+                colla_project = ProjectCollaborator.objects.filter(project=project, user=request.user)
+                if check_project.count() > 0 or colla_project.count() > 0:
+                    # 判断文集下是否存在同名文档
+                    if Doc.objects.filter(name=doc_name, top_doc=int(project)).exists():
+                        return JsonResponse({'status': False, 'data': _('文集内不允许同名文档')})
+                    # 开启事务
+                    with transaction.atomic():
+                        save_id = transaction.savepoint()
+                        try:
+                            # 创建文档
+                            doc = Doc.objects.create(
+                                name=doc_name,
+                                content=doc_content,
+                                pre_content=pre_content,
+                                parent_doc=int(parent_doc) if parent_doc != '' else 0,
+                                top_doc=int(project),
+                                sort=sort if sort != '' else 9999,
+                                create_user=request.user,
+                                status=status,
+                                editor_mode=editor_mode,
+                                open_children=open_children,
+                                show_children=show_children
+                            )
+                            # 设置文档标签
+                            for t in doc_tags.split(","):
+                                if t != '':
+                                    tag = Tag.objects.get_or_create(name=t, create_user=request.user)
+                                    DocTag.objects.get_or_create(tag=tag[0], doc=doc)
+
+                            return JsonResponse({'status': True, 'data': {'pro': project, 'doc': doc.id}})
+                        except Exception as e:
+                            logger.exception(_("创建文档异常"))
+                            # 回滚事务
+                            transaction.savepoint_rollback(save_id)
+                        transaction.savepoint_commit(save_id)
+                        return JsonResponse({'status': False, 'data': _('创建失败')})
+                else:
+                    return JsonResponse({'status': False, 'data': _('无权操作此文集')})
+            else:
+                return JsonResponse({'status': False, 'data': _('请确认文档标题、文集正确')})
+        except Exception as e:
+            logger.exception("创建文档出错")
+            return JsonResponse({'status': False, 'data': _('请求出错')})
+    else:
+        return JsonResponse({'status': False, 'data': _('方法不允许')})
 
 
 # project page (recent project)
@@ -1161,101 +1258,6 @@ def doc_id(request, doc_id):
         return render(request, '404.html')
 
 
-# 创建脑图
-@login_required()
-@require_http_methods(['GET', "POST"])
-@logger.catch()
-def create_doc(request):
-    # 获取用户的编辑器模式
-    try:
-        user_opt = UserOptions.objects.get(user=request.user)
-        editor_mode = user_opt.editor_mode
-    except ObjectDoesNotExist:
-        editor_mode = 1
-    if request.method == 'GET':
-        # 获取url切换的编辑器模式
-        eid = request.GET.get('eid', editor_mode)
-        if eid in [1, 2, 3, 4, '1', '2', '3', '4']:
-            editor_mode = int(eid)
-        try:
-            editor_type = _("新建表格") if editor_mode == 4 else _("新建文档")
-            pid = request.GET.get('pid', -999)
-            project_list = Project.objects.filter(create_user=request.user)  # 自己创建的文集列表
-            colla_project_list = ProjectCollaborator.objects.filter(user=request.user)  # 协作的文集列表
-            doctemp_list = DocTemp.objects.filter(create_user=request.user).values('id', 'name', 'create_time')
-            return render(request, 'app_doc/editor/create_doc.html', locals())
-        except Exception as e:
-            logger.exception(_("访问创建文档页面出错"))
-            return render(request, '404.html')
-    elif request.method == 'POST':
-        try:
-            project = request.POST.get('project', '')  # 文集ID
-            parent_doc = request.POST.get('parent_doc', '')  # 上级文档ID
-            doc_name = request.POST.get('doc_name', '')  # 文档标题
-            doc_tags = request.POST.get('doc_tag', '')  # 文档标签
-            doc_content = request.POST.get('content', '')  # 文档内容
-            pre_content = request.POST.get('pre_content', '')  # 文档Markdown内容
-            sort = request.POST.get('sort', '')  # 文档排序
-            editor_mode = request.POST.get('editor_mode', editor_mode)  # 获取文档编辑器
-            status = request.POST.get('status', 1)  # 文档状态
-            open_children = request.POST.get('open_children', False)  # 展示下级目录
-            show_children = request.POST.get('show_children', False)  # 展示下级目录
-            if open_children == 'on':
-                open_children = True
-            else:
-                open_children = False
-            if show_children == 'on':
-                show_children = True
-            else:
-                show_children = False
-            if project != '' and doc_name != '' and project != '-1':
-                # 验证请求者是否有文集的权限
-                check_project = Project.objects.filter(id=project, create_user=request.user)
-                colla_project = ProjectCollaborator.objects.filter(project=project, user=request.user)
-                if check_project.count() > 0 or colla_project.count() > 0:
-                    # 判断文集下是否存在同名文档
-                    if Doc.objects.filter(name=doc_name, top_doc=int(project)).exists():
-                        return JsonResponse({'status': False, 'data': _('文集内不允许同名文档')})
-                    # 开启事务
-                    with transaction.atomic():
-                        save_id = transaction.savepoint()
-                        try:
-                            # 创建文档
-                            doc = Doc.objects.create(
-                                name=doc_name,
-                                content=doc_content,
-                                pre_content=pre_content,
-                                parent_doc=int(parent_doc) if parent_doc != '' else 0,
-                                top_doc=int(project),
-                                sort=sort if sort != '' else 9999,
-                                create_user=request.user,
-                                status=status,
-                                editor_mode=editor_mode,
-                                open_children=open_children,
-                                show_children=show_children
-                            )
-                            # 设置文档标签
-                            for t in doc_tags.split(","):
-                                if t != '':
-                                    tag = Tag.objects.get_or_create(name=t, create_user=request.user)
-                                    DocTag.objects.get_or_create(tag=tag[0], doc=doc)
-
-                            return JsonResponse({'status': True, 'data': {'pro': project, 'doc': doc.id}})
-                        except Exception as e:
-                            logger.exception(_("创建文档异常"))
-                            # 回滚事务
-                            transaction.savepoint_rollback(save_id)
-                        transaction.savepoint_commit(save_id)
-                        return JsonResponse({'status': False, 'data': _('创建失败')})
-                else:
-                    return JsonResponse({'status': False, 'data': _('无权操作此文集')})
-            else:
-                return JsonResponse({'status': False, 'data': _('请确认文档标题、文集正确')})
-        except Exception as e:
-            logger.exception("创建文档出错")
-            return JsonResponse({'status': False, 'data': _('请求出错')})
-    else:
-        return JsonResponse({'status': False, 'data': _('方法不允许')})
 
 
 # 修改文档
