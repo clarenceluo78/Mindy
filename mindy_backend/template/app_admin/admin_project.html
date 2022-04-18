@@ -1,7 +1,7 @@
 {% extends 'app_admin/admin_base.html' %}
 {% load static %}
 {% load i18n %}
-{% block title %}文集管理{% endblock %}
+{% block title %}Project Management{% endblock %}
 {% block content %}
 <div class="layui-card">
     <div class="layui-card-body">
@@ -15,13 +15,13 @@
         <input type="text" name="project-search-kw" placeholder="" class="layui-input" >
     </div>
     <button class="pear-btn pear-btn-sm" lay-event="search">
-        <i class="layui-icon layui-icon-search"></i>搜索
+        <i class="layui-icon layui-icon-search"></i>Search
     </button>
     <button class="pear-btn pear-btn-primary pear-btn-sm" lay-event="add">
-        <i class="layui-icon layui-icon-add-1"></i>新增
+        <i class="layui-icon layui-icon-add-1"></i>Add
     </button>
     <button class="pear-btn pear-btn-danger pear-btn-sm" lay-event="batchRemove">
-        <i class="layui-icon layui-icon-delete"></i>删除
+        <i class="layui-icon layui-icon-delete"></i>Delete
     </button>
     
 </script>
@@ -56,11 +56,11 @@
 <script type="text/html" id="project-role">
     {% verbatim %}
     {{#if (d.role == 0) { }}
-    <span>公开</span>
+    <span>Public</span>
     {{# }else if(d.role == 1){ }}
-    <span>私密</span>
+    <span>Private</span>
     {{# }else if(d.role == 2){ }}
-    <span>指定用户</span>
+    <span>Specific User</span>
     {{# }else if(d.role == 3){ }}
     <span>访问码</span>
     {{# } }}

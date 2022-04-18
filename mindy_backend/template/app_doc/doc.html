@@ -15,23 +15,23 @@
     {% if request.user == doc.create_user or request.user == project.create_user %}
         <span class="btn pull-left">|</span>
         <a class="btn pull-left" aria-label="" href="{% url 'modify_doc' doc_id=doc.id %}">
-            <i class="layui-icon layui-icon-edit"></i> <span class="layui-hide-xs">{% trans "修改" %}</span>
+            <i class="layui-icon layui-icon-edit"></i> <span class="layui-hide-xs">MODIFY</span>
         </a>
         <a class="btn pull-left" aria-label="" href="{% url 'create_doc' %}?pid={{project.id}}" target="_blank">
-            <i class="layui-icon layui-icon-add-1"></i> <span class="layui-hide-xs">{% trans "添加" %}</span>
+            <i class="layui-icon layui-icon-add-1"></i> <span class="layui-hide-xs">ADD</span>
         </a>
         <a class="btn pull-left" aria-label="" href="{% url 'user_center' %}">
-            <i class="fa fa-cubes"></i> <span class="layui-hide-xs">{% trans "管理" %}</span>
+            <i class="fa fa-cubes"></i> <span class="layui-hide-xs">USER CENTER</span>
         </a>
     {% elif colla_user > 0 %}
         <span class="btn pull-left">|</span>
         {% if colla_user_role == 1 %}
         <a class="btn pull-left" aria-label="" href="{% url 'modify_doc' doc_id=doc.id %}">
-            <i class="layui-icon layui-icon-edit"></i> <span class="layui-hide-xs">{% trans "修改" %}</span>
+            <i class="layui-icon layui-icon-edit"></i> <span class="layui-hide-xs">MODIFY</span>
         </a>
         {% endif %}
         <a class="btn pull-left" aria-label="" href="{% url 'create_doc' %}?pid={{project.id}}" target="_blank">
-            <i class="layui-icon layui-icon-add-1"></i> <span class="layui-hide-xs">{% trans "添加" %}</span>
+            <i class="layui-icon layui-icon-add-1"></i> <span class="layui-hide-xs">ADD</span>
         </a>
     {% endif %}
     <!-- 文档目录 -->
@@ -85,32 +85,28 @@
 
 <div class="layui-row layui-col-space20" style="padding-left: 20px;">
     <span class="doc-bottom-icon">
-        <i class="layui-icon layui-icon-user"></i> {% if doc.create_user.first_name != '' %} {{doc.create_user.first_name}} {% else %} {{doc.create_user.username}}{% endif %}
+        <i class="layui-icon layui-icon-user"></i> {% if doc.create_user.username != '' %} {{doc.create_user.username}} {% else %} {{doc.create_user.username}}{% endif %}
     </span>
     <span tooltip="{% trans '更新于:' %}{{doc.modify_time}}" class="doc-bottom-icon">
         <i class="layui-icon layui-icon-log"></i> {{ doc.modify_time }}
     </span>
 
-    <button id="share" class="doc-bottom-btn" tooltip="{% trans '转发本文档' %}">
-        <i class="layui-icon layui-icon-share" ></i> {% trans "转发文档" %}
-    </button>
-
     <span class="doc-bottom-icon">
         {% if request.user.is_authenticated %}
             {% if is_collect_doc %}
-            <i class="layui-icon layui-icon-star-fill collected" id="collect_doc"></i> {% trans "收藏文档" %}
+            <i class="layui-icon layui-icon-star-fill collected" id="collect_doc"></i> Favor
             {% else %}
-            <i class="layui-icon layui-icon-star" id="collect_doc"></i> {% trans "收藏文档" %}
+            <i class="layui-icon layui-icon-star" id="collect_doc"></i> Favor
             {% endif %}
         {% else %}
-            <i class="layui-icon layui-icon-star" title="请登录后收藏"></i> {% trans "收藏文档" %}
+            <i class="layui-icon layui-icon-star" title="Frist log in"></i> Favor
         {% endif %}
     </span>
 
     {% if request.user == doc.create_user or request.user.is_superuser %}
-    <button class="doc-bottom-btn" tooltip="{% trans '下载文档' %}" id="download_doc">
-        <i class="fa fa-download"></i> {% trans "下载文档" %}
-    </button>
+{#    <button class="doc-bottom-btn" tooltip="{% trans '下载文档' %}" id="download_doc">#}
+{#        <i class="fa fa-download"></i> {% trans "下载文档" %}#}
+{#    </button>#}
     {% endif %}
 </div>
 
@@ -174,13 +170,13 @@
 </script>
 
 <!-- 下载选项卡模板 -->
-<div id="download_div" style="display: none;">
-    <div class="layui-row" style="margin: 10px;">
-        <a class="layui-btn layui-btn-primary layui-btn-sm" download='{{doc.name}}.md' href="{% url 'download_doc_md' doc.id %}" target="_blank">
-            {% trans "Markdown文件" %}
-        </a>
-    </div>
-</div>
+{#<div id="download_div" style="display: none;">#}
+{#    <div class="layui-row" style="margin: 10px;">#}
+{#        <a class="layui-btn layui-btn-primary layui-btn-sm" download='{{doc.name}}.md' href="{% url 'download_doc_md' doc.id %}" target="_blank">#}
+{#            {% trans "Markdown文件" %}#}
+{#        </a>#}
+{#    </div>#}
+{#</div>#}
 <!-- 分享文档选项卡模板 -->
 <div id="share_doc_div" style="display: none;">
     <div class="layui-tab-content">

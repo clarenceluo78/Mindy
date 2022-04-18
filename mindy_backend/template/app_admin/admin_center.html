@@ -29,7 +29,7 @@
 				<div id="control" class="layui-layout-control"></div>
 				<ul class="layui-nav layui-layout-right">
 					<li class="layui-nav-item layui-hide-xs"><a href="#" class="fullScreen layui-icon layui-icon-screen-full"></a></li>
-					<li class="layui-nav-item layui-hide-xs"><a href="{% url 'pro_list' %}" class="layui-icon layui-icon-home" title="回到首页"></a></li>
+{#					<li class="layui-nav-item layui-hide-xs"><a href="{% url 'pro_list' %}" class="layui-icon layui-icon-home" title="Project List"></a></li>#}
 					<li class="layui-nav-item">
 						<!-- 头 像 -->
 						<a href="javascript:;">
@@ -41,8 +41,8 @@
 {#							{% if request.user.is_superuser %}#}
 {#							<dd><a href="{% url 'user_center' %}">User Center</a></dd>#}
 {#							{% endif %}#}
-							<dd><a href="{% url 'pro_list' %}">Home Page</a></dd>
-						  <dd><a href="javascript:void(0)" title="退出登录" onclick="Logout()">Log out</a></dd>
+{#							<dd><a href="{% url 'pro_list' %}">Home Page</a></dd>#}
+						    <dd><a href="javascript:void(0)" title="退出登录" onclick="Logout()">Log out</a></dd>
 						</dl>
 					</li>
 					<!-- 主 题 配 置 -->

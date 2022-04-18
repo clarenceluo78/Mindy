@@ -1,17 +1,76 @@
+{% load static %}
+{% load i18n %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en-us'>
 <head>
     <meta charset="UTF-8">
-    <title>Confirm registration</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge，chrome=1">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="Cache-Control" content="max-age=7200" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>{% trans "Confirm" %} - {% if site_name != None %}{{site_name}} {% else %}{% trans "Mindy" %}{% endif %}</title>
+	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="{% static 'layui/css/layui.css' %}" crossorigin="anonymous">
+    <link rel="icon" href="{% static 'logo.png' %}" sizes="192x192" />
+    <style>
+        body{
+            background-color: #fafafa;
+            text-align: center;
+        }
+        .container{
+            display: flex;
+            display: -webkit-flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .login-form{
+            margin-top: 8%;
+            padding: 20px 50px 20px 60px;
+            background-color: #fff;
+            -webkit-box-shadow: #666 0px 0px 10px;
+           -moz-box-shadow: #666 0px 0px 10px;
+           box-shadow: #666 0px 0px 10px;
+        }
+        .register-link{
+            font-size: 12px;
+        }
+        button.layui-btn-normal{
+            background-color: #2176ff !important;
+        }
+        /* 移动端输入框样式 */
+        @media screen and (max-width: 450px){
+            .layui-form-item .layui-input-inline {
+                display: block;
+                float: none;
+                left: -3px;
+                width: auto;
+                margin: 0;
+            }
+        }
+        h3,h3 a{
+            color: #666;
+        }
+    </style>
 </head>
-<body>
-
-
-    <h1 style="margin-left: 100px;">{{ message }}</h1>
-
-    <script>
-        window.setTimeout("window.location='login.html'",2000);
-    </script>
-
+<body background="{% static 'PearAdminLayui/admin/images/background.svg' %}">
+    <div class="container">
+        <div></div>
+        <div></div>
+        <div class="login-form">
+            <form class="layui-form" action="{% url 'login' %}"  method='POST'>
+                {% csrf_token %}
+                <div class="layui-form-item">
+                    <img src="{% static 'logo.png' %}" style="width: 60px;height: 60px;margin-bottom: 10px;" />
+                    <h3><strong>{% trans "Sign in" %} - <a href="/">{% if site_name != None %}{{site_name}} {% else %}{% trans "Mindy" %}{% endif %}</a></strong></h3>
+                </div>
+                <span style='color:red;margin-bottom: 10px;'>{{ message }}</span>
+                <script>
+                    window.setTimeout("window.location.href={% url 'login' %}",3000);
+                </script>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

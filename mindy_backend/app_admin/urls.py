@@ -31,9 +31,9 @@ urlpatterns = [
     path('check_update/',views.check_update,name='check_update'), # 检测版本更新
 
     # admin center主页面
-    path('admin_center/',views.admin_center,name="admin_center"), # 后台管理
-    path('admin/center_menu/',views.admin_center_menu,name="admin_center_menu"), # 后台管理菜单数据
-    path('admin_overview/',views.admin_overview,name="admin_overview"), # 后台管理仪表盘
+    path('admin_center/', views.admin_center, name="admin_center"), # 后台管理
+    path('admin/center_menu/', views.admin_center_menu, name="admin_center_menu"), # 后台管理菜单数据
+    path('admin_overview/', views.admin_overview, name="admin_overview"),  # 后台管理仪表盘
     # 图片管理及接口
 
     path('manage/image/', views.admin_image, name="image_manage"),  # 图片管理页面

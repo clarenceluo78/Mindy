@@ -14,7 +14,7 @@ class UserImage(models.Model):
         verbose_name_plural = verbose_name
 
 
-class ConfirmMessage(models.Model):
+class Confirm_Message(models.Model):
     code = models.CharField(max_length=256)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     created_time = models.DateTimeField(auto_now=True)

@@ -4,40 +4,40 @@
 {% block title %}{% trans "文档管理" %}{% endblock %}
 {% block content %}
 <div class="layui-card">
-    <div class="layui-card-header">{% trans "高级筛选" %}</div>
+    <div class="layui-card-header">Selection</div>
     <div class="layui-card-body">
         <div class="layui-form">
             <div class="layui-form-item">
-              <label class="layui-form-label">{% trans "关键词" %}</label>
+              <label class="layui-form-label">Keyword</label>
               <div class="layui-input-inline">
-                <input type="text" name="kw"  placeholder="请输入标题" autocomplete="off" class="layui-input">
+                <input type="text" name="kw"  placeholder="Title" autocomplete="off" class="layui-input">
               </div>
-              <button class="pear-btn pear-btn-primary pear-btn-sm" id="search">{% trans "搜索" %}</button>
+              <button class="pear-btn pear-btn-primary pear-btn-sm" id="search">Search</button>
             </div>
             <div class="layui-form-item">
-              <label class="layui-form-label">{% trans "文集" %}</label>
+              <label class="layui-form-label">Project</label>
               <div class="layui-input-inline">
                 <select name="pro_id" lay-verify="required"  lay-filter="project" id="project">
                     <option value="">{% trans "按文集筛选" %}</option>
                     <!-- 自己的文集 -->
-                    <optgroup label="自有文集" id="self-project">
+                    <optgroup label="Your project" id="self-project">
                     {% for p in project_list %}
                         {% if p.role == 1 %}
-                        <option value="{{ p.id }}">[私密]《{{ p.name }}》</option>
+                        <option value="{{ p.id }}">[Private]《{{ p.name }}》</option>
                         {% elif p.role == 2 %}
-                        <option value="{{ p.id }}" >[指定用户]《{{ p.name }}》</option>
+                        <option value="{{ p.id }}" >[Specific]《{{ p.name }}》</option>
                         {% elif p.role == 3 %}
                         <option value="{{ p.id }}" >[访问码]《{{ p.name }}》</option>
                         {% else %}
-                        <option value="{{ p.id }}" >[公开]《{{ p.name }}》</option>
+                        <option value="{{ p.id }}" >[Public]《{{ p.name }}》</option>
                         {% endif %}
                     {% endfor %}
                     </optgroup>
                     <!-- 协作的文集 -->
                     {% if colla_project_list.count > 0 %}
-                    <optgroup label="协作文集">
+                    <optgroup label="Shared project">
                     {% for p in colla_project_list %}
-                            <option value="{{ p.project.id }}">[协作]《{{ p.project.name }}》</option>
+                            <option value="{{ p.project.id }}">[Shared]《{{ p.project.name }}》</option>
                     {% endfor %}
                     </optgroup>
                     {% endif %}
@@ -47,10 +47,10 @@
             <div class="layui-form-item">
               <label class="layui-form-label">{% trans "文档状态" %}</label>
               <div class="layui-input-block">
-                <input type="radio" name="status" title="全部({{all_cnt}})" value="-1" lay-skin="primary" checked lay-filter="doc_status">
-                <input type="radio" name="status" title="草稿({{draft_doc_cnt}})" value="0"  lay-skin="primary" lay-filter="doc_status">
-                <input type="radio" name="status" title="已发布({{published_doc_cnt}})" value="1" lay-skin="primary" lay-filter="doc_status">
-                <input type="radio" name="status" title="已删除({{recycle_doc_cnt}})" value="3" lay-skin="primary" lay-filter="doc_status">
+                <input type="radio" name="status" title="All({{all_cnt}})" value="-1" lay-skin="primary" checked lay-filter="doc_status">
+                <input type="radio" name="status" title="Draft({{draft_doc_cnt}})" value="0"  lay-skin="primary" lay-filter="doc_status">
+                <input type="radio" name="status" title="Published({{published_doc_cnt}})" value="1" lay-skin="primary" lay-filter="doc_status">
+                <input type="radio" name="status" title="Deleted({{recycle_doc_cnt}})" value="3" lay-skin="primary" lay-filter="doc_status">
               </div>
             </div>
         </div>
@@ -66,10 +66,10 @@
 <!-- 表格工具栏 -->
 <script type="text/html" id="doc-toolbar">
     <a class="pear-btn pear-btn-primary pear-btn-sm" href="/create_doc/" target="_blank">
-        <i class="layui-icon layui-icon-add-1"></i>新增
+        <i class="layui-icon layui-icon-add-1"></i>Create
     </a>
     <button class="pear-btn pear-btn-danger pear-btn-sm" lay-event="batchRemove">
-        <i class="layui-icon layui-icon-delete"></i>删除
+        <i class="layui-icon layui-icon-delete"></i>Delete
     </button>
 </script>
 
@@ -159,14 +159,14 @@
         let cols = [
             [
             {type: 'checkbox',width:20},
-                {title: '文档名称',field: 'name',align: 'left',templet:"#doc-name",minWidth:280},
-                {title: '状态',field: 'status',align: 'left',templet:"#doc-status",width:90},
-                {title: '上级',field: 'parent',align: 'left',},
-                {title: '文集',field: 'project_name',align: 'left',templet:"#project-role"},
-                {title: '编辑模式',field: 'editor_mode',align: 'left',templet:"#editor-mode",width:90},
-                {title: '展开下级',field: 'open_children',align: 'left',width:90, templet:"#open_children"},
-                {title: '最后编辑',field: 'modify_time',align: 'left',templet:"#doc-modify-time"},
-                {title: '操作',toolbar: '#doc-bar',align: 'left',}            ]
+                {title: 'Name',field: 'name',align: 'left',templet:"#doc-name",minWidth:280},
+                {title: 'Status',field: 'status',align: 'left',templet:"#doc-status",width:90},
+                {title: 'Father',field: 'parent',align: 'left',},
+                {title: 'Project',field: 'project_name',align: 'left',templet:"#project-role"},
+                {title: 'Type',field: 'editor_mode',align: 'left',templet:"#editor-mode",width:90},
+                {title: 'Expand',field: 'open_children',align: 'left',width:90, templet:"#open_children"},
+                {title: 'Last Modified',field: 'modify_time',align: 'left',templet:"#doc-modify-time"},
+                {title: 'Operation',toolbar: '#doc-bar',align: 'left',}            ]
         ]
         // 渲染表格
         table.render({

@@ -36,7 +36,7 @@
         <link rel='stylesheet' href="{% static 'luckysheet/dist/assets/iconfont/iconfont.css' %}?version={{mrdoc_version}}" />
     {% endif %}
     <link href="{% static 'viewerjs/viewer.min.css' %}?version={{mrdoc_version}}" rel="stylesheet">
-    <link rel="icon" href="{% static 'search/mrdoc_logo_300.png' %}" sizes="192x192" />
+    <link rel="icon" href="{% static 'logo.png' %}" sizes="192x192" />
     <link href="{% static 'mindy/mindy.css' %}?version={{mrdoc_version}}" rel="stylesheet">
     <link href="{% static 'mindy/mindy-docs.css' %}?version={{mrdoc_version}}" rel="stylesheet">
     <link href="{% static 'iconFont/iconfont.css' %}?version={{mrdoc_version}}" rel="stylesheet">
@@ -68,7 +68,7 @@
         <!-- 文档搜索 -->
         <form action="{% url 'pro_index' pro_id=project.id %}" method="get">
             <div id="doc-search-input">
-                <input type="text" name="kw" placeholder="{% trans '在文集内搜索文档' %}" value="" class="layui-input doc-search-input">
+                <input type="text" name="kw" placeholder="Search in project" value="" class="layui-input doc-search-input">
             </div>
         </form>
         <!-- 左上角广告块 -->
@@ -174,7 +174,7 @@
         </nav>
         {% endif %}
         <div class="bq">
-            <a href="javascript:void(0);" class="mrdoc-link" id="dashang">{% trans "本文档使用 mindy 发布" %}</a>
+            <a href="javascript:void(0);" class="mrdoc-link" id="dashang">Created by Mindy*</a>
         </div>
         <!-- 右下角广告块 -->
         <!-- 广告代码开始 -->

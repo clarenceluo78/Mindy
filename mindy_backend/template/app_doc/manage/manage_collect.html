@@ -4,7 +4,7 @@
 {% block title %}{% trans "收藏管理" %}{% endblock %}
 {% block content %}
 <div class="layui-card">
-    <div class="layui-card-header">{% trans "高级筛选" %}</div>
+    <div class="layui-card-header">Selection</div>
     <div class="layui-card-body">
         <div class="layui-form">
             <!-- <div class="layui-form-item">
@@ -15,11 +15,11 @@
               <button class="layui-btn layui-btn-normal layui-btn-sm" id="search">{% trans "搜索" %}</button>
             </div> -->
             <div class="layui-form-item">
-              <label class="layui-form-label">{% trans "收藏类型" %}</label>
+              <label class="layui-form-label">Type</label>
               <div class="layui-input-block">
-                <input type="radio" name="status" title="全部({{all_cnt}})" value="-1" lay-skin="primary" checked lay-filter="collect_type">
-                <input type="radio" name="status" title="文集({{collect_project_cnt}})" value="2"  lay-skin="primary" lay-filter="collect_type">
-                <input type="radio" name="status" title="文档({{collect_doc_cnt}})" value="1" lay-skin="primary" lay-filter="collect_type">
+                <input type="radio" name="status" title="All({{all_cnt}})" value="-1" lay-skin="primary" checked lay-filter="collect_type">
+                <input type="radio" name="status" title="Project({{collect_project_cnt}})" value="2"  lay-skin="primary" lay-filter="collect_type">
+                <input type="radio" name="status" title="Document({{collect_doc_cnt}})" value="1" lay-skin="primary" lay-filter="collect_type">
               </div>
             </div>
         </div>
@@ -35,7 +35,7 @@
 <!-- 表格工具栏 -->
 <script type="text/html" id="doc-toolbar">
     <button class="pear-btn pear-btn-danger pear-btn-sm" lay-event="batchRemove">
-        <i class="layui-icon layui-icon-delete"></i>取消收藏
+        <i class="layui-icon layui-icon-delete"></i>Delete Collection
     </button>
 </script>
 
@@ -82,10 +82,10 @@
         let cols = [
             [
             {type: 'checkbox',width:20},
-                {title: '名称',field: 'name',align: 'left',templet:"#collect-name",minWidth:280},
-                {title: '归属',field: 'item_project_name',align: 'left',templet:"#project-role"},
-                {title: '收藏时间',field: 'create_time',align: 'left',templet:"#collect-create-time"},
-                {title: '操作',toolbar: '#doc-bar',align: 'left',}            ]
+                {title: 'Title',field: 'name',align: 'left',templet:"#collect-name",minWidth:280},
+                {title: 'Father',field: 'item_project_name',align: 'left',templet:"#project-role"},
+                {title: 'Created Time',field: 'create_time',align: 'left',templet:"#collect-create-time"},
+                {title: 'Operation',toolbar: '#doc-bar',align: 'left',}            ]
         ]
         // 渲染表格
         table.render({

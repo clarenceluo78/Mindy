@@ -1,15 +1,15 @@
 {% extends 'app_doc/user/user_base.html' %}
 {% load static %}
 {% load i18n %}
-{% block title %}{% trans "文档回收站管理" %}{% endblock %}
+{% block title %}Recycle{% endblock %}
 {% block content %}
 <div class="layui-card">
     <div class="layui-card-body">
         <div class="layui-row">
             <button class="pear-btn pear-btn-primary pear-btn-sm" onclick="restoreAll()">
-                <i class="layui-icon layui-icon-refresh"></i>{% trans "还原所有" %}</button>
+                <i class="layui-icon layui-icon-refresh"></i>Reverse All</button>
             <button class="pear-btn pear-btn-danger pear-btn-sm" onclick="emptyDoc()">
-                <i class="layui-icon layui-icon-delete" ></i>{% trans "清空回收站" %}</button>
+                <i class="layui-icon layui-icon-delete" ></i>Clear All</button>
         </div>
     </div>
 </div>
@@ -19,12 +19,12 @@
             <table class="layui-table"  id="doctemp-list" lay-skin="nob" lay-even>
         <thead>
             <tr>
-                <th>{% trans "文档名称" %}</th>
-                <th>{% trans "上级文档" %}</th>
-                <th>{% trans "所属文集" %}</th>
-                <th>{% trans "创建时间" %}</th>
-                <th>{% trans "删除时间" %}</th>
-                <th>{% trans "操作" %}</th>
+                <th>Name</th>
+                <th>Father</th>
+                <th>Project</th>
+                <th>Created Time</th>
+                <th>Deleted Time</th>
+                <th>Operation</th>
             </tr>
         </thead>
         <tbody>

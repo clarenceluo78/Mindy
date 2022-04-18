@@ -1,7 +1,7 @@
 {% extends 'app_doc/user/user_base.html' %}
 {% load static %}
 {% load i18n %}
-{% block title %}{% trans "附件管理" %}{% endblock %}
+{% block title %}Attachment Management{% endblock %}
 {% block content %}
 <div class="layui-card">
     <div class="layui-card-body">
@@ -9,11 +9,11 @@
             <form action="{% url 'manage_attachment' %}" method="get">
             <div class="layui-form-item">
                 <div class="layui-input-inline">
-                    <input type="text" name="kw" id="kw"  placeholder="输入附件名称" autocomplete="off" class="layui-input">
+                    <input type="text" name="kw" id="kw"  placeholder="Attachment Name" autocomplete="off" class="layui-input">
                 </div>
-                <button class="pear-btn pear-btn-sm" type="submit"><i class="layui-icon layui-icon-search"></i>{% trans "搜索" %}</button>
+                <button class="pear-btn pear-btn-sm" type="submit"><i class="layui-icon layui-icon-search"></i>Search</button>
                 <button class="pear-btn pear-btn-primary pear-btn-sm" type="button" id="upload_attachment" title="支持Zip格式压缩文件">
-                    <i class="layui-icon layui-icon-upload"></i>{% trans "上传附件" %}</button>
+                    <i class="layui-icon layui-icon-upload"></i>Upload</button>
             </div>
             </form>
         </div>
@@ -31,10 +31,10 @@
         </colgroup>
         <thead>
             <tr>
-            <th>{% trans "附件名称" %}</th>
-            <th>{% trans "文件大小" %}</th>
-            <th>{% trans "上传时间" %}</th>
-            <th>{% trans "操作" %}</th>
+            <th>Name</th>
+            <th>Size</th>
+            <th>Upload Time</th>
+            <th>Operation</th>
             </tr>
         </thead>
         <tbody>

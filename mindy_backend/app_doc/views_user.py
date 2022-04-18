@@ -89,14 +89,14 @@ def user_center_menu(request):
                     "openType": "_iframe",
                     "href": reverse("manage_doctemp")
                 },
-                {
-                    "id": "doc_tag",
-                    "title": _("Labels"),
-                    "icon": "layui-icon layui-icon-face-cry",
-                    "type": 1,
-                    "openType": "_iframe",
-                    "href": reverse("manage_doc_tag")
-                },
+                # {
+                #     "id": "doc_tag",
+                #     "title": _("Labels"),
+                #     "icon": "layui-icon layui-icon-face-cry",
+                #     "type": 1,
+                #     "openType": "_iframe",
+                #     "href": reverse("manage_doc_tag")
+                # },
                 {
                     "id": "doc_share",
                     "title": _("My Share"),

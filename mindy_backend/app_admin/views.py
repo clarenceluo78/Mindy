@@ -4,7 +4,7 @@ from django.core.mail import EmailMultiAlternatives
 from django.shortcuts import render,redirect
 from django.http.response import JsonResponse,HttpResponse,Http404
 from django.contrib.auth import authenticate,login,logout # 认证相关方法
-from .models import ConfirmMessage
+from .models import Confirm_Message
 from django.contrib.auth.decorators import login_required # 登录需求装饰器
 from django.views.decorators.http import require_http_methods,require_GET,require_POST # 视图请求方法装饰器
 from django.core.paginator import Paginator,PageNotAnInteger,EmptyPage,InvalidPage # 后端分页
@@ -94,11 +94,18 @@ def log_in(request):
                         errormsg = _('User has not confirmed by email!')
                         return render(request, 'login.html', locals())
                     if user.is_active:
-                        login(request,user)
-                        request.session['LoginNum'] = 0  # 重试次数
-                        request.session['LoginLock'] = False  # 是否锁定
-                        request.session['LoginTime'] = datetime.datetime.now().timestamp()  # 解除锁定时间
-                        return redirect('/')
+                        if user.username == 'superadmin':
+                            login(request, user)
+                            request.session['LoginNum'] = 0  # 重试次数
+                            request.session['LoginLock'] = False  # 是否锁定
+                            request.session['LoginTime'] = datetime.datetime.now().timestamp()  # 解除锁定时间
+                            return redirect('/admin/admin_center')
+                        else:
+                            login(request,user)
+                            request.session['LoginNum'] = 0  # 重试次数
+                            request.session['LoginLock'] = False  # 是否锁定
+                            request.session['LoginTime'] = datetime.datetime.now().timestamp()  # 解除锁定时间
+                            return redirect('/')
                     else:
                         errormsg = _('用户被禁用！')
                         return render(request, 'login.html', locals())
@@ -126,7 +133,7 @@ def encode(s, salt='myweb'):
 def make_confirm_message(user):
     now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     code = encode(user.username, now)
-    ConfirmMessage.objects.create(code=code, user=user, )
+    Confirm_Message.objects.create(code=code, user=user, )
     return code
 
 @logger.catch()
@@ -150,7 +157,7 @@ def user_confirm(request):
     code = request.GET.get('code', None)
     message = ''
     try:
-        confirm = ConfirmMessage.objects.get(code=code)
+        confirm = Confirm_Message.objects.get(code=code)
     except:
         message = 'Invalid confirmation request!'
         return render(request, 'server/users/confirm.html', locals())

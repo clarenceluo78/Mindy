@@ -15,11 +15,11 @@
         <form action="{% url 'manage_doctemp' %}" method="get">
         <div class="layui-form-item">
             <div class="layui-input-inline">
-                <input type="text" name="kw" id="kw"  placeholder="输入文档模板内容" autocomplete="off" class="layui-input">
+                <input type="text" name="kw" id="kw"  placeholder="Template name" autocomplete="off" class="layui-input">
             </div>
-            <button class="pear-btn pear-btn-sm" type="submit"><i class="layui-icon layui-icon-search"></i>{% trans "搜索" %}</button>
+            <button class="pear-btn pear-btn-sm" type="submit"><i class="layui-icon layui-icon-search"></i>Search</button>
             <a href="{% url 'create_doctemp' %}" target="_blank" class="pear-btn pear-btn-primary pear-btn-sm">
-                <i class="layui-icon layui-icon-addition"></i>{% trans "新建" %}</a>
+                <i class="layui-icon layui-icon-addition"></i>Create</a>
         </div>
         </form>
     </div>
@@ -32,9 +32,9 @@
       </colgroup>
       <thead>
         <tr>
-          <th>{% trans "模板名称" %}</th>
-          <th>{% trans "创建时间" %}</th>
-          <th>{% trans "操作" %}</th>
+          <th>Name</th>
+          <th>Created Time</th>
+          <th>Operation</th>
         </tr>
       </thead>
       <tbody>

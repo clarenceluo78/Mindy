@@ -5,7 +5,7 @@
         <!-- LOGO -->
         <div class="">
             <a class="logo" href="{% url 'pro_list' %}">
-                <img src="{% static 'logo.png' %}" style="height: 32px;width: auto;">
+                <img src="{% static 'logoname.jpg' %}" style="height: 32px;width: 120%;">
             </a>
         </div>
         <!-- 搜索框 -->
@@ -70,9 +70,9 @@
                 <dl class="layui-nav-child">
                     {% if request.user.is_superuser %}
                     <dd>
-                        <a href="{% url 'admin_center' %}" title="进入站点后台管理">
+                        <a href="{% url 'admin_center' %}" title="Admin Management">
                             <i class="layui-icon layui-icon-console layui-hide-md"></i>
-                            <span class="layui-hide-xs">{% trans "进入后台" %}</span>
+                            <span class="layui-hide-xs">Admin Management</span>
                         </a>
                     </dd>
                     {% endif %}
@@ -91,13 +91,13 @@
                     <dd>
                         <a href="javascript:void(0);" onclick="changePwd('{{ request.user.id }}','{{ request.user.username }}' )" title="修改登录密码">
                             <i class="layui-icon layui-icon-password layui-hide-md"></i>
-                            <span class="layui-hide-xs">{% trans "修改密码" %}</span>
+                            <span class="layui-hide-xs">Change Password</span>
                         </a>
                     </dd>
                     <dd>
                         <a href="javascript:void(0)" title="退出登录" onclick="Logout()">
                             <i class="layui-icon layui-icon-logout layui-hide-md"></i>
-                            <span class="layui-hide-xs">{% trans "退出登录" %}</span>
+                            <span class="layui-hide-xs">Log Out</span>
                         </a>
                     </dd>
                 </dl>
@@ -105,27 +105,27 @@
                 {% else %}
                 <li class="layui-nav-item">
                 <a href="javascript:void(0);">
-                <i class="layui-icon layui-icon-username"></i> {% trans "游客" %}
+                <i class="layui-icon layui-icon-username"></i> Tourist
                 </a>
                 <dl class="layui-nav-child">
                     {% if close_register == 'on' %}
                     <dd>
                         <a href="{% url 'login' %}">
                             <i class="iconfont mrdoc-icon-denglu"></i>
-                            {% trans "登录" %}
+                            Sign in
                         </a>
                     </dd>
                     {% else %}
                     <dd>
                         <a href="{% url 'register' %}">
                             <i class="iconfont mrdoc-icon-zhuce"></i>
-                            {% trans "注册" %}
+                            Sign up
                         </a>
                     </dd>
                     <dd>
                         <a href="{% url 'login' %}">
                             <i class="iconfont mrdoc-icon-denglu"></i>
-                            {% trans "登录" %}
+                            Sign in
                         </a>
                     </dd>
                     {% endif %}

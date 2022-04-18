@@ -85,11 +85,11 @@
                                         src="{% static 'PearAdminLayui/avatar.svg' %}"></a></div>
                             <div>
                                 {% if doc.status == 1 %}
-                                <p>{{doc.create_user.username}} created project <a href="{% url 'doc' doc.top_doc doc.id %}" target="_blank">{{doc.name}}</a></p>
+                                <p>{{doc.create_user.username}} created document <a href="{% url 'doc' doc.top_doc doc.id %}" target="_blank">{{doc.name}}</a></p>
                                 {% elif doc.status == 0 %}
-                                <p>{{doc.create_user.username}} saved project <a href="{% url 'modify_doc' doc.id %}" target="_blank">{{doc.name}}</a></p>
+                                <p>{{doc.create_user.username}} saved document <a href="{% url 'modify_doc' doc.id %}" target="_blank">{{doc.name}}</a></p>
                                 {% else %}
-                                <p>{{doc.create_user.username}} deleted project <a>{{doc.name}}</a></p>
+                                <p>{{doc.create_user.username}} deleted document <a>{{doc.name}}</a></p>
                                 {% endif %}
                                 <span>{{doc.modify_time}}</span>
                             </div>

@@ -8,7 +8,7 @@
     <div class="layui-card-header" style="margin-bottom: 10px;">
 
       <div class="layui-row">
-          <span style="font-size:18px;">{% trans "我的协作文集" %}
+          <span style="font-size:18px;">{% trans "My Collaboration Project" %}
           </span>
       </div>
     </div>
@@ -52,9 +52,9 @@
 <script type="text/html" id="colla-bar">
     {% verbatim %}
         {{# if (d.type == 'doc'){ }}
-        <a class="pear-btn pear-btn-primary pear-btn-sm" href="/modify_doc/{{d.project_id}}/" target="_blank"><i class="layui-icon layui-icon-edit"></i></button>
+        <button class="pear-btn pear-btn-primary pear-btn-sm" href="/modify_doc/{{d.project_id}}/" target="_blank"><i class="layui-icon layui-icon-edit"></i></button>
         {{# }else{ }}
-        <a class="pear-btn pear-btn-primary pear-btn-sm" href="/create_doc/?pid={{d.project_id}}" target="_blank"><i class="layui-icon layui-icon-add-1"></i></button>
+        <button class="pear-btn pear-btn-primary pear-btn-sm" href="/create_doc/?pid={{d.project_id}}" target="_blank"><i class="layui-icon layui-icon-add-1"></i></button>
         {{# } }}
     {% endverbatim %}
 </script>
@@ -87,12 +87,12 @@
             cols: [
             [
                 // {type: 'checkbox',width:20},
-                {title: '{% trans "名称" %}',field: 'project_name',align: 'left',minWidth:200},
-                {title: '类型',field: 'type',align: 'left',templet:"#colla-name"},
-                {title: '权限',field: 'role',align: 'left',templet:"#colla-role"},
-                {title: '创建人',field: 'username',align: 'left'},
-                {title: '{% trans "创建时间" %}',field: 'create_time',align: 'left',templet:"#create-time"},
-                {title: '{% trans "操作" %}',toolbar: '#colla-bar',align: 'left',}
+                {title: 'Name',field: 'project_name',align: 'left',minWidth:200},
+                {title: 'Type',field: 'type',align: 'left',templet:"#colla-name"},
+                {title: 'Role',field: 'role',align: 'left',templet:"#colla-role"},
+                {title: 'Creator',field: 'username',align: 'left'},
+                {title: 'Created Time',field: 'create_time',align: 'left',templet:"#create-time"},
+                {title: 'Operation',toolbar: '#colla-bar',align: 'left',}
             ]
         ],
         });

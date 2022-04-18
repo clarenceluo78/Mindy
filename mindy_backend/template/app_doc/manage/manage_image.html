@@ -1,7 +1,7 @@
 {% extends 'app_doc/user/user_base.html' %}
 {% load static %}
 {% load i18n %}
-{% block title %}{% trans "图片素材管理" %}{% endblock %}
+{% block title %}Picture Source{% endblock %}
 
 {% block custom_element %}
 <link href="{% static 'viewerjs/viewer.css' %}?version={{mrdoc_version}}" rel="stylesheet">
@@ -18,9 +18,9 @@
                     <button class="pear-btn pear-btn-primary pear-btn-sm" type="button" onclick="createImgGroup()">
                         <i class="layui-icon layui-icon-addition"></i>{% trans "Create Group" %}</button>
                     <a class="pear-btn pear-btn-primary pear-btn-sm" href="{% url 'manage_img_group' %}">{% trans "Group Management" %}</a>
-                    <button class="pear-btn pear-btn-sm" id="select-all-img" type="button">全选</button>
-                    <button class="pear-btn pear-btn-sm" id="batch-del-img" type="button">批量删除</button>
-                    <button class="pear-btn pear-btn-sm" id="batch-move-img" type="button">批量移动</button>
+                    <button class="pear-btn pear-btn-sm" id="select-all-img" type="button">Select All</button>
+                    <button class="pear-btn pear-btn-sm" id="batch-del-img" type="button">Batch Delete</button>
+                    <button class="pear-btn pear-btn-sm" id="batch-move-img" type="button">Batch Move</button>
                 </div>
             </form>
 

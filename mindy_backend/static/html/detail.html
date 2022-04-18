@@ -1,22 +1,22 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Jsmind</title>
-    <link rel="shortcut icon" href="/static/favicon.ico"/>
-    <link rel="stylesheet" type="text/css" href="/static/style/jsmind.css">
+    <link rel="shortcut icon" href={% static 'favicon.ico' %}/>
+    <link rel="stylesheet" type="text/css" href="{% static 'style/jsmind.css' %}">
     <style>
         #jsmind_container {
             width: 100%;
             height: 800px;
         }
     </style>
-    <script src="/static/js/jquery-1.11.3.min.js"></script>
-    <script src="/static/js/jsmind.js"></script>
-    <script src="/static/js/jsmind.draggable.js"></script>
-    <script src="/static/js/jsmind.screenshot.js"></script>
-    <script src="/static/js/jsmind.menu.js"></script>
-    <script src="/static/js/jsmind.coop.js?d="></script>
+    <script src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
+    <script src="{% static 'js/jsmind.js' %}"></script>
+    <script src="{% static 'js/jsmind.draggable.js' %}"></script>
+    <script src="{% static 'js/jsmind.screenshot.js' %}"></script>
+    <script src="{% static 'js/jsmind.coop.js?d=' %}"></script>
     <script>
         const fetch = function () {
             this.jm = null

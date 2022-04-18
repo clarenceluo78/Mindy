@@ -1,7 +1,7 @@
 {% extends 'app_doc/user/user_base.html' %}
 {% load static %}
 {% load i18n %}
-{% block title %}{% trans "文档分享管理" %}{% endblock %}
+{% block title %}Shared Document Management{% endblock %}
 {% block content %}
 
 <div class="layui-card">
@@ -14,7 +14,7 @@
     <script type="text/html" id="share-doc-toolbar">
         <button class="pear-btn pear-btn-danger pear-btn-sm" lay-event="batchRemove">
             <i class="layui-icon layui-icon-delete"></i>
-            {% trans "删除" %}
+            Delete
         </button>
     </script>
 
@@ -27,9 +27,9 @@
     <script type="text/html" id="share-type">
         {% verbatim %}
         {{#if (d['share_type'] == '0') { }}
-        <span>公开</span>
+        <span>Public</span>
         {{# }else if(d['share_type'] == '1'){ }}
-        <span>私密</span>
+        <span>Private</span>
         {{# } }}
         {% endverbatim %}
     </script>
@@ -94,12 +94,12 @@
         let cols = [
                 [
                     {type: 'checkbox'},
-                    {title: '文档名称',field: 'doc_name',align: 'left'},
-                    {title: '分享类型',field: 'share_type',align: 'left',width: 100,templet:"#share-type"},
-                    {title: '分享码',field: 'share_value',align: 'left',width: 100},
-                    {title: '分享时间',field: 'create_time',align: 'left',width: 150,templet:"#share-create-time"},
-                    {title: '状态',field: 'share_status',align: 'left',width: 100,templet:"#share-enable"},
-                    {title: '操作',toolbar: '#share-doc-bar',align: 'left',width: 130}
+                    {title: 'Name',field: 'doc_name',align: 'left'},
+                    {title: 'Type',field: 'share_type',align: 'left',width: 100,templet:"#share-type"},
+                    {#{title: '分享码',field: 'share_value',align: 'left',width: 100},#}
+                    {title: 'Shared Time',field: 'create_time',align: 'left',width: 150,templet:"#share-create-time"},
+                    {title: 'Status',field: 'share_status',align: 'left',width: 100,templet:"#share-enable"},
+                    {title: 'Operation',toolbar: '#share-doc-bar',align: 'left',width: 130}
                 ]
             ]
         // 渲染表格
