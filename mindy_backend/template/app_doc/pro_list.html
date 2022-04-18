@@ -204,39 +204,39 @@
 <!-- 新建文集div块 -->
 <div style="padding: 20px;display:none;" id="create-project-div">
     <div class="layui-form">
+{#        <div class="layui-form-item">#}
+{#            <label class="layui-form-label">图标</label>#}
+{#            <div class="layui-input-block">#}
+{#                <button class="layui-btn layui-btn-primary layui-btn-sm" id="project-icon-select">#}
+{#                    <i class="layui-icon layui-icon-addition"></i>#}
+{#                </button>#}
+{#                <input type="hidden" name="picon" id="picon" />#}
+{#                <div class="layui-anim layui-anim-upbit layui-iconpicker hide-project-icon-list" id="project-icon-select-box">#}
+{#                    <div class="layui-iconpicker-list" id="mrdoc-project-icon-list">#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
         <div class="layui-form-item">
-            <label class="layui-form-label">图标</label>
+            <label class="layui-form-label">Name</label>
             <div class="layui-input-block">
-                <button class="layui-btn layui-btn-primary layui-btn-sm" id="project-icon-select">
-                    <i class="layui-icon layui-icon-addition"></i>
-                </button>
-                <input type="hidden" name="picon" id="picon" />
-                <div class="layui-anim layui-anim-upbit layui-iconpicker hide-project-icon-list" id="project-icon-select-box">
-                    <div class="layui-iconpicker-list" id="mrdoc-project-icon-list">
-                    </div>
-                </div>
+                <input class="layui-input" type="text" id="pname" style="margin-bottom:10px;" placeholder="Your project name" required  lay-verify="required">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">名称</label>
+            <label class="layui-form-label">Description</label>
             <div class="layui-input-block">
-                <input class="layui-input" type="text" id="pname" style="margin-bottom:10px;" placeholder="输入文集名" required  lay-verify="required">
+                <textarea name="desc" id="desc" placeholder="Write your description here..."  maxlength="100" class="layui-textarea"></textarea>
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">简介</label>
+            <label class="layui-form-label">Access</label>
             <div class="layui-input-block">
-                <textarea name="desc" id="desc" placeholder="输入文集简介，不超过100个字，超出将被截断"  maxlength="100" class="layui-textarea"></textarea>
+                <input type="radio" name="project-role" value="0" title="Public" checked>
+                <input type="radio" name="project-role" value="1" title="Private">
             </div>
         </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">权限</label>
-            <div class="layui-input-block">
-                <input type="radio" name="project-role" value="0" title="公开" checked>
-                <input type="radio" name="project-role" value="1" title="私密">
-            </div>
-        </div>
-        <div style="color:red;font-size:12px;">{% trans "*可在个人中心对文集权限进行进一步控制" %}</div>
+        <div style="color:red;font-size:12px;">{% trans "*You can modify in your user center" %}</div>
     </div>
     
 </div>
@@ -322,11 +322,11 @@
         createPro = function () {
             layer.open({
                 type:1,
-                title:'{% trans "新建文集" %}',
+                title:'Create Project',
                 area:'400px;',
                 id:'createPro',//配置ID
                 content: $('#create-project-div'),
-                btn:['{% trans "确定" %}','{% trans "创建并添加文档" %}','{% trans "取消" %}'], //添加按钮
+                btn:['Confirm','Add Document','Cancel'], //添加按钮
                 btnAlign:'c', //按钮居中
                 sucess:function(){
                     form.render();
@@ -393,11 +393,11 @@
         modifyPro = function(pro_id){
             layer.open({
                 type:1,
-                title:'{% trans "修改文集" %}',
+                title:'Modify Project',
                 area:'300px;',
                 id:'createPro',//配置ID
-                content:'<div style="padding: 20px;"><input class="layui-input" type="text" id="pname" style="margin-bottom:10px;" placeholder="输入文集名" required  lay-verify="required"><textarea name="desc" id="desc" placeholder="输入文集简介" class="layui-textarea"></textarea></div>',
-                btn:['{% trans "确定" %}','{% trans "取消" %}'], //添加按钮
+                content:'<div style="padding: 20px;"><input class="layui-input" type="text" id="pname" style="margin-bottom:10px;" placeholder="Enter Project Title" required  lay-verify="required"><textarea name="desc" id="desc" placeholder="输入文集简介" class="layui-textarea"></textarea></div>',
+                btn:['Confirm','Cancel'], //添加按钮
                 btnAlign:'c', //按钮居中
                 yes:function (index,layero) {
                     layer.load(1);
@@ -424,11 +424,11 @@
         changePwd = function(uid,username){
             layer.open({
                 type:1,
-                title:'{% trans "修改密码" %}',
+                title:'Change Password',
                 area:'300px;',
                 id:'changePwd',
-                content:'<div style="padding:10px 0 0 20px;">修改用户[' + username + ']的密码：</div><div style="padding: 20px;"><input class="layui-input" type="password" id="oldPwd" style="margin-bottom:10px;" placeholder="输入原密码" required  lay-verify="required"><input class="layui-input" type="password" id="newPwd1" style="margin-bottom:10px;" placeholder="输入新密码" required  lay-verify="required"><input class="layui-input" type="password" id="newPwd2" placeholder="再次确认新密码" required  lay-verify="required"></div>',
-                btn:['{% trans "确认修改" %}','{% trans "取消" %}'],
+                content:'<div style="padding:10px 0 0 20px;">Change by[' + username + ']</div><div style="padding: 20px;"><input class="layui-input" type="password" id="oldPwd" style="margin-bottom:10px;" placeholder="输入原密码" required  lay-verify="required"><input class="layui-input" type="password" id="newPwd1" style="margin-bottom:10px;" placeholder="输入新密码" required  lay-verify="required"><input class="layui-input" type="password" id="newPwd2" placeholder="再次确认新密码" required  lay-verify="required"></div>',
+                btn:['Confirm','Cancel'],
                 yes:function (index,layero) {
                     layer.load(1);
                     data = {

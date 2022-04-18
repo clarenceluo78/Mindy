@@ -775,7 +775,7 @@ def admin_doc(request):
         draft_doc_cnt = Doc.objects.filter(status=0).count()
         # 所有文档数量
         all_cnt = published_doc_cnt + draft_doc_cnt
-        return render(request,'app_admin/admin_doc.html',locals())
+        return render(request, 'app_admin/admin_doc.html', locals())
     elif request.method == 'POST':
         kw = request.POST.get('kw', '')
         project = request.POST.get('project', '')

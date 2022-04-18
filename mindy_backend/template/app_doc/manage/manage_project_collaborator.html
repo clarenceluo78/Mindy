@@ -138,11 +138,11 @@
         addProjectColla = function(pid){
             layer.open({
                 type:1,
-                title:'添加文集协作者',
+                title:'Add Collaborator',
                 area:['400px','400px'],
                 id:'addProColla',//配置ID
                 content:$('#add-pro-colla-layer'),
-                btn:['确定','取消'], //添加按钮
+                btn:['Confirm','Cancel'], //添加按钮
                 btnAlign:'c', //按钮居中
                 success : function(index, layero) { // 成功弹出后回调
                     form.render('radio'); // 刷新checkbox开关渲染(否则开关按钮会不显示)
@@ -267,15 +267,15 @@
 <div id="add-pro-colla-layer" style="display:none;">
     <div style="margin:10px;" class="layui-form">
         <select name="user-select" id="user-select" lay-verify="" lay-search>
-            <option value="">选择用户，可搜索</option>
+            <option value="">Choose User</option>
             {% for user in user_list %}
-            <option value="{{user.username}}">{{user.first_name}}({{user.username}})</option>
+            <option value="{{user.username}}">{{user.username}}</option>
             {% endfor %}
         </select>
         <div class="layui-form-item">
           <!-- <div class="layui-input-inline"> -->
-            <input type="radio" name="add-role" value="0" title="初级权限 - 可新建文档，修改、删除自己创建的文档" checked>
-            <input type="radio" name="add-role" value="1" title="高级权限 - 可操作所有文档" >
+            <input type="radio" name="add-role" value="0" title="Low-level Access: Can only modify his/her own documents" checked>
+            <input type="radio" name="add-role" value="1" title="High-level Access: Can modify all files" >
           <!-- </div> -->
         </div>
     </div>

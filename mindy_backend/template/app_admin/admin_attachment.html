@@ -1,7 +1,7 @@
 {% extends 'app_admin/admin_base.html' %}
 {% load static %}
 {% load i18n %}
-{% block title %}附件管理{% endblock %}
+{% block title %}Attachment Management{% endblock %}
 {% block custom_element %}
 <link href="{% static 'viewerjs/viewer.css' %}?version={{mrdoc_version}}" rel="stylesheet">
 {% endblock %}
@@ -10,25 +10,25 @@
     <div class="layui-card-body">
         <div class="layui-card-header" style="margin-bottom: 10px;">
             <div class="layui-row">
-                <span style="font-size:18px;">附件管理
+                <span style="font-size:18px;">Attachment Management
                 </span>
             </div>
         </div>
 
         <div class="layui-form">
             <div class="layui-form-item">
-              <label class="layui-form-label">关键词</label>
+              <label class="layui-form-label">Keyword</label>
               <div class="layui-input-inline">
                 <input type="text" name="kw"  placeholder="请输入附件名称" autocomplete="off" class="layui-input">
               </div>
-              <button class="pear-btn pear-btn-primary pear-btn-sm" id="search">搜索</button>
+              <button class="pear-btn pear-btn-primary pear-btn-sm" id="search">Search</button>
             </div>
             <div class="layui-form-item">
-              <label class="layui-form-label">用户</label>
+              <label class="layui-form-label">User</label>
               <div class="layui-input-inline">
                 <div id="select-user"></div>
               </div>
-              <button class="pear-btn pear-btn-primary pear-btn-sm" id="searchUser">筛选</button>
+              <button class="pear-btn pear-btn-primary pear-btn-sm" id="searchUser">Select</button>
             </div>
         </div>
 
@@ -41,7 +41,7 @@
 <!-- 表格工具栏 -->
 <script type="text/html" id="img-toolbar">
     <button class="pear-btn pear-btn-danger pear-btn-sm" lay-event="batchRemove">
-        <i class="layui-icon layui-icon-delete"></i> 批量删除
+        <i class="layui-icon layui-icon-delete"></i> Batch Delete
     </button>
 </script>
 
@@ -124,12 +124,12 @@
             toolbar: '#img-toolbar',
             cols: [[
                 {type: 'checkbox',width:20},
-                {field:'file_name',title:'附件名称',templet:"#fileName"},
-                {field:'file_path',title:'附件路径',},
-                {field:'file_size',title:'附件大小',},
-                {field:'username',title:'用户',},
-                {field:'create_time',title:'上传时间',width:160,templet:'#registerTime'},
-                {field:'oprate',title:'操作',width:180,templet:'#userOpera'},
+                {field:'file_name',title:'Name',templet:"#fileName"},
+                {field:'file_path',title:'Path',},
+                {field:'file_size',title:'Size',},
+                {field:'username',title:'User',},
+                {field:'create_time',title:'Upload Time',width:160,templet:'#registerTime'},
+                {field:'oprate',title:'Operation',width:180,templet:'#userOpera'},
             ]],
             skin: 'line',
         });

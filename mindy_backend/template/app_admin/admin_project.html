@@ -84,7 +84,7 @@
 <!-- 文集置顶 -->
 <script type="text/html" id="is-top">
     {% verbatim %}
-    <input type="checkbox" name="is_top" value="{{d.id}}" lay-skin="switch" lay-text="是|否" lay-filter="topActive" {{ d.is_top === true ? 'checked' : '' }}>
+    <input type="checkbox" name="is_top" value="{{d.id}}" lay-skin="switch" lay-text="Yes|No" lay-filter="topActive" {{ d.is_top === true ? 'checked' : '' }}>
     {% endverbatim %}
 </script>
 
@@ -102,15 +102,15 @@
         let cols = [
             [
                 {type: 'checkbox',width:20},
-                {title: '文集名称',field: 'name',align: 'left',templet:"#project-name",minWidth:200},
+                {title: 'Name',field: 'name',align: 'left',templet:"#project-name",minWidth:200},
                 // {title: '简介',field: 'intro',align: 'left',templet:"#share-type"},
                 // {title: '权限',field: 'role',align: 'left',templet:"#project-role"},
-                {title: '文档数',field: 'doc_total',align: 'left',width:90},
-                {title: '协作人数',field: 'colla_total',align: 'left',templet:"#colla-cnt",width:90},
-                {title: '作者',field: 'create_user',align: 'left',width:90},
-                {title: '置顶',field: 'is_top',align: 'left',width:90,templet:"#is-top"},
-                {title: '创建时间',field: 'create_time',align: 'left',templet:"#project-create-time"},
-                {title: '操作',toolbar: '#project-bar',align: 'left',}
+                {title: 'Count',field: 'doc_total',align: 'left',width:90},
+                {title: 'Collaborator',field: 'colla_total',align: 'left',templet:"#colla-cnt",width:90},
+                {title: 'Creator',field: 'create_user',align: 'left',width:90},
+                {title: 'Top',field: 'is_top',align: 'left',width:90,templet:"#is-top"},
+                {title: 'Created Time',field: 'create_time',align: 'left',templet:"#project-create-time"},
+                {title: 'Operation',toolbar: '#project-bar',align: 'left',}
             ]
         ]
         // 渲染表格
@@ -190,7 +190,7 @@
                 area:'300px;',
                 id:'createPro',//配置ID
                 content:'<div style="padding: 20px;"><input class="layui-input" type="text" id="pname" style="margin-bottom:10px;" placeholder="输入文集名" required  lay-verify="required"><textarea name="desc" id="desc" placeholder="输入文集简介" class="layui-textarea"></textarea></div>',
-                btn:['确定','取消'], //添加按钮
+                btn:['Confirm','Cancel'], //添加按钮
                 btnAlign:'c', //按钮居中
                 yes:function (index,layero) {
                     layer.load(1);

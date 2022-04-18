@@ -1,44 +1,38 @@
 {% extends 'app_admin/admin_base.html' %}
 {% load static %}
 {% load i18n %}
-{% block title %}{% trans "用户资料设置" %}{% endblock %}
+{% block title %}User Management{% endblock %}
 {% block content %}
 <div class="layui-card">
     <div class="layui-card-header">
         <span class="layui-breadcrumb" lay-separator="-">
-            <a href="{% url 'user_manage' %}">用户管理</a>
-            <a><cite>用户资料编辑</cite></a>
+            <a href="{% url 'user_manage' %}">User Management</a>
+            <a><cite>Modify</cite></a>
           </span>
     </div>
     <div class="layui-card-body">
         <div class="layui-form" lay-filter="user-profile">
             <div class="layui-form-item">
-            <label class="layui-form-label">{% trans "用户名" %}</label>
+            <label class="layui-form-label">Username</label>
             <div class="layui-input-inline">
                 <input type="text" name="username" disabled autocomplete="off" class="layui-input" >
             </div>
-            <div class="layui-form-mid layui-word-aux">{% trans "不可修改" %}</div>
+            <div class="layui-form-mid layui-word-aux">Unmodifiable</div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">{% trans "昵称" %}</label>
-                <div class="layui-input-inline">
-                <input type="text" name="nickname" id="first_name" required  lay-verify="required" placeholder="{% trans '请输入昵称' %}" autocomplete="off" class="layui-input" value="{{user.first_name}}">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">{% trans "电子邮箱" %}</label>
+                <label class="layui-form-label">Email</label>
                 <div class="layui-input-inline">
                 <input type="email" name="email" id="email" required  lay-verify="required" placeholder="{% trans '请输入电子邮箱地址' %}" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">{% trans "用户状态" %}</label>
+                <label class="layui-form-label">Status</label>
                 <div class="layui-input-inline">
-                    <input type="checkbox" name="is_active" lay-skin="switch" lay-text="启用|停用">
+                    <input type="checkbox" name="is_active" lay-skin="switch" lay-text="On|Off">
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">{% trans "用户角色" %}</label>
+                <label class="layui-form-label">Role</label>
                 <div class="layui-input-inline">
                     <select name="is_superuser" lay-verify="">
                         <option value=""></option>
@@ -48,8 +42,8 @@
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">{% trans "新密码" %}</label>
-                <div class="layui-form-mid layui-word-aux"><button class="layui-btn layui-btn-primary layui-btn-xs" onclick="changePwd();">{% trans "点击修改密码" %}</button></div>
+                <label class="layui-form-label">New Password</label>
+                <div class="layui-form-mid layui-word-aux"><button class="layui-btn layui-btn-primary layui-btn-xs" onclick="changePwd();">Click to change password</button></div>
             </div>
 
             <div class="layui-form-item">

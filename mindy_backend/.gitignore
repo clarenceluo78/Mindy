@@ -96,3 +96,5 @@ conf/
 !conf/env.example.py
 db.sqlite3
 media/
+# config file
+config/config.ini

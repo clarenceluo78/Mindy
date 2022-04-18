@@ -1,24 +1,24 @@
 {% extends 'app_admin/admin_base.html' %}
 {% load static %}
 {% load i18n %}
-{% block title %}用户管理{% endblock %}
+{% block title %}User Management{% endblock %}
 {% block content %}
 <div class="layui-card">
     <div class="layui-card-body">
         <div class="layui-card-header" style="margin-bottom: 10px;">
         <div class="layui-row">
-            <span style="font-size:18px;">用户管理
+            <span style="font-size:18px;">User Management
             </span>
         </div>
         </div>
         <div class="layui-row">
             <div class="layui-form-item">
                 <div class="layui-input-inline">
-                    <input type="text" name="username" id="username" required lay-verify="required" placeholder="输入用户名" autocomplete="off" class="layui-input">
+                    <input type="text" name="username" id="username" required lay-verify="required" placeholder="Enter username" autocomplete="off" class="layui-input">
                 </div>
-                <button class="pear-btn pear-btn-sm" id="search"><i class="layui-icon layui-icon-search"></i>搜索</button>
-                <button class="pear-btn pear-btn-primary pear-btn-sm" onclick="createUser()" type="button"><i class="layui-icon layui-icon-addition"></i>新增用户</button>
-                <button class="pear-btn pear-btn-primary pear-btn-sm" onclick="createSuperUser()" type="button"><i class="layui-icon layui-icon-addition"></i>添加管理员</button>
+                <button class="pear-btn pear-btn-sm" id="search"><i class="layui-icon layui-icon-search"></i>Search</button>
+                <button class="pear-btn pear-btn-primary pear-btn-sm" onclick="createUser()" type="button"><i class="layui-icon layui-icon-addition"></i>Add</button>
+                <button class="pear-btn pear-btn-primary pear-btn-sm" onclick="createSuperUser()" type="button"><i class="layui-icon layui-icon-addition"></i>Add Admin</button>
             </div>
         </div>
         <div class="layui-row">
@@ -64,9 +64,9 @@
     <!-- 用户操作模板 -->
     <script type="text/html" id="userOpera">
       {% verbatim %}
-      <a class="layui-table-link" href="javascript:void(0);" onclick="changeInfo('{{ d.id }}','{{ d.username }}')">编辑</a>&nbsp;&nbsp;
+      <a class="layui-table-link" href="javascript:void(0);" onclick="changeInfo('{{ d.id }}','{{ d.username }}')">Edit</a>&nbsp;&nbsp;
       <!-- <a class="layui-table-link" href="javascript:void(0);" onclick="changePwd('{{ d.id }}','{{ d.username }}')">修改密码</a>&nbsp;&nbsp; -->
-      <a class="layui-table-link" href="javascript:void(0);" onclick="delUser('{{ d.id }}','{{ d.username }}')">删除</a>
+      <a class="layui-table-link" href="javascript:void(0);" onclick="delUser('{{ d.id }}','{{ d.username }}')">Delete</a>
       {% endverbatim %}
     </script>
 <script>
@@ -90,14 +90,14 @@
             },
             page:true,
             cols: [[
-                {field:'username',title:'用户名',width:160},
-                {field:'first_name',title:'昵称',width:160},
-                {field:'email',title:'电子邮箱',width:160},
-                {field:'is_superuser',title:'用户角色',width:100,templet:'#userRole'},
-                {field:'date_joined',title:'注册时间',width:160,templet:'#registerTime'},
-                {field:'last_login',title:'最后登录时间',width:160,templet:'#lastLoginTime'},
-                {field:'is_active',title:'状态',width:60,templet:'#userStatus'},
-                {field:'oprate',title:'操作',width:180,templet:'#userOpera'},
+                {field:'username',title:'Username',width:160},
+                {field:'email',title:'Email',width:160},
+                {field:'first_name',title:'Is_Confirmed',width:160},
+                {field:'is_superuser',title:'Role',width:100,templet:'#userRole'},
+                {field:'date_joined',title:'Joined Date',width:160,templet:'#registerTime'},
+                {field:'last_login',title:'Last Login',width:160,templet:'#lastLoginTime'},
+                {field:'is_active',title:'Status',width:60,templet:'#userStatus'},
+                {field:'oprate',title:'Operation',width:180,templet:'#userOpera'},
             ]],
             skin: 'line',
         });
