@@ -27,7 +27,7 @@ New to Mind maps? They are useful, aesthetic and cool! Read more about these spe
 ## :hammer: Install
 
 ### Frontend settings:
-- Install Node.js and Vue: [Node.js installation](https://nodejs.org/zh-cn/download/)   
+- Install Node.js and Vue:<br></br> [Node.js installation](https://nodejs.org/zh-cn/download/)   
 [Vue installation](https://cn.vuejs.org/v2/guide/installation.html) <br></br>
 - Project setup: 
 ```
