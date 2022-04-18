@@ -49,7 +49,10 @@ def check_code(request):
         return HttpResponse(_("请求异常：{}".format(repr(e))))
 
 
-# 登录视图
+'''
+    @Name: User Login View
+    @Function: Realize user login, super_admin login
+'''
 def log_in(request):
     if request.method == 'GET':
         # if authenticated, jump to main page
@@ -68,7 +71,6 @@ def log_in(request):
                 if checkcode.lower() != request.session['CheckCode'].lower():
                     errormsg = _('验证码错误！')
                     return render(request, 'login.html', locals())
-
             # 验证登录次数
             if 'LoginLock' not in request.session.keys():
                 request.session['LoginNum'] = 1 # 重试次数
@@ -86,7 +88,6 @@ def log_in(request):
                 errormsg = _("操作过于频繁，请10分钟后再试！")
                 request.session['LoginNum'] = 0  # 重试次数清零
                 return render(request, 'login.html', locals())
-
             if username != '' and pwd != '':
                 user = authenticate(username=username, password=pwd)
                 if user is not None:
@@ -175,7 +176,10 @@ def user_confirm(request):
         message = 'Thank you for your confirmation, please login with your account!  '
         return render(request, 'server/users/confirm.html', locals())
 
-# 注册视图
+'''
+    @Name: User Register View
+    @Function: Realize user register, email confirm
+'''
 @open_register
 @logger.catch()
 def register(request):
@@ -344,14 +348,17 @@ def send_email_vcode(request):
         return JsonResponse({'status':False,'data':_('方法错误')})
 
 
-# 后台管理 - 仪表盘
+'''
+    @Name: Admin Management Overview View
+    @Function: View of Admin Home Page
+'''
 @superuser_only
 def admin_overview(request):
     if request.method == 'GET':
         # 用户数
         user_cnt = User.objects.all().count()
-        # 文集数
-        pro_cnt = Project.objects.all().count() # 文集总数
+        # 项目数
+        pro_cnt = Project.objects.all().count()
         # 文档数
         doc_cnt = Doc.objects.all().count() # 文档总数
         total_tag_cnt = Tag.objects.filter(create_user=request.user).count()
@@ -361,7 +368,7 @@ def admin_overview(request):
         doc_active_list = Doc.objects.all().order_by('-modify_time')[:5]
         # 个人文集列表
         pro_list = Project.objects.filter(create_user=request.user).order_by('-create_time')
-        return render(request,'app_admin/admin_overview.html',locals())
+        return render(request, 'app_admin/admin_overview.html', locals())
     else:
         pass
 
@@ -1143,7 +1150,10 @@ def admin_register_code(request):
         return JsonResponse({'status': False,'data':_('方法错误')})
 
 
-# 普通用户修改密码
+'''
+    @Name: Change password View
+    @Function: Change password for normal user
+'''
 @login_required()
 @logger.catch()
 def change_pwd(request):

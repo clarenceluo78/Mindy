@@ -30,7 +30,7 @@ import os.path
 import json
 
 
-# 导入文集
+# 导入项目
 @login_required()
 @require_http_methods(['GET','POST'])
 def import_project(request):

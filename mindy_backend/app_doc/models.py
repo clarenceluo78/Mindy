@@ -33,20 +33,23 @@ class Project(models.Model):
                        )
 
 
-# 文集协作模型
+'''
+    @Name: Project Collaborator Model
+    @Function: Realize User Collaboration Function
+'''
 class ProjectCollaborator(models.Model):
-    project = models.ForeignKey(Project,on_delete=models.CASCADE) # 文集
-    user = models.ForeignKey(User,on_delete=models.CASCADE) # 用户
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)  # 项目
+    user = models.ForeignKey(User, on_delete=models.CASCADE)  # 用户
     # 用户的协作模式：0表示可新建文档，可修改、删除自己新建的文档，1表示可新建文档，可删除自己创建的文档、可修改所有文档
-    role = models.IntegerField(choices=((0,0),(1,1)),default=0,verbose_name='协作模式')
-    create_time = models.DateTimeField(auto_now=True,verbose_name='添加时间')
-    modify_time = models.DateTimeField(auto_now_add=True,verbose_name='修改时间')
+    role = models.IntegerField(choices=((0, 0), (1, 1)), default=0, verbose_name='协作模式')
+    create_time = models.DateTimeField(auto_now=True, verbose_name='添加时间')
+    modify_time = models.DateTimeField(auto_now_add=True, verbose_name='修改时间')
 
     def __str__(self):
         return self.project
 
     class Meta:
-        verbose_name = '文集协作'
+        verbose_name = '项目协作'
         verbose_name_plural = verbose_name
 
 
@@ -62,8 +65,9 @@ class ProjectToc(models.Model):
         verbose_name = '文集目录'
         verbose_name_plural = verbose_name
 
-
-# 文档模型
+'''
+    @Name: Document Model
+'''
 class Doc(models.Model):
     name = models.CharField(verbose_name="文档标题",max_length=255)
     pre_content = models.TextField(verbose_name="编辑内容",null=True,blank=True)
@@ -223,7 +227,9 @@ class ImageGroup(models.Model):
         verbose_name_plural = verbose_name
 
 
-# 图片模型
+'''
+    @Name: Image Storage Model
+'''
 class Image(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     file_path = models.CharField(verbose_name="图片路径", max_length=250)
