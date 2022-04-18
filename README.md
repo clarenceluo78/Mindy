@@ -1,6 +1,6 @@
 # Mindy
 
-My Mind is a web application for creating and managing Mind maps. Mindy (meaning ”map your mind”), aims to provide a platform for
+Mindy is a web application for creating and managing online document. Mindy (meaning ”map your mind”), aims to provide a platform for
 users to map their mind online instead of on a piece of paper, which has unlimited
 space, be easy to digitize, and make it searchable. We hope to create an environment
 where interactions between team workers and users themselves can occur efficiently
@@ -23,53 +23,60 @@ New to Mind maps? They are useful, aesthetic and cool! Read more about these spe
 
 ## :rocket: Features
 
-<!-- | Feature | Status | Description |
-|---------|:------:|-------------|
-| Basic mind map properties | :heavy_check_mark: | Set node images, colors and font properties. |
-| Undo/Redo | :heavy_check_mark: | History of map changes. |
-| Map centering | :heavy_check_mark: | Center map in x, y, z axes. |
-| Shortcuts | :heavy_check_mark: | Main shortcuts to speed things up. |
-| Local storage | :heavy_check_mark: | Save maps in the browser local storage. |
-| JSON import/export | :heavy_check_mark: | Export and import maps as JSON file. |
-| Image & PDF export | :heavy_check_mark: | Export maps as image (png, jpg) or PDF document. |
-| PWA support | :heavy_check_mark: | Support of desktop and mobile browser PWA (Progressive Web App). |
-| p2p database | :x: | Orbit (or something else) peer-to-peer database to share and eventually sync maps. |
-| Plugin system | :x: | A plugin system to add third-party features. |
-| Multiple selection | :x: | Select multiple nodes at the same time. |
-| Multiple maps | :heavy_check_mark: | Multiple maps at the same time with multi-tabs. |
- -->
+
 ## :hammer: Install
-<!-- 
-With the following installed:
-- git
-- node >= 12
-- npm >= 6
 
-Clone the repo and install the dependencies from npm.
+###Frontend settings:
+- Install Node.js and Vue: [Node.js installation](https://nodejs.org/zh-cn/download/)   
+[Vue installation](https://cn.vuejs.org/v2/guide/installation.html) <br></br>
+- Project setup: 
+```
+npm install
+``` 
 
-```bash
-git clone https://github.com/Mindmapp/mindmapp.git
-cd mindmapp
-npm i
-``` -->
+- Compiles and hot-reloads for development:
+```
+npm run serve
+```
+- Compiles and minifies for production:
+```
+npm run build
+```
+<br></br>
+###Backend settings:
+- Install dependent modules:
+```
+pip install -r requirements.txt
+``` 
+- Database configurations<br></br>
+Open mindy_backend/Mindy/config/config.ini，modify content in [database] to:
+```
+engine = mysql
+name = 'your database name'
+user = 'your database user'
+password = 'your password'
+host = 'your ip'
+port = 'your port'
+```
+
+- Initialize database:
+```
+python manage.py makemigrations       //Open the command line interface under the project path and run the command to generate the database migration 
+python manage.py migrate              //Type in command line to perform database migrations
+```
+- Run server:
+```
+python manage.py runserver
+```
+
+* Create admin user:
+```
+python manage.py createsuperuser
+``` 
+
 
 ## :video_game: Usage
-<!-- 
-For local *development* with angular dev server:
 
-```bash
-npm start
-```
-
-Then open [http://localhost:4200](http://localhost:4200) in your browser.
-
-If you want to generate the project documentation:
-
-```bash
-npm run doc
-```
-
-A `documentation` folder will be generated in the project path. -->
 
 ## :chart_with_upwards_trend: Development
 

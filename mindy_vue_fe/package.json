@@ -8,13 +8,15 @@
   },
   "dependencies": {
     "@hellowuxin/mindmap": "^2.1.4",
+    "axios": "^0.26.1",
     "butterfly-dag": "^4.2.5",
     "butterfly-vue": "^1.0.17",
     "core-js": "^3.6.5",
     "element-ui": "^2.4.5",
+    "jquery": "^3.6.0",
     "mindmap": "0.0.8",
     "node.js": "0.0.1-security",
-    "vue": "^2.6.11",
+    "vue": "^2.6.14",
     "vue-router": "^3.2.0",
     "vuex": "^3.4.0"
   },
@@ -23,7 +25,10 @@
     "@vue/cli-plugin-router": "~4.5.13",
     "@vue/cli-plugin-vuex": "~4.5.13",
     "@vue/cli-service": "~4.5.13",
+    "less": "^3.9.0",
+    "less-loader": "^4.1.0",
     "vue-cli-plugin-element": "^1.0.1",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "webpack": "^4.0.0"
   }
 }
