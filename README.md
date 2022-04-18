@@ -12,18 +12,37 @@ New to Mind maps? They are useful, aesthetic and cool! Read more about these spe
 ## :paperclip: Table of Contents
 - :rocket: [Features](#rocket-features)
 - :hammer: [Install](#hammer-install)
-- :video_game: [Usage](#video_game-usage)
-- :chart_with_upwards_trend: [Development](#chart_with_upwards_trend-development)
-  - :scroll: [Rules](#scroll-rules)
-    - [Commits](#commits)
-    - [Branches](#branches)
-- :page_facing_up: [License](#page_facing_up-license)
 - :telephone_receiver: [Contacts](#telephone_receiver-contacts)
   - :boy: [Developers](#boy-developers)
 
 ## :rocket: Features
 
+### Basic Requirements
+- User management
+  - Sign up 
+  - Activate user account by email
+  - Log in
+  - Log out
+  - Upload/Change profile
+  - Change password
 
+- Admin user management
+  - Manage all user information
+  - Manage all projects
+  - Manage all documents
+  - Manage all attachments
+  - Manage templates
+
+### Advanced features
+- Personal file management
+  - Create 
+  - Modify
+  - Delete
+  - Change parent project 
+- Document writing 
+- Mindmap drawing(using markdown syntax)
+- Embedded online table
+- User collaboration
 ## :hammer: Install
 
 ### Frontend settings:
@@ -75,62 +94,15 @@ python manage.py createsuperuser
 ``` 
 
 
-## :video_game: Usage
 
 
-## :chart_with_upwards_trend: Development
-
-### :scroll: Rules
-
-#### Commits
-<!-- 
-* Use this commit message format (angular style):  
-
-    `[<type>] <subject>`
-    `<BLANK LINE>`
-    `<body>`
-
-    where `type` must be one of the following:
-
-    - feat: A new feature
-    - fix: A bug fix
-    - docs: Documentation only changes
-    - style: Changes that do not affect the meaning of the code
-    - refactor: A code change that neither fixes a bug nor adds a feature
-    - test: Adding missing or correcting existing tests
-    - chore: Changes to the build process or auxiliary tools and libraries such as documentation generation
-    - update: Update of the library version or of the dependencies
-
-and `body` must be should include the motivation for the change and contrast this with previous behavior (do not add body if the commit is trivial). 
-
-* Use the imperative, present tense: "change" not "changed" nor "changes".
-* Don't capitalize first letter.
-* No dot (.) at the end. -->
-
-#### Branches
-
-<!-- * There is a master branch, used only for release.
-* There is a dev branch, used to merge all sub dev branch.
-* Avoid long descriptive names for long-lived branches.
-* No CamelCase.
-* Use grouping tokens (words) at the beginning of your branch names (in a similar way to the `type` of commit).
-* Define and use short lead tokens to differentiate branches in a way that is meaningful to your workflow.
-* Use slashes to separate parts of your branch names.
-* Remove branch after merge if it is not important.
-
-Examples:
-    
-    git branch -b docs/README
-    git branch -b test/one-function
-    git branch -b feat/side-bar
-    git branch -b style/header -->
-
-
-## :page_facing_up: License
-<!-- * See [LICENSE](https://github.com/cedoor/ceditor/blob/master/LICENSE) file. -->
 
 ## :telephone_receiver: Contacts
 ### :boy: Developers
+Luo Haoyan 119010221@link.cuhk.edu.cn<br></br>
+Ge Wentao 119010080@link.cuhk.edu.cn<br></br>
+Shao Xiaowen 119010258@link.cuhk.edu.cn<br></br>
+Chen yanyu 118010029@link.cuhk.edu.cn
 <!-- * e-mail : me@cedoor.dev
 * github : [@cedoor](https://github.com/cedoor)
 * website : https://cedoor.dev
@@ -147,3 +119,5 @@ Training
 Blog
 About
  -->
+
+
