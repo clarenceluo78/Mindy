@@ -8,7 +8,7 @@ and conveniently. Hopefully, this kind of user-friendly platform could eventuall
 create a win-win situation for users who create the map and the readers who try to
 understand the map, enhancing the quality and efficiency of the work.
 
-New to Mind maps? They are useful, aesthetic and cool! Read more about these special diagrams in [the Wikipedia article](https://en.wikipedia.org/wiki/Mind_map).
+
 ## :paperclip: Table of Contents
 - :rocket: [Features](#rocket-features)
 - :hammer: [Install](#hammer-install)
