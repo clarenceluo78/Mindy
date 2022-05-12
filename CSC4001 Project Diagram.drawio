@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2022-05-12T08:44:58.861Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36" etag="1a3DpG68wEUGOGo2nGKB" version="18.0.0" type="github">
+<mxfile host="app.diagrams.net" modified="2022-05-12T09:01:26.373Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36" etag="gYDppQySPUFHy1GnKGoh" version="18.0.0" type="github">
   <diagram id="8CRPlhkvrAZ520oBxh4C" name="CSC4001Project">
-    <mxGraphModel dx="5881" dy="3674" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="5916" dy="3691" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1271,7 +1271,7 @@
             <mxPoint x="-8" y="8" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="tPWhLoHGywmmNPwIWMqB-81" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;b&gt;Admin&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ adminName&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ editUser()&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ deleteUser()&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ viewUser()&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;rounded=0;gradientColor=none;" vertex="1" parent="1">
+        <mxCell id="tPWhLoHGywmmNPwIWMqB-81" value="&lt;p style=&quot;margin: 0px ; margin-top: 4px ; text-align: center&quot;&gt;&lt;b&gt;Admin&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ admin_name&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ edit_user()&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ delete_user()&lt;/p&gt;&lt;p style=&quot;margin: 0px ; margin-left: 4px&quot;&gt;+ view_user()&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;rounded=0;gradientColor=none;" vertex="1" parent="1">
           <mxGeometry x="-3211" y="2402" width="152.5" height="110" as="geometry" />
         </mxCell>
         <mxCell id="tPWhLoHGywmmNPwIWMqB-82" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;shadow=0;endArrow=diamond;endFill=1;strokeWidth=1;startArrow=none;" edge="1" parent="1" source="tPWhLoHGywmmNPwIWMqB-84">
